@@ -1,15 +1,16 @@
 import { useState } from "react";
 
-export function Card({ title, description, details, image }) {
+export function Card({ title, description, details, image, author }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <>
-      {/* Card with spacing and hover effect */}
+      {/* Center the text and card content vertically */}
       <div
         className="p-6 shadow-md rounded-lg border border-gray-700 
                    bg-gray-800 transition-all duration-300 cursor-pointer 
-                   hover:scale-105 hover:bg-gray-700 hover:shadow-xl"
+                   hover:scale-105 hover:bg-gray-700 hover:shadow-xl 
+                   flex flex-col justify-between h-full"
         onClick={() => setIsOpen(true)}
       >
         <CardContent>
@@ -18,14 +19,27 @@ export function Card({ title, description, details, image }) {
         </CardContent>
       </div>
 
-      {/* Modal Popup with Image */}
+      {/* Modal Popup with Image and Optional Author */}
       {isOpen && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 p-4">
           <div className="bg-gray-900 p-6 rounded-lg max-w-lg shadow-lg border border-gray-700">
             {/* Project Image (only in modal) */}
-            <img src={image} alt={title} className="w-full h-60 object-cover rounded-md mb-4" />
-            <h3 className="text-2xl font-bold text-white">{title}</h3>
+            <img
+              src={image}
+              alt={title}
+            />
+            <h3 className="text-2xl font-bold text-white pt-5">{title}</h3>
             <p className="text-gray-400 mt-4">{details}</p>
+
+            {/* Conditional Author Section */}
+            {author && (
+              <div className="mt-6 border-t border-gray-700 pt-4">
+                <p className="text-sm text-gray-400">
+                  <span className="font-semibold"></span> {author}
+                </p>
+              </div>
+            )}
+
             <button
               className="mt-6 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-500 transition-all duration-200"
               onClick={() => setIsOpen(false)}
@@ -40,7 +54,11 @@ export function Card({ title, description, details, image }) {
 }
 
 export function CardContent({ children }) {
-  return <div className="mt-2">{children}</div>;
+  return (
+    <div className="flex flex-col items-center justify-center h-full text-center">
+      {children}
+    </div>
+  );
 }
 
 // Component to Render the Cards with Centering
@@ -49,7 +67,9 @@ export function CardGrid({ cards }) {
   const centerClass = isNotMultipleOfThree ? "justify-center" : "";
 
   return (
-    <div className={`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 ${centerClass} flex`}>
+    <div
+      className={`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 ${centerClass} flex`}
+    >
       {cards.map((card, index) => (
         <Card key={index} {...card} />
       ))}
