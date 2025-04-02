@@ -2,8 +2,8 @@ import { Card } from "./Card";
 import leafcheckimg from '../assets/images/leafcheck.png';
 import kanagamesimg from "../assets/images/kanagames.png";
 import perpushubimg from "../assets/images/perpushub.png";
-// import firstknightimg from "../assets/firstknight.png";
-// import flappybirdimg from "../assets/flappybird.png";
+import firstknightimg from "../assets/images/firstknight.png";
+import firstbirdimg from "../assets/images/firstbird.png";
 
 export function Projects() {
   const projectData = [
@@ -32,14 +32,14 @@ export function Projects() {
       title: "First Knight Game",
       description: "Knight Platformer Game",
       details: "This game is my first platformer game. The goal is to collect 10 coins to win the game. Enjoy!",
-      image: "https://via.placeholder.com/300",
+      image: firstknightimg,
       author: "Hilmi - All Tutorial from Brackeys Youtube Channel"
     },
     {
       title: "FlappyBird Game",
       description: "Flappybird Clone Game",
-      details: "More detailed description of Project 1.",
-      image: "https://via.placeholder.com/300",
+      details: "This game is a clone of the popular Flappy Bird game. The goal is to navigate the bird through the pipes without hitting them. Enjoy!",
+      image: firstbirdimg,
       author: "Hilmi - All Tutorial from Game Maker's Toolkit Youtube Channel"
     },
   ];

@@ -7,14 +7,14 @@ export function Certificate() {
     {
       title: "Problem Solving (Basic)",
       description: "Hackerrank",
-      details: "LeafCheck is an AI-based app that allows you to scan leaves using a camera or upload images to get an instant health analysis. With LeafCheck, you can easily detect leaf problems early!",
+      details: "I got this certificate for completing the Problem Solving (Basic) skill badge on HackerRank. This badge is awarded to those who have successfully solved some problem in 1 hours and 30 minutes. and i solved it in Java.",
       image: sertprobsolvbasic,
       author: "Hilmi, Dhivara, Ninda, Adesta"
     },
     {
       title: "Java (Basic)",
       description: "Hackerrank",
-      details: "KanaGames is an educational game that helps you learn Japanese Katakana characters. With KanaGames, you can learn Japanese characters in a fun and interactive way!",
+      details: "I got this certificate for completing the Java (Basic) skill badge on HackerRank. This badge is awarded to those who have successfully solved some problem in 1 hours and 30 minutes. and i solved it in Java.",
       image: sertjavabasic,
       author: "Hilmi, Aldino, Gavino, Delisya", 
     }
