@@ -1,0 +1,35 @@
+{
+  "files": {
+    "main.css": "/portohealme/static/css/main.6bbab30a.css",
+    "main.js": "/portohealme/static/js/main.91f63d44.js",
+    "static/js/453.358d16de.chunk.js": "/portohealme/static/js/453.358d16de.chunk.js",
+    "static/media/bangkitcert.jpg": "/portohealme/static/media/bangkitcert.fc682f90075e7f9527b7.jpg",
+    "static/media/plp2smk2malang.png": "/portohealme/static/media/plp2smk2malang.311808ebfa0dbadee295.png",
+    "static/media/svvrsmk3batu.png": "/portohealme/static/media/svvrsmk3batu.a7e7bf01bc7ad300aa6c.png",
+    "static/media/practicumassist.png": "/portohealme/static/media/practicumassist.557096c7ac5c2b2decdf.png",
+    "static/media/kanagames.png": "/portohealme/static/media/kanagames.cf04647eca20326ac17a.png",
+    "static/media/pphero2.svg": "/portohealme/static/media/pphero2.408ca5c7c25c7a4714ed86585fe9a4c8.svg",
+    "static/media/ddmcert.png": "/portohealme/static/media/ddmcert.cf6649b29531ac47bfd9.png",
+    "static/media/perpushub.png": "/portohealme/static/media/perpushub.7e2465f9414ab72b1443.png",
+    "static/media/becomeagce.jpg": "/portohealme/static/media/becomeagce.e5fc7f2cc6d299d198eb.jpg",
+    "static/media/coddm.png": "/portohealme/static/media/coddm.7aabb16226ed55a554ef.png",
+    "static/media/leafcheck.png": "/portohealme/static/media/leafcheck.ed8482a977d676143b1e.png",
+    "static/media/sekrependptq.png": "/portohealme/static/media/sekrependptq.ea0d3d7ac0dfa90a89e2.png",
+    "static/media/wacomultmed.png": "/portohealme/static/media/wacomultmed.96a902ffaf8e0b2dfd75.png",
+    "static/media/problemsolving.png": "/portohealme/static/media/problemsolving.39a6a92d6aecd01310a6.png",
+    "static/media/javabasic.png": "/portohealme/static/media/javabasic.50951f91aa63fe3a9350.png",
+    "static/media/CV ATS - Muhammad Hilmi Adzkia [English] V2.pdf": "/portohealme/static/media/CV ATS - Muhammad Hilmi Adzkia [English] V2.e42f62c0992773db2a3d.pdf",
+    "static/media/dc2024itdev.jpg": "/portohealme/static/media/dc2024itdev.256073b8efbdebc1c2cd.jpg",
+    "static/media/firstknight.png": "/portohealme/static/media/firstknight.54ad913596906173c009.png",
+    "static/media/firstbird.png": "/portohealme/static/media/firstbird.63413c8f3e66b2cdab38.png",
+    "static/media/gamedevskill.png": "/portohealme/static/media/gamedevskill.b2acebb29fd00ed4ff87.png",
+    "index.html": "/portohealme/index.html",
+    "main.6bbab30a.css.map": "/portohealme/static/css/main.6bbab30a.css.map",
+    "main.91f63d44.js.map": "/portohealme/static/js/main.91f63d44.js.map",
+    "453.358d16de.chunk.js.map": "/portohealme/static/js/453.358d16de.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.6bbab30a.css",
+    "static/js/main.91f63d44.js"
+  ]
+}
