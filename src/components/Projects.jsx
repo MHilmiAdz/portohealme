@@ -12,21 +12,21 @@ export function Projects() {
       description: "AI-based leaf health detection application.",
       details: "LeafCheck is an AI-based app that allows you to scan leaves using a camera or upload images to get an instant health analysis. With LeafCheck, you can easily detect leaf problems early!",
       image: leafcheckimg,
-      author: "Hilmi, Dhivara, Ninda, Adesta"
+      author: "Team: Hilmi, Dhivara, Ninda, Adesta"
     },
     {
       title: "KanaGames",
       description: "2D Japanese learning game.",
       details: "KanaGames is an educational game that helps you learn Japanese Katakana characters. With KanaGames, you can learn Japanese characters in a fun and interactive way!",
       image: kanagamesimg,
-      author: "Hilmi, Aldino, Gavino, Delisya", 
+      author: "Team: Hilmi, Aldino, Gavino, Delisya", 
     },
     {
       title: "PerpusHub",
       description: "PDF Organizer App",
       details: "PerpusHub is an app to manage your PDF books. With PerpusHub, you can easily organize your PDF books and read them anytime, anywhere!",
       image: perpushubimg,
-      author: "Hilmi, Rasyid, Delisya"
+      author: "Team: Hilmi, Rasyid, Delisya"
     },
     {
       title: "First Knight Game",

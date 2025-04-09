@@ -1,12 +1,19 @@
 import { useState } from "react";
-import heroimg from "../assets/images/pphero.svg";
+import heroimg from "../assets/images/pphero2.svg";
 import fullresume from "../assets/files/CV ATS - Muhammad Hilmi Adzkia [English] V2.pdf";
+
+// Example skill images (replace with actual paths)
+import skill1 from "../assets/images/androidskill.png";
+import skill2 from "../assets/images/cloudcompskill.png";
+import skill3 from "../assets/images/gamedevskill.png";
+import skill4 from "../assets/images/designskill.png";
+import skill5 from "../assets/images/teachingskill.png";
 
 export function Introduction() {
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [currentIndex, setCurrentIndex] = useState(0); // Track the current visible skill index
 
     const handleDownloadResume = () => {
-        // Logic to download the main resume file
         const link = document.createElement("a");
         link.href = fullresume;
         link.download = "Hilmi_FullResume.pdf";
@@ -14,11 +21,27 @@ export function Introduction() {
     };
 
     const handleSpecificResumeDownload = (fileName) => {
-        // Logic to download specific resume files
         const link = document.createElement("a");
-        link.href = `src/assets/files/${fileName}`; // Replace with the actual file path
+        link.href = `src/assets/files/${fileName}`;
         link.download = fileName;
         link.click();
+    };
+
+    const skills = [
+        { image: skill1, name: "Android Developer", detail: "Build a simple android app using Android Studio" },
+        { image: skill3, name: "Game Developer", detail: "Build a Game with Construct" },
+        { image: skill4, name: "Design", detail: "Design UI, Banner, Logo, etc with Figma and Canva" },
+        { image: skill5, name: "Teaching", detail: "Teach Coding Basics" },
+        { image: skill2, name: "Cloud Computing", detail: "Develop an API, Develop an Auth with Firebase" },
+    ];
+
+    const handleScroll = (direction) => {
+        const maxIndex = skills.length - 3; // Show 3 cards at a time
+        if (direction === "left" && currentIndex > 0) {
+            setCurrentIndex(currentIndex - 1);
+        } else if (direction === "right" && currentIndex < maxIndex) {
+            setCurrentIndex(currentIndex + 1);
+        }
     };
 
     return (
@@ -57,35 +80,90 @@ export function Introduction() {
                 </div>
             </div>
 
+            {/* Skills Section */}
+            <div className="mt-20 bg-gray-800 py-10 relative">
+                <h3 className="text-3xl font-bold text-center text-white mb-10">
+                    Skills
+                </h3>
+                <div className="flex items-center justify-center relative">
+                    {/* Left Scroll Button */}
+                    <button
+                        onClick={() => handleScroll("left")}
+                        className="absolute left-2 bg-gray-700 text-white p-2 rounded-full hover:bg-gray-600 z-10 flex items-center justify-center"
+                    >
+                        <span className="text-lg">&#8592;</span>
+                    </button>
+
+                    {/* Skills Container */}
+                    <div className="overflow-hidden w-full max-w-4xl px-6">
+                        <div
+                            className="flex transition-transform duration-500 ease-in-out"
+                            style={{
+                                transform: `translateX(-${currentIndex * (256 + 24)}px)`, // 256px card width + 24px spacing
+                            }}
+                        >
+                            {skills.map((skill, index) => (
+                                <div
+                                    key={index}
+                                    className="skill-card flex-shrink-0 w-64 bg-gray-700 p-6 rounded-lg shadow-lg text-left mx-3"
+                                >
+                                    <img
+                                        src={skill.image}
+                                        alt={skill.name}
+                                        className="w-20 h-20 mb-4"
+                                    />
+                                    <h4 className="text-xl font-semibold text-white">
+                                        {skill.name}
+                                    </h4>
+                                    <p className="text-gray-400 text-md mt-2">{skill.detail}</p>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Right Scroll Button */}
+                    <button
+                        onClick={() => handleScroll("right")}
+                        className="absolute right-2 bg-gray-700 text-white p-2 rounded-full hover:bg-gray-600 z-10 flex items-center justify-center"
+                    >
+                        <span className="text-lg">&#8594;</span>
+                    </button>
+                </div>
+            </div>
+
             {/* Modal */}
             {isModalOpen && (
-                <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-                    <div className="bg-gray-800 text-white p-6 rounded-lg shadow-lg max-w-sm w-full">
-                        <h3 className="text-lg font-bold mb-4">Select a Resume</h3>
-                        <button
-                            onClick={() => handleSpecificResumeDownload("android-developer-resume.pdf")}
-                            className="w-full mb-2 px-4 py-2 bg-blue-400 text-white rounded-lg hover:bg-blue-600"
-                        >
-                            Android Developer Resume
-                        </button>
-                        <button
-                            onClick={() => handleSpecificResumeDownload("game-developer-resume.pdf")}
-                            className="w-full mb-2 px-4 py-2 bg-blue-400 text-white rounded-lg hover:bg-blue-600"
-                        >
-                            Game Developer Resume
-                        </button>
-                        <button
-                            onClick={() => handleSpecificResumeDownload("educator-resume.pdf")}
-                            className="w-full mb-2 px-4 py-2 bg-blue-400 text-white rounded-lg hover:bg-blue-600"
-                        >
-                            Educator Resume
-                        </button>
-                        <button
-                            onClick={() => setIsModalOpen(false)}
-                            className="w-full px-4 py-2 bg-red-700 text-gray-200 rounded-lg hover:bg-red-950"
-                        >
-                            Close
-                        </button>
+                <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+                    <div className="bg-gray-900 p-4 rounded-lg shadow-lg border border-gray-700 max-w-sm w-full">
+                        <h3 className="text-lg font-bold text-white mb-4 text-center">
+                            Select a Resume
+                        </h3>
+                        <div className="flex flex-col items-center">
+                            <button
+                                onClick={() => handleSpecificResumeDownload("android-developer-resume.pdf")}
+                                className="w-full mb-2 px-4 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-700 text-center"
+                            >
+                                Android Developer Resume
+                            </button>
+                            <button
+                                onClick={() => handleSpecificResumeDownload("game-developer-resume.pdf")}
+                                className="w-full mb-2 px-4 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-700 text-center"
+                            >
+                                Game Developer Resume
+                            </button>
+                            <button
+                                onClick={() => handleSpecificResumeDownload("educator-resume.pdf")}
+                                className="w-full mb-2 px-4 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-700 text-center"
+                            >
+                                Educator Resume
+                            </button>
+                            <button
+                                onClick={() => setIsModalOpen(false)}
+                                className="mt-4 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-500 transition-all duration-200 text-center"
+                            >
+                                Close
+                            </button>
+                        </div>
                     </div>
                 </div>
             )}
