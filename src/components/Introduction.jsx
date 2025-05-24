@@ -46,9 +46,9 @@ export function Introduction() {
 
     return (
         <section className="py-20">
-            <div className="flex flex-col md:flex-row items-center md:items-start max-w-5xl mx-auto px-6">
+            <div className="flex flex-col md:flex-row items-center md:items-start max-w-5xl mx-auto px-6 py-10">
                 {/* Image Section */}
-                <div className="flex-shrink-0 mb-10 md:mb-0 md:mr-10">
+                <div className="flex-shrink-0 mb-10 md:mb-0 md:mr-10 animate-fade-in-up">
                     <img
                         src={heroimg}
                         alt="Hero"
@@ -57,13 +57,14 @@ export function Introduction() {
                 </div>
 
                 {/* Text Section */}
-                <div className="text-center md:text-left">
-                    <h2 className="text-4xl font-bold">Hello, I'm Hilmi 👋</h2>
-                    <p className="mt-4 text-lg text-gray-300 font-semibold">
+                <div className="text-center md:text-left py-10 animate-fade-in-up">
+                    <h2 className="text-2xl font-semibold py-6">Muhammad Hilmi Adzkia</h2>
+                    <p className="text-4xl font-bold">
                         Android Developer | Game Developer | Educator
                     </p>
-                    <p className="mt-4 text-md text-gray-300">
-                        A fresh graduate majoring in Information Technology Education who has an interest in mobile application development with experience in building Android applications using Kotlin and Java. Strong understanding of Object Oriented Programming (OOP), Firebase, and cloud-based API development. Experienced in collaborating with cross-functional teams to develop functional, efficient, and user-friendly applications. Familiar with using Git for version control and have good communication skills in conveying ideas and technical challenges.
+                    <p className="text-lg py-2">
+                        Fresh Graduate from Information Technology Eduction 
+                        <br /> Computer Science Faculty, Brawijaya University
                     </p>
                     <button
                         onClick={handleDownloadResume}
