@@ -4,6 +4,7 @@ import { Projects } from "./components/Projects";
 import { Certificate } from "./components/Certificate";
 import { Experience } from "./components/Experience";
 import { Navbar } from "./components/Navbar";
+import { Designs } from "./components/Designs";
 
 export default function Portfolio() {
   return (
@@ -13,6 +14,7 @@ export default function Portfolio() {
       <Projects />
       <Certificate />
       <Experience />
+      <Designs />
       <Footer />
     </div>
   );
