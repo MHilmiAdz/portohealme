@@ -29,7 +29,7 @@ export function Designs() {
     <section className="px-6 py-10 text-center">
       <h2 className="text-3xl font-bold mb-10">Designs</h2>
       <div className="flex justify-center">
-        <div className="grid md:grid-cols-3 gap-8 max-w-5xl w-full">
+        <div className="grid md:grid-cols-2 gap-8 max-w-5xl w-full">
           {projectData?.map((project, index) => (
             <ImageCard key={index} {...project} />
           ))}
