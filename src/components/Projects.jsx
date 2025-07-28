@@ -15,6 +15,13 @@ export function Projects() {
       author: "Team: Hilmi, Dhivara, Ninda, Adesta"
     },
     {
+      title: "LeafCheck API",
+      description: "Flask API for LeafCheck App.",
+      details: "LeafCheck API is a Flask-based API that provides the backend for the LeafCheck app. It allows you to upload images and get health analysis results for leaves.",
+      image: leafcheckimg,
+      author: "Team: Hilmi, Dhivara"
+    },
+    {
       title: "KanaGames",
       description: "2D Japanese learning game.",
       details: "KanaGames is an educational game that helps you learn Japanese Katakana characters. With KanaGames, you can learn Japanese characters in a fun and interactive way!",
@@ -53,6 +60,14 @@ export function Projects() {
             <Card key={index} {...project} />
           ))}
         </div>
+      </div>
+      <div>
+        <button
+          className="mt-10 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-500 transition-all duration-200"
+          onClick={() => window.open("https://example.com/download", "_blank")}
+        >
+          Test the App?
+        </button>
       </div>
     </section>
   );

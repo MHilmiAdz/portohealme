@@ -1,15 +1,15 @@
 import { ImageCard } from "./ImageCard";
 import sertjavabasic from "../assets/images/javabasic.png";
-import sertprobsolvbasic from "../assets/images/problemsolving.png";
 import sertbecomeagooglecloudengineer from "../assets/images/becomeagce.jpg";
+import itemframefeed from "../assets/images/itemframefeed.png";
 
 export function Designs() {
   const projectData = [
     {
-      title: "Problem Solving (Basic)",
+      title: "Design Feed Instagram",
       description: "Hackerrank",
       details: "I got this certificate for completing the Problem Solving (Basic) skill badge on HackerRank. This badge is awarded to those who have successfully solved some problem in 1 hours and 30 minutes. and i solved it in Java.",
-      image: sertprobsolvbasic,
+      image: itemframefeed,
     },
     {
       title: "Java (Basic)",
