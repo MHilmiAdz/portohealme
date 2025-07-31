@@ -57,7 +57,7 @@ export function Introduction() {
                 </div>
 
                 {/* Text Section */}
-                <div className="text-center md:text-left py-10 animate-fade-in-up">
+                <div className="text-center md:text-left py-20 animate-fade-in-up">
                     <h2 className="text-2xl font-semibold py-6">Muhammad Hilmi Adzkia</h2>
                     <p className="text-4xl font-bold">
                         Android Developer | Game Developer | Educator
