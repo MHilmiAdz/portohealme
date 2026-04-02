@@ -1,13 +1,16 @@
 {
   "files": {
-    "main.css": "/portohealme/static/css/main.6bbab30a.css",
-    "main.js": "/portohealme/static/js/main.91f63d44.js",
-    "static/js/453.358d16de.chunk.js": "/portohealme/static/js/453.358d16de.chunk.js",
+    "main.css": "/portohealme/static/css/main.606a86f3.css",
+    "main.js": "/portohealme/static/js/main.20491990.js",
+    "static/js/453.4110867e.chunk.js": "/portohealme/static/js/453.4110867e.chunk.js",
     "static/media/bangkitcert.jpg": "/portohealme/static/media/bangkitcert.fc682f90075e7f9527b7.jpg",
     "static/media/plp2smk2malang.png": "/portohealme/static/media/plp2smk2malang.311808ebfa0dbadee295.png",
+    "static/media/item-feedig.png": "/portohealme/static/media/item-feedig.1306cae6ec42328d05a7.png",
+    "static/media/itemframefeed.png": "/portohealme/static/media/itemframefeed.e25707bfe76e4d327e21.png",
     "static/media/svvrsmk3batu.png": "/portohealme/static/media/svvrsmk3batu.a7e7bf01bc7ad300aa6c.png",
     "static/media/practicumassist.png": "/portohealme/static/media/practicumassist.557096c7ac5c2b2decdf.png",
     "static/media/kanagames.png": "/portohealme/static/media/kanagames.cf04647eca20326ac17a.png",
+    "static/media/item-storyig.png": "/portohealme/static/media/item-storyig.220fe026d45bc5de4b08.png",
     "static/media/pphero2.svg": "/portohealme/static/media/pphero2.408ca5c7c25c7a4714ed86585fe9a4c8.svg",
     "static/media/ddmcert.png": "/portohealme/static/media/ddmcert.cf6649b29531ac47bfd9.png",
     "static/media/perpushub.png": "/portohealme/static/media/perpushub.7e2465f9414ab72b1443.png",
@@ -24,12 +27,12 @@
     "static/media/firstbird.png": "/portohealme/static/media/firstbird.63413c8f3e66b2cdab38.png",
     "static/media/gamedevskill.png": "/portohealme/static/media/gamedevskill.b2acebb29fd00ed4ff87.png",
     "index.html": "/portohealme/index.html",
-    "main.6bbab30a.css.map": "/portohealme/static/css/main.6bbab30a.css.map",
-    "main.91f63d44.js.map": "/portohealme/static/js/main.91f63d44.js.map",
-    "453.358d16de.chunk.js.map": "/portohealme/static/js/453.358d16de.chunk.js.map"
+    "main.606a86f3.css.map": "/portohealme/static/css/main.606a86f3.css.map",
+    "main.20491990.js.map": "/portohealme/static/js/main.20491990.js.map",
+    "453.4110867e.chunk.js.map": "/portohealme/static/js/453.4110867e.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.6bbab30a.css",
-    "static/js/main.91f63d44.js"
+    "static/css/main.606a86f3.css",
+    "static/js/main.20491990.js"
   ]
 }
