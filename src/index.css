@@ -1,3 +1,44 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply bg-jade-dark text-jade-pale selection:bg-jade-primary selection:text-jade-dark;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold text-jade-pale;
+  }
+}
+
+@layer components {
+  .section-padding {
+    @apply px-6 py-20;
+  }
+
+  .container-max {
+    @apply max-w-5xl mx-auto;
+  }
+
+  .btn-jade {
+    @apply px-6 py-3 bg-jade-primary text-jade-dark rounded-lg font-bold hover:bg-jade-light transition-all duration-300 shadow-lg hover:shadow-jade-primary/20 active:scale-95;
+  }
+}
+
+/* Custom scrollbar for better Jade aesthetic */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-jade-dark;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-jade-deep rounded-full border-2 border-jade-dark hover:bg-jade-primary/50 transition-colors;
+}
