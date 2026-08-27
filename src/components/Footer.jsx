@@ -1,33 +1,37 @@
 import { motion } from "framer-motion";
 
-export function Footer() {
-  const socialLinks = [
-    { name: "LinkedIn", href: "https://id.linkedin.com/in/m-hilmi-adzkia", color: "hover:text-[#0077b5]" },
-    { name: "GitHub", href: "https://github.com/MHilmiAdz", color: "hover:text-jade-pale" },
-    { name: "Instagram", href: "https://www.instagram.com/m_hilmi_a/", color: "hover:text-[#e4405f]" },
-  ];
+const socialLinks = [
+  { name: "LinkedIn",  href: "https://id.linkedin.com/in/m-hilmi-adzkia", color: "hover:text-[#0077b5]" },
+  { name: "GitHub",    href: "https://github.com/MHilmiAdz",               color: "hover:text-jade-pale" },
+  { name: "Figma",     href: "https://www.figma.com/design/fKpfDjzoZmF8EntTJfc1zX/ALL-PORTOFOLIO?node-id=66-5&t=piNNHkMtuMpRMngo-1", color: "hover:text-[#f24e1e]" },
+  { name: "Instagram", href: "https://www.instagram.com/m_hilmi_a/",       color: "hover:text-[#e4405f]" },
+];
 
+export function Footer() {
   return (
-    <footer className="bg-jade-dark text-jade-light py-20 border-t border-jade-primary/5">
-      <div className="container-max px-6 text-center">
+    <footer className="bg-jade-dark text-jade-light py-12 border-t border-jade-primary/5">
+      <div className="container-max px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
+          className="flex flex-col md:flex-row justify-between items-center gap-6"
         >
-          <h3 className="text-3xl font-black text-jade-pale mb-3 tracking-tighter">Let's <span className="text-jade-primary">Connect</span></h3>
-          <p className="max-w-md mx-auto mb-10 text-jade-light leading-relaxed">
-            Always open to discussing new projects, creative ideas, or opportunities to be part of your visions.
+          {/* Copyright */}
+          <p className="text-xs font-medium tracking-wide order-2 md:order-1">
+            © 2026 <span className="text-jade-primary font-black">Hilmi</span>. Built with React & Tailwind.
           </p>
-          
-          <div className="flex flex-wrap justify-center gap-8 md:gap-12 mb-16">
+
+          {/* Social links */}
+          <div className="flex gap-8 order-1 md:order-2">
             {socialLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`text-sm font-black uppercase tracking-[0.2em] transition-all duration-300 ${link.color} relative group p-2`}
+                className={`text-xs font-black uppercase tracking-[0.2em] transition-all duration-300 ${link.color} relative group p-2`}
+                aria-label={`Visit Hilmi's ${link.name} profile`}
               >
                 {link.name}
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-jade-primary transition-all duration-300 group-hover:w-full" />
@@ -35,13 +39,14 @@ export function Footer() {
             ))}
           </div>
 
-          <div className="pt-10 border-t border-jade-primary/5 flex flex-col md:flex-row justify-between items-center gap-6">
-            <p className="text-xs font-medium tracking-wide">
-              © 2026 <span className="text-jade-primary font-black">Hilmi</span>. Built with React & Tailwind.
-            </p>
-            <div className="flex gap-8 text-[10px] font-black uppercase tracking-[0.3em]">
-              <a href="#home" className="text-jade-light hover:text-jade-primary transition-colors">Back to Top</a>
-            </div>
+          {/* Back to top */}
+          <div className="order-3">
+            <a
+              href="#home"
+              className="text-[10px] font-black uppercase tracking-[0.3em] text-jade-light hover:text-jade-primary transition-colors"
+            >
+              Back to Top ↑
+            </a>
           </div>
         </motion.div>
       </div>

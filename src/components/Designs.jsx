@@ -21,6 +21,14 @@ export function Designs() {
             <p className="text-jade-light text-base max-w-xs leading-relaxed font-medium">
                 Exploring the intersection of art and digital communication through bold visuals and consistent branding.
             </p>
+            <div className="flex flex-wrap gap-2.5">
+              <span className="text-[10px] font-black text-jade-primary px-3 py-1 rounded-full bg-jade-primary/10 border border-jade-primary/20 uppercase tracking-widest">
+                Figma
+              </span>
+              <span className="text-[10px] font-black text-jade-secondary px-3 py-1 rounded-full bg-jade-secondary/10 border border-jade-secondary/20 uppercase tracking-widest">
+                Canva
+              </span>
+            </div>
             <div className="flex gap-4">
                 <div className="w-12 h-[1px] bg-jade-primary/20 mt-3" />
                 <span className="text-[10px] font-black text-jade-primary uppercase tracking-widest">{designs.length} Selected Pieces</span>

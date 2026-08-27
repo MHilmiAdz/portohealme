@@ -42,3 +42,10 @@
 ::-webkit-scrollbar-thumb {
   @apply bg-jade-deep rounded-full border-2 border-jade-dark hover:bg-jade-primary/50 transition-colors;
 }
+
+/* Shimmer animation for skeleton loaders */
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}

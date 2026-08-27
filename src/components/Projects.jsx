@@ -11,47 +11,22 @@ export function Projects() {
     ? projects 
     : projects.filter(p => p.category === filter);
 
-  // 2026 Trend: Proof of Work / Activity Data (Dummy)
-  const activityData = Array.from({ length: 52 }, () => Math.floor(Math.random() * 5));
-
   return (
     <section id="projects" className="section-padding relative overflow-hidden">
       {/* Background Decor */}
       <div className="absolute top-0 right-0 w-[40rem] h-[40rem] bg-jade-primary/5 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="container-max text-center relative z-10">
-        <div className="flex flex-col md:flex-row items-end justify-between mb-20 gap-8">
-            <div className="text-left">
-                <h3 className="text-sm font-black text-jade-primary uppercase tracking-[0.4em] mb-4">Portfolio</h3>
-                <h2 className="text-5xl md:text-6xl font-black text-jade-pale tracking-tighter">
-                    Featured <span className="text-transparent bg-clip-text bg-gradient-to-r from-jade-primary to-jade-light">Projects</span>
-                </h2>
-            </div>
-            
-            {/* 2026 Trend: Proof of Work Visualization */}
-            <div className="bg-jade-deep/30 border border-jade-primary/10 p-6 rounded-3xl backdrop-blur-xl hidden lg:block">
-                <div className="flex flex-col gap-2">
-                    <span className="text-[10px] font-black uppercase tracking-widest text-jade-light/50 mb-2">Development Activity</span>
-                    <div className="flex gap-1">
-                        {activityData.map((val, i) => (
-                            <div 
-                                key={i} 
-                                className={`w-2 h-8 rounded-full transition-all duration-500 ${
-                                    val === 0 ? "bg-jade-primary/5" : 
-                                    val === 1 ? "bg-jade-primary/20" :
-                                    val === 2 ? "bg-jade-primary/40" :
-                                    val === 3 ? "bg-jade-primary/60" : "bg-jade-primary"
-                                }`} 
-                                style={{ height: `${10 + val * 8}px` }}
-                            />
-                        ))}
-                    </div>
-                    <div className="flex justify-between mt-2">
-                        <span className="text-[8px] font-bold text-jade-light/30">Jan 2026</span>
-                        <span className="text-[8px] font-bold text-jade-light/30">Mar 2026</span>
-                    </div>
-                </div>
-            </div>
+        <div className="flex flex-col md:flex-row items-start md:items-end justify-between mb-16 gap-6 text-left">
+          <div>
+            <h3 className="text-sm font-black text-jade-primary uppercase tracking-[0.4em] mb-4">Portfolio</h3>
+            <h2 className="text-4xl md:text-6xl font-black text-jade-pale tracking-tighter">
+              Featured <span className="text-transparent bg-clip-text bg-gradient-to-r from-jade-primary to-jade-light">Projects</span>
+            </h2>
+          </div>
+          <p className="text-jade-light text-xs md:text-sm max-w-sm font-medium leading-relaxed">
+            A selection of mobile applications, games, and backend services built with modern tech stacks.
+          </p>
         </div>
 
         {/* Filter Buttons: 2026 Sleek Style */}

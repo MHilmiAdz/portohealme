@@ -23,11 +23,12 @@ export function Navbar() {
   }, []);
 
   const navLinks = [
-    { name: "Home", href: "#home" },
-    { name: "Projects", href: "#projects" },
-    { name: "Certificates", href: "#certificates" },
-    { name: "Journey", href: "#experience" },
-    { name: "Design", href: "#designs" },
+    { name: "Home",         href: "#home"          },
+    { name: "Published",    href: "#published-app" },
+    { name: "Projects",     href: "#projects"      },
+    { name: "Certificates", href: "#certificates"  },
+    { name: "Journey",      href: "#experience"    },
+    { name: "Contact",      href: "#contact"       },
   ];
 
   return (
@@ -68,24 +69,30 @@ export function Navbar() {
             ))}
           </ul>
 
-          {/* Mobile Menu Toggle - Refined */}
+          {/* Mobile Menu Toggle */}
           <button 
             className="md:hidden text-jade-pale p-3 rounded-2xl bg-jade-deep/40 border border-jade-primary/10 relative overflow-hidden group"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            aria-label="Toggle menu"
+            aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+            aria-expanded={isMenuOpen}
+            aria-controls="mobile-nav"
           >
             <div className="absolute inset-0 bg-jade-primary/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
-            <svg className="w-5 h-5 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-5 h-5 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d={isMenuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16m-7 6h7"} />
             </svg>
           </button>
         </div>
       </nav>
 
-      {/* Mobile Menu Overlay: 2026 Immersive Style */}
+      {/* Mobile Menu Overlay */}
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
+            id="mobile-nav"
+            role="dialog"
+            aria-label="Navigation menu"
+            aria-modal="true"
             initial={{ opacity: 0, scale: 1.1, filter: "blur(10px)" }}
             animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
             exit={{ opacity: 0, scale: 1.1, filter: "blur(10px)" }}
@@ -95,8 +102,9 @@ export function Navbar() {
             <button 
               className="absolute top-10 right-10 text-jade-pale p-4 rounded-full bg-jade-deep/50 border border-jade-primary/10"
               onClick={() => setIsMenuOpen(false)}
+              aria-label="Close navigation menu"
             >
-              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>

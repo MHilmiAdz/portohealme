@@ -13,7 +13,9 @@ export const projects = [
     image: leafcheckimg,
     author: "Team: Hilmi, Dhivara, Ninda, Adesta",
     tags: ["Android", "Kotlin", "Machine Learning", "Retofit"],
-    downloadLink: "#"
+    downloadLink: "#",
+    // TODO: Replace with your real project/GitHub link
+    projectLink: "",
   },
   {
     title: "LeafCheck API",
@@ -23,7 +25,9 @@ export const projects = [
     image: leafcheckimg,
     author: "Team: Hilmi, Dhivara",
     tags: ["Python", "Flask", "GCP", "Cloud Run"],
-    downloadLink: "#"
+    downloadLink: "#",
+    // TODO: Replace with your real project/GitHub link
+    projectLink: "",
   },
   {
     title: "KanaGames",
@@ -33,7 +37,9 @@ export const projects = [
     image: kanagamesimg,
     author: "Team: Hilmi, Aldino, Gavino, Delisya", 
     tags: ["Construct 3", "Game Dev", "Education"],
-    downloadLink: "#"
+    downloadLink: "#",
+    // TODO: Replace with your real project/GitHub link
+    projectLink: "",
   },
   {
     title: "PerpusHub",
@@ -43,7 +49,9 @@ export const projects = [
     image: perpushubimg,
     author: "Team: Hilmi, Rasyid, Delisya",
     tags: ["Android", "Java", "Firebase"],
-    downloadLink: "#"
+    downloadLink: "#",
+    // TODO: Replace with your real project/GitHub link
+    projectLink: "",
   },
   {
     title: "First Knight Game",
@@ -53,7 +61,9 @@ export const projects = [
     image: firstknightimg,
     author: "Hilmi - All Tutorial from Brackeys Youtube Channel",
     tags: ["Unity", "C#", "2D Physics"],
-    downloadLink: "#"
+    downloadLink: "#",
+    // TODO: Replace with your real project/GitHub link
+    projectLink: "",
   },
   {
     title: "FlappyBird Game",
@@ -63,6 +73,9 @@ export const projects = [
     image: firstbirdimg,
     author: "Hilmi - All Tutorial from Game Maker's Toolkit Youtube Channel",
     tags: ["Unity", "C#", "UI Design"],
-    downloadLink: "#"
+    downloadLink: "#",
+    // TODO: Replace with your real project/GitHub link
+    projectLink: "",
   },
 ];
+
