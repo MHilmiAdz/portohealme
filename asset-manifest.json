@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/portohealme/static/css/main.a993a61b.css",
-    "main.js": "/portohealme/static/js/main.1dd69485.js",
+    "main.css": "/portohealme/static/css/main.408794ee.css",
+    "main.js": "/portohealme/static/js/main.ce0473fa.js",
     "static/js/453.4110867e.chunk.js": "/portohealme/static/js/453.4110867e.chunk.js",
     "static/media/bangkitcert.webp": "/portohealme/static/media/bangkitcert.fb866ccffcf7c0027203.webp",
     "static/media/ddmcert.png": "/portohealme/static/media/ddmcert.cf6649b29531ac47bfd9.png",
@@ -26,12 +26,12 @@
     "static/media/firstknight.png": "/portohealme/static/media/firstknight.54ad913596906173c009.png",
     "static/media/firstbird.png": "/portohealme/static/media/firstbird.63413c8f3e66b2cdab38.png",
     "index.html": "/portohealme/index.html",
-    "main.a993a61b.css.map": "/portohealme/static/css/main.a993a61b.css.map",
-    "main.1dd69485.js.map": "/portohealme/static/js/main.1dd69485.js.map",
+    "main.408794ee.css.map": "/portohealme/static/css/main.408794ee.css.map",
+    "main.ce0473fa.js.map": "/portohealme/static/js/main.ce0473fa.js.map",
     "453.4110867e.chunk.js.map": "/portohealme/static/js/453.4110867e.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.a993a61b.css",
-    "static/js/main.1dd69485.js"
+    "static/css/main.408794ee.css",
+    "static/js/main.ce0473fa.js"
   ]
 }
