@@ -3,6 +3,8 @@ import { motion } from "framer-motion";
 const socialLinks = [
   { name: "LinkedIn",  href: "https://id.linkedin.com/in/m-hilmi-adzkia", color: "hover:text-[#0077b5]" },
   { name: "GitHub",    href: "https://github.com/MHilmiAdz",               color: "hover:text-jade-pale" },
+  { name: "Ko-fi",     href: "https://ko-fi.com/frosthealme",             color: "hover:text-[#FF5E5B]" },
+  { name: "Trakteer",  href: "https://trakteer.id/projectshealme/tip?open=true", color: "hover:text-[#be1e2d]" },
   { name: "Figma",     href: "https://www.figma.com/design/fKpfDjzoZmF8EntTJfc1zX/ALL-PORTOFOLIO?node-id=66-5&t=piNNHkMtuMpRMngo-1", color: "hover:text-[#f24e1e]" },
   { name: "Instagram", href: "https://www.instagram.com/m_hilmi_a/",       color: "hover:text-[#e4405f]" },
 ];

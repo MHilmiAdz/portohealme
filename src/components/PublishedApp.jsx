@@ -112,6 +112,24 @@ export function PublishedApp() {
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                         </svg>
                       </a>
+                      <a
+                        href="https://ko-fi.com/frosthealme"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-5 py-4 rounded-xl bg-[#FF5E5B]/15 hover:bg-[#FF5E5B]/25 border border-[#FF5E5B]/40 text-[#FF5E5B] hover:text-white transition-all text-xs font-black uppercase tracking-wider flex items-center gap-2 shadow-lg shadow-[#FF5E5B]/10 hover:scale-105"
+                        aria-label="Support on Ko-fi"
+                      >
+                        <span>☕ Ko-fi</span>
+                      </a>
+                      <a
+                        href="https://trakteer.id/projectshealme/tip?open=true"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-5 py-4 rounded-xl bg-[#BE1E2D]/15 hover:bg-[#BE1E2D]/25 border border-[#BE1E2D]/40 text-[#BE1E2D] hover:text-white transition-all text-xs font-black uppercase tracking-wider flex items-center gap-2 shadow-lg shadow-[#BE1E2D]/10 hover:scale-105"
+                        aria-label="Tip on Trakteer"
+                      >
+                        <span>Trakteer</span>
+                      </a>
                     </div>
                   </div>
 

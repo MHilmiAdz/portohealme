@@ -5,6 +5,8 @@ const CONTACT_INFO = {
   email:     "projectshealme@gmail.com",
   linkedin:  "https://id.linkedin.com/in/m-hilmi-adzkia",
   github:    "https://github.com/MHilmiAdz",
+  kofi:      "https://ko-fi.com/frosthealme",
+  trakteer:  "https://trakteer.id/projectshealme/tip?open=true",
   figma:     "https://www.figma.com/design/fKpfDjzoZmF8EntTJfc1zX/ALL-PORTOFOLIO?node-id=66-5&t=piNNHkMtuMpRMngo-1",
   instagram: "https://www.instagram.com/m_hilmi_a/",
   status:    "Open for Opportunities",
@@ -32,6 +34,30 @@ const socialChannels = [
     icon: (
       <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
         <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+      </svg>
+    ),
+  },
+  {
+    name: "Ko-fi",
+    handle: "ko-fi.com/frosthealme",
+    href: CONTACT_INFO.kofi,
+    desc: "Support projects & buy a coffee",
+    badge: "Support",
+    icon: (
+      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M23.881 8.948c-.02-.275-.246-.484-.523-.484h-4.321V6.26c0-.868-.707-1.574-1.574-1.574H2.037A2.04 2.04 0 0 0 0 6.723v10.554c0 1.124.913 2.037 2.037 2.037h10.875c3.084 0 5.61-2.26 6.068-5.216h4.378c1.782 0 3.226-1.444 3.226-3.226 0-1.127-.58-2.12-1.46-2.684l-.243-.24zM16.945 16.03H2.037a.64.64 0 0 1-.64-.64V6.723c0-.352.288-.64.64-.64h14.908c.352 0 .64.288.64.64v8.667c0 .352-.288.64-.64.64zm4.378-3.957h-4.378V9.86h4.378c.954 0 1.729.775 1.729 1.729 0 .954-.775 1.729-1.729 1.729zm-9.35-4.475a2.533 2.533 0 0 0-3.582 0l-.367.368-.368-.368a2.533 2.533 0 0 0-3.582 3.582l3.95 3.95 3.95-3.95a2.533 2.533 0 0 0 0-3.582z"/>
+      </svg>
+    ),
+  },
+  {
+    name: "Trakteer",
+    handle: "trakteer.id/projectshealme",
+    href: CONTACT_INFO.trakteer,
+    desc: "Indonesian creator tip & support",
+    badge: "Tip",
+    icon: (
+      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 2C6.477 2 2 6.477 2 12c0 5.523 4.477 10 10 10s10-4.477 10-10c0-5.523-4.477-10-10-10zm5.4 6.8h-3.9v8.4h-3v-8.4H6.6V6.4h10.8v2.4z"/>
       </svg>
     ),
   },
@@ -174,10 +200,46 @@ export function Contact() {
                 </svg>
               </a>
             </div>
+
+            {/* Support / Tip Prominent Callout */}
+            <div className="mt-8 pt-6 border-t border-jade-primary/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+              <div>
+                <h4 className="text-xs font-black uppercase tracking-[0.2em] text-jade-primary mb-1">
+                  ☕ Support My Work
+                </h4>
+                <p className="text-[11px] text-jade-light/70">
+                  Enjoying NotesPack or my open-source apps? Support ongoing development on Ko-fi or Trakteer.
+                </p>
+              </div>
+              <div className="flex items-center gap-2 flex-shrink-0">
+                <a
+                  href={CONTACT_INFO.kofi}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-3.5 py-2 rounded-xl bg-[#FF5E5B] hover:bg-[#FF5E5B]/90 text-white text-[10px] font-black uppercase tracking-wider transition-all shadow-md shadow-[#FF5E5B]/25 flex items-center gap-1.5"
+                >
+                  <span>Ko-fi</span>
+                  <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                  </svg>
+                </a>
+                <a
+                  href={CONTACT_INFO.trakteer}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-3.5 py-2 rounded-xl bg-[#BE1E2D] hover:bg-[#BE1E2D]/90 text-white text-[10px] font-black uppercase tracking-wider transition-all shadow-md shadow-[#BE1E2D]/25 flex items-center gap-1.5"
+                >
+                  <span>Trakteer</span>
+                  <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                  </svg>
+                </a>
+              </div>
+            </div>
           </motion.div>
 
-          {/* Social Channels & Location Column (5 Columns) */}
-          <div className="lg:col-span-5 flex flex-col gap-4">
+          {/* Social Channels & Links Column (5 Columns) */}
+          <div className="lg:col-span-5 flex flex-col gap-3">
             {socialChannels.map((channel, i) => (
               <motion.a
                 key={channel.name}
@@ -187,31 +249,31 @@ export function Contact() {
                 initial={{ opacity: 0, x: 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
+                transition={{ delay: i * 0.06 }}
                 whileHover={{ x: 4, scale: 1.01 }}
-                className="p-5 rounded-3xl bg-jade-deep/30 border border-jade-primary/15 hover:border-jade-primary/40 hover:bg-jade-deep/50 transition-all duration-300 backdrop-blur-xl flex items-center justify-between group shadow-lg"
+                className="p-4 rounded-2xl bg-jade-deep/30 border border-jade-primary/15 hover:border-jade-primary/40 hover:bg-jade-deep/50 transition-all duration-300 backdrop-blur-xl flex items-center justify-between group shadow-lg"
                 aria-label={`Visit Hilmi's ${channel.name} profile`}
               >
-                <div className="flex items-center gap-4">
-                  <div className="w-11 h-11 rounded-2xl bg-jade-dark border border-jade-primary/20 flex items-center justify-center text-jade-primary group-hover:bg-jade-primary group-hover:text-jade-dark transition-all duration-300 shadow-md">
+                <div className="flex items-center gap-3.5">
+                  <div className="w-10 h-10 rounded-xl bg-jade-dark border border-jade-primary/20 flex items-center justify-center text-jade-primary group-hover:bg-jade-primary group-hover:text-jade-dark transition-all duration-300 shadow-md flex-shrink-0">
                     {channel.icon}
                   </div>
                   <div>
-                    <h4 className="text-sm font-bold text-jade-pale group-hover:text-jade-primary transition-colors">
+                    <h4 className="text-xs font-bold text-jade-pale group-hover:text-jade-primary transition-colors">
                       {channel.name}
                     </h4>
-                    <p className="text-[11px] font-mono text-jade-light/60">
+                    <p className="text-[10px] font-mono text-jade-light/60">
                       {channel.handle}
                     </p>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-2">
-                  <span className="text-[10px] font-black uppercase tracking-wider text-jade-light/50 group-hover:text-jade-primary transition-colors hidden sm:inline">
+                  <span className="text-[9px] font-black uppercase tracking-wider text-jade-light/50 group-hover:text-jade-primary transition-colors hidden sm:inline">
                     {channel.badge}
                   </span>
-                  <div className="w-8 h-8 rounded-full bg-jade-dark/80 border border-jade-primary/15 flex items-center justify-center text-jade-light group-hover:text-jade-primary group-hover:border-jade-primary/30 transition-all">
-                    <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="w-7 h-7 rounded-full bg-jade-dark/80 border border-jade-primary/15 flex items-center justify-center text-jade-light group-hover:text-jade-primary group-hover:border-jade-primary/30 transition-all">
+                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                     </svg>
                   </div>

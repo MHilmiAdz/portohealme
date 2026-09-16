@@ -521,6 +521,121 @@ section { padding: 90px 0; }
     color: var(--jade-dark);
 }
 
+/* ── SUPPORT & DONATION ─────────────────────────────── */
+.support-section {
+    padding: 70px 0;
+}
+.support-card {
+    background: linear-gradient(135deg, rgba(15,23,42,0.85) 0%, rgba(6,78,59,0.3) 100%);
+    border: 1px solid var(--jade-border-lg);
+    border-radius: 28px;
+    padding: 48px 36px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    box-shadow: 0 25px 60px -15px rgba(0,0,0,0.6), 0 0 35px rgba(16,185,129,0.08);
+    position: relative;
+    overflow: hidden;
+}
+.support-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 420px;
+    height: 420px;
+    background: radial-gradient(circle, rgba(16,185,129,0.15) 0%, transparent 70%);
+    pointer-events: none;
+}
+.support-content {
+    max-width: 620px;
+    margin-bottom: 28px;
+    position: relative;
+    z-index: 1;
+}
+.support-content h2 {
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: var(--jade-pale);
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+}
+.support-content p {
+    font-size: 0.95rem;
+    color: var(--jade-light);
+    line-height: 1.65;
+}
+.support-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+    position: relative;
+    z-index: 1;
+}
+.btn-support {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 26px;
+    border-radius: 16px;
+    text-decoration: none;
+    font-weight: 800;
+    transition: all 0.25s cubic-bezier(0.2,0.8,0.2,1);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+.btn-support:hover {
+    transform: translateY(-3px) scale(1.02);
+}
+.support-icon {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+}
+.support-btn-text {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    line-height: 1.15;
+}
+.support-badge {
+    font-size: 0.62rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    opacity: 0.85;
+}
+.support-name {
+    font-size: 1.05rem;
+    font-weight: 900;
+    letter-spacing: -0.01em;
+}
+
+/* Ko-fi brand button */
+.btn-kofi {
+    background: #FF5E5B;
+    color: #ffffff;
+    border: 1px solid rgba(255,255,255,0.2);
+    box-shadow: 0 8px 24px rgba(255,94,91,0.35);
+}
+.btn-kofi:hover {
+    box-shadow: 0 14px 30px rgba(255,94,91,0.5);
+    background: #ff4743;
+}
+
+/* Trakteer brand button */
+.btn-trakteer {
+    background: #BE1E2D;
+    color: #ffffff;
+    border: 1px solid rgba(255,255,255,0.2);
+    box-shadow: 0 8px 24px rgba(190,30,45,0.35);
+}
+.btn-trakteer:hover {
+    box-shadow: 0 14px 30px rgba(190,30,45,0.5);
+    background: #aa1724;
+}
+
 /* ── LEGAL HUB ───────────────────────────────────────── */
 .legal-hub {
     background: rgba(15,23,42,0.4);
