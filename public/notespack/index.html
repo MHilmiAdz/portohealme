@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NotesPack - Your Second Brain Multitool | Notes, Receipt OCR &amp; Split Bill</title>
+    <title>NotesPack - Notes, Expense Tracker &amp; Split Bill</title>
     <meta name="description" content="Capture ideas in rich markdown, scan paper receipts with on-device ML Kit OCR, calculate itemized group splits, and track monthly spending totals—100% offline and private.">
 
     <meta property="og:type" content="website">
     <meta property="og:title" content="NotesPack - Your Second Brain Multitool">
     <meta property="og:description" content="Rich text notes, on-device receipt OCR, group split bill calculator, and monthly expense analytics. 100% offline &amp; private.">
-    <meta property="og:image" content="images/feature-graphic.png">
+    <meta property="og:image" content="images/icon.png">
 
     <link rel="icon" type="image/png" href="images/icon.png">
     <link rel="stylesheet" href="style.css">
@@ -75,33 +75,14 @@
                 </div>
             </div>
 
-            <!-- Interactive Phone Mockup -->
+            <!-- Main Phone Showcase (Attached Asset - Clean, nothing below) -->
             <div class="mockup-container">
                 <div class="phone-frame">
                     <div class="phone-notch"></div>
                     <div class="phone-screen">
-                        <img id="hero-phone-img" src="images/screen-notes.png" alt="NotesPack App Screenshot" onerror="this.src='images/demo.png'">
+                        <img id="hero-phone-img" src="images/showcase.png" alt="NotesPack Showcase Screen" onerror="this.src='images/demo.png'">
                     </div>
                 </div>
-
-                <!-- Interactive Switcher Dock -->
-                <div class="phone-dock">
-                    <button class="dock-btn active" onclick="switchHeroScreen('notes', this)">Notes</button>
-                    <button class="dock-btn" onclick="switchHeroScreen('ocr', this)">Receipt OCR</button>
-                    <button class="dock-btn" onclick="switchHeroScreen('split', this)">Split Bill</button>
-                    <button class="dock-btn" onclick="switchHeroScreen('recap', this)">Monthly Recap</button>
-                    <button class="dock-btn" onclick="switchHeroScreen('draw', this)">Drawing</button>
-                </div>
-                <div id="hero-phone-caption" class="hero-screen-caption">Rich Text Editor • Headings, bullets &amp; chapters</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ── Feature Spotlight Banner ── -->
-    <section class="container" style="padding-top: 0; padding-bottom: 60px;">
-        <div class="feature-banner-wrapper">
-            <div class="feature-banner-card">
-                <img src="images/feature-graphic.png" alt="NotesPack Feature Showcase" class="feature-banner-img">
             </div>
         </div>
     </section>
@@ -112,7 +93,7 @@
             <div class="section-header">
                 <span class="section-tag">Core Capabilities</span>
                 <h2>Powerfully Simple. Completely Private.</h2>
-                <p>Six essential productivity tools united into a single, cohesive Jetpack Compose interface.</p>
+                <p>Essential productivity and financial tracking tools united into a single, cohesive interface.</p>
             </div>
             <div class="features-grid">
                 <div class="feature-card">
@@ -143,73 +124,93 @@
                 <div class="feature-card">
                     <div class="feature-icon-wrapper">🔒</div>
                     <h3>100% Offline &amp; Private</h3>
-                    <p>Zero tracking, zero cloud telemetry. All data is encrypted locally inside your private Android Room SQLite database.</p>
+                    <p>Zero tracking, zero cloud telemetry. All data is stored locally inside your private Android Room SQLite database.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ── Play Store Listings Showcase ── -->
+    <!-- ── Play Store Listings Showcase (8 Previews: 4 Top, 4 Bottom) ── -->
     <section id="screenshots" class="showcase-bg">
         <div class="container">
             <div class="section-header">
                 <span class="section-tag">Google Play Store Preview</span>
                 <h2>Designed for Speed &amp; Precision</h2>
-                <p>Explore real production listings. Click any card to inspect in high resolution.</p>
+                <p>Explore all 8 official store listings. Click any card to inspect in full resolution.</p>
             </div>
             <div class="gallery-grid">
-                <div class="store-card" onclick="openLightbox('images/store-3.png', 'Rich Text Notes - Multi-Chapter Document Editor')">
+                <!-- Top Row (1 to 4) -->
+                <div class="store-card" onclick="openLightbox('images/store-1.png', 'Store Listing 1 - NotesPack Overview &amp; Multitool')">
                     <div class="store-card-inner">
-                        <img src="images/store-3.png" alt="Rich Text Notes Showcase">
+                        <img src="images/store-1.png" alt="Store Listing 1" loading="lazy">
+                        <div class="store-card-overlay"><span>Zoom Preview</span></div>
+                    </div>
+                    <h4>Overview</h4>
+                    <p>All-in-one second brain</p>
+                </div>
+
+                <div class="store-card" onclick="openLightbox('images/store-2.png', 'Store Listing 2 - Fast &amp; Equal Bill Splitting')">
+                    <div class="store-card-inner">
+                        <img src="images/store-2.png" alt="Store Listing 2" loading="lazy">
+                        <div class="store-card-overlay"><span>Zoom Preview</span></div>
+                    </div>
+                    <h4>Split Bill</h4>
+                    <p>Itemized &amp; equal shares</p>
+                </div>
+
+                <div class="store-card" onclick="openLightbox('images/store-3.png', 'Store Listing 3 - Rich Text Notes &amp; Chapters')">
+                    <div class="store-card-inner">
+                        <img src="images/store-3.png" alt="Store Listing 3" loading="lazy">
                         <div class="store-card-overlay"><span>Zoom Preview</span></div>
                     </div>
                     <h4>Rich Text Notes</h4>
                     <p>Chapters &amp; formatting</p>
                 </div>
 
-                <div class="store-card" onclick="openLightbox('images/store-4.png', 'Receipt OCR - On-Device ML Kit Text Recognition')">
+                <div class="store-card" onclick="openLightbox('images/store-4.png', 'Store Listing 4 - On-Device ML Kit Receipt OCR')">
                     <div class="store-card-inner">
-                        <img src="images/store-4.png" alt="Receipt OCR Showcase">
+                        <img src="images/store-4.png" alt="Store Listing 4" loading="lazy">
                         <div class="store-card-overlay"><span>Zoom Preview</span></div>
                     </div>
                     <h4>Receipt OCR</h4>
-                    <p>On-device camera scanning</p>
+                    <p>Camera receipt scanning</p>
                 </div>
 
-                <div class="store-card" onclick="openLightbox('images/store-5.png', 'Split Bill - Itemized and Equal Group Expense Calculator')">
+                <!-- Bottom Row (5 to 8) -->
+                <div class="store-card" onclick="openLightbox('images/store-5.png', 'Store Listing 5 - Smart Group Bill Calculator')">
                     <div class="store-card-inner">
-                        <img src="images/store-5.png" alt="Split Bill Showcase">
+                        <img src="images/store-5.png" alt="Store Listing 5" loading="lazy">
                         <div class="store-card-overlay"><span>Zoom Preview</span></div>
                     </div>
-                    <h4>Smart Split Bill</h4>
-                    <p>Itemized &amp; equal shares</p>
+                    <h4>Group Calculator</h4>
+                    <p>Tax &amp; tip distribution</p>
                 </div>
 
-                <div class="store-card" onclick="openLightbox('images/store-6.png', 'Monthly Recap - Comprehensive Outlay Tracking')">
+                <div class="store-card" onclick="openLightbox('images/store-6.png', 'Store Listing 6 - Monthly Spending Analytics')">
                     <div class="store-card-inner">
-                        <img src="images/store-6.png" alt="Monthly Recap Showcase">
+                        <img src="images/store-6.png" alt="Store Listing 6" loading="lazy">
                         <div class="store-card-overlay"><span>Zoom Preview</span></div>
                     </div>
                     <h4>Monthly Recap</h4>
-                    <p>Spending totals &amp; categories</p>
+                    <p>Cashflow &amp; category totals</p>
                 </div>
 
-                <div class="store-card" onclick="openLightbox('images/store-7.png', 'Canvas Drawing - Smooth Freehand Sketching')">
+                <div class="store-card" onclick="openLightbox('images/store-7.png', 'Store Listing 7 - Freehand Canvas Drawing')">
                     <div class="store-card-inner">
-                        <img src="images/store-7.png" alt="Canvas Drawing Showcase">
+                        <img src="images/store-7.png" alt="Store Listing 7" loading="lazy">
                         <div class="store-card-overlay"><span>Zoom Preview</span></div>
                     </div>
                     <h4>Canvas Sketch</h4>
                     <p>Freehand doodles &amp; diagrams</p>
                 </div>
 
-                <div class="store-card" onclick="openLightbox('images/store-1.png', 'NotesPack - Your Complete Personal Second Brain')">
+                <div class="store-card" onclick="openLightbox('images/store-8.png', 'Store Listing 8 - 100% Offline &amp; Private Storage')">
                     <div class="store-card-inner">
-                        <img src="images/store-1.png" alt="All-in-One Showcase">
+                        <img src="images/store-8.png" alt="Store Listing 8" loading="lazy">
                         <div class="store-card-overlay"><span>Zoom Preview</span></div>
                     </div>
-                    <h4>Second Brain Multitool</h4>
-                    <p>All tools in one private app</p>
+                    <h4>Offline &amp; Private</h4>
+                    <p>Zero tracking, local SQLite</p>
                 </div>
             </div>
         </div>
@@ -304,29 +305,6 @@
 
     <!-- ── Client Scripts ── -->
     <script>
-        const screens = {
-            notes: { src: 'images/screen-notes.png', caption: 'Rich Text Editor • Headings, bullets & chapters' },
-            ocr: { src: 'images/screen-ocr.png', caption: 'On-Device ML OCR • Instant camera receipt scanning' },
-            split: { src: 'images/screen-split.png', caption: 'Smart Bill Splitter • Itemized & equal tax shares' },
-            recap: { src: 'images/screen-recap.png', caption: 'Spending Tracker • Monthly analytics & category totals' },
-            draw: { src: 'images/screen-draw.png', caption: 'Freehand Canvas • Color palette & stroke notes' }
-        };
-
-        function switchHeroScreen(type, btn) {
-            const img = document.getElementById('hero-phone-img');
-            const cap = document.getElementById('hero-phone-caption');
-            if (screens[type] && img) {
-                img.style.opacity = '0.3';
-                setTimeout(() => {
-                    img.src = screens[type].src;
-                    img.style.opacity = '1';
-                }, 100);
-                if (cap) cap.innerText = screens[type].caption;
-                document.querySelectorAll('.dock-btn').forEach(b => b.classList.remove('active'));
-                if (btn) btn.classList.add('active');
-            }
-        }
-
         function openLightbox(src, caption) {
             const modal = document.getElementById('lightbox');
             const img = document.getElementById('lightbox-img');
