@@ -176,6 +176,28 @@ body {
 }
 .highlight-box strong { color: var(--jade-pale); }
 
+.highlight-box code {
+    background: rgba(2,6,23,0.6);
+    border: 1px solid rgba(16,185,129,0.25);
+    color: var(--jade-primary);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.85em;
+}
+
+.contact-email-item {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 12px;
+}
+
+.email-link {
+    word-break: break-all;
+    overflow-wrap: anywhere;
+}
+
 a {
     color: var(--jade-primary);
     text-decoration: none;
@@ -214,6 +236,29 @@ footer {
 }
 
 @media (max-width: 600px) {
-    .policy-card { padding: 28px 20px; }
-    .policy-card h1 { font-size: 1.8rem; }
+    .policy-container {
+        padding: 32px 16px 60px;
+    }
+    .policy-card {
+        padding: 28px 18px;
+        border-radius: 20px;
+    }
+    .policy-card h1 {
+        font-size: 1.75rem;
+    }
+    .policy-card h2 {
+        font-size: 1rem;
+        gap: 8px;
+    }
+    .policy-card h2::before {
+        height: 15px;
+    }
+    .highlight-box {
+        padding: 16px 16px;
+        border-radius: 0 10px 10px 0;
+    }
+    .copy-btn {
+        padding: 4px 12px;
+        font-size: 0.75rem;
+    }
 }

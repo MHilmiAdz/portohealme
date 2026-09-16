@@ -1,6 +1,6 @@
-import itemframefeed from "../assets/images/itemframefeed.png";
-import itemfeedig from "../assets/images/item-feedig.png";
-import itemstoryig from "../assets/images/item-storyig.png";
+import itemframefeed from "../assets/images/itemframefeed.webp";
+import itemfeedig from "../assets/images/item-feedig.webp";
+import itemstoryig from "../assets/images/item-storyig.webp";
 
 export const designs = [
   {

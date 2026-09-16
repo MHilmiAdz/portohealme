@@ -62,4 +62,4 @@ We reserve the right, at our sole discretion, to modify or replace these Terms a
 
 ## 10. Contact Information
 For any questions about these Terms of Service, please contact us at:
-- **Email:** [support@healme.app](mailto:support@healme.app)
+- **Email:** [projectshealme@gmail.com](mailto:projectshealme@gmail.com)

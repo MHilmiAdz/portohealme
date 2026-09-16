@@ -67,5 +67,5 @@ We may update our Privacy Policy periodically. Any updates will be posted on thi
 
 ## 8. Contact Us
 For any questions regarding this Privacy Policy or your personal data:
-- **Email:** [support@healme.app](mailto:support@healme.app)
+- **Email:** [projectshealme@gmail.com](mailto:projectshealme@gmail.com)
 - **Developer / Organization:** NotesPack Team

@@ -27,7 +27,7 @@
             <div class="meta-info">
                 <strong>Application:</strong> NotesPack<br>
                 <strong>Effective Date:</strong> August 2026<br>
-                <strong>Last Updated:</strong> August 2026
+                <strong>Last Updated:</strong> September 2026
             </div>
 
             <p>
@@ -44,22 +44,22 @@
                 <li>Your profile picture URL</li>
                 <li>A unique Firebase user identification string (UID)</li>
             </ul>
-            <p>This information is used strictly to identify your account and secure your session.</p>
+            <p>This information is used strictly to authenticate your account and secure your session.</p>
 
             <h3>B. User Notes and Content</h3>
-            <p>Any notes, checklists, text entries, and expense amounts you create within NotesPack are stored <strong style="color:var(--jade-pale)">locally on your device</strong> using an on-device SQLite database (Android Room). We do not view, rent, or sell your private note contents.</p>
+            <p>Any notes, checklists, text entries, and expense amounts you create within NotesPack are stored <strong style="color:var(--jade-pale)">locally on your device</strong> using an on-device SQLite database (Android Room). We do not view, transmit, rent, or sell your private note contents.</p>
 
             <h3>C. Device Permissions</h3>
             <ul>
-                <li><strong style="color:var(--jade-pale)">Camera:</strong> Used only when you choose to scan text documents or receipts for optical character recognition. Images are processed on-device.</li>
-                <li><strong style="color:var(--jade-pale)">Internet:</strong> Required to authenticate your account via Firebase.</li>
+                <li><strong style="color:var(--jade-pale)">Camera:</strong> Used only when you choose to scan physical receipts for optical character recognition. Photos are processed locally on-device and never uploaded.</li>
+                <li><strong style="color:var(--jade-pale)">Internet:</strong> Required to authenticate your account via Firebase and load your Google avatar photo.</li>
             </ul>
 
             <h2>2. On-Device Text Recognition (OCR)</h2>
-            <p>NotesPack uses <strong style="color:var(--jade-pale)">Google ML Kit Text Recognition</strong> to allow you to extract text from physical receipts. Text extraction is performed locally on-device.</p>
+            <p>NotesPack uses <strong style="color:var(--jade-pale)">Google ML Kit Text Recognition</strong> to allow you to extract text from receipts. Text extraction is performed entirely on your device without transmitting images to cloud servers.</p>
 
             <h2>3. Third-Party Services</h2>
-            <p>NotesPack uses trusted third-party services for authentication:</p>
+            <p>NotesPack uses trusted third-party services for authentication and on-device processing:</p>
             <ul>
                 <li><a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google Play Services</a></li>
                 <li><a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener noreferrer">Firebase Authentication</a></li>
@@ -70,25 +70,32 @@
             <p>We prioritize the security of your data:</p>
             <ul>
                 <li><strong style="color:var(--jade-pale)">Encryption in Transit:</strong> Communications with Firebase authentication servers use modern Transport Layer Security (HTTPS/TLS).</li>
-                <li><strong style="color:var(--jade-pale)">Local Sandboxing:</strong> Your local database is stored in your device's protected application sandbox.</li>
+                <li><strong style="color:var(--jade-pale)">Local Sandboxing:</strong> Your notes database is stored securely in your device's protected application sandbox.</li>
             </ul>
 
-            <h2>5. Account Deletion</h2>
+            <h2 id="account-deletion">5. Account and Data Deletion</h2>
             <div class="highlight-box">
                 <strong>How to Delete Your Account and Data:</strong>
                 <ul>
-                    <li><strong style="color:var(--jade-pale)">Email Request:</strong> You can request immediate deletion of your authentication credentials and associated data by emailing us at projectshealme@gmail.com. Requests are processed within 30 days.</li>
-                    <li><strong style="color:var(--jade-pale)">Local Data:</strong> Uninstalling the app permanently deletes all local notes and preferences stored on your device.</li>
+                    <li><strong style="color:var(--jade-pale)">In-App Deletion:</strong> You can delete your account at any time directly within NotesPack by navigating to your Profile screen, tapping the Settings icon in the top right, and selecting 'Delete Account' under the Danger Zone. This immediately deletes your Firebase Authentication record.</li>
+                    <li><strong style="color:var(--jade-pale)">Email Request:</strong> You can also request complete deletion of your authentication credentials by emailing us at <a href="mailto:projectshealme@gmail.com" style="color:var(--jade-pale)">projectshealme@gmail.com</a>. Requests are verified and completed within 30 days.</li>
+                    <li><strong style="color:var(--jade-pale)">Local Storage:</strong> Because operating system cloud backups are disabled (<code>allowBackup="false"</code>), uninstalling NotesPack or clearing app storage permanently wipes all local notes, drawings, and expenses from your device.</li>
                 </ul>
             </div>
 
-            <h2>6. Contact Us</h2>
+            <h2>6. Children's Privacy</h2>
+            <p>
+                NotesPack is not directed to children under the age of 13 (or under 16 in the European Economic Area). We do not knowingly collect or solicit personal information from children. If you believe a child has provided us with personal information, please contact us so we can promptly delete it.
+            </p>
+
+            <h2>7. Contact Us</h2>
             <p>If you have any questions or requests regarding this Privacy Policy, please contact us:</p>
             <ul>
-                <li>
+                <li class="contact-email-item">
                     <strong style="color:var(--jade-pale)">Support Email:</strong> 
-                    <button class="copy-btn" onclick="copyEmail(this)">
-                        <span id="mail-text">Copy Support Email</span>
+                    <a href="mailto:projectshealme@gmail.com" class="email-link" style="color:var(--jade-pale); text-decoration: underline;">projectshealme@gmail.com</a>
+                    <button class="copy-btn" onclick="copyEmail(this)" aria-label="Copy support email address">
+                        <span id="mail-text">Copy</span>
                     </button>
                 </li>
                 <li><strong style="color:var(--jade-pale)">Developer:</strong> NotesPack</li>
@@ -102,10 +109,10 @@
 
     <script>
         function copyEmail(btn) {
-            const email = "support@healme.app";
+            const email = "projectshealme@gmail.com";
             navigator.clipboard.writeText(email).then(() => {
                 const span = document.getElementById('mail-text');
-                const prev = span ? span.innerText : 'Copy Support Email';
+                const prev = span ? span.innerText : 'Copy';
                 if (span) span.innerText = 'Copied!';
                 setTimeout(() => {
                     if (span) span.innerText = prev;

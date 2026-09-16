@@ -1,5 +1,5 @@
 import leafcheckimg from '../assets/images/leafcheck.png';
-import kanagamesimg from "../assets/images/kanagames.png";
+import kanagamesimg from "../assets/images/kanagames.webp";
 import perpushubimg from "../assets/images/perpushub.png";
 import firstknightimg from "../assets/images/firstknight.png";
 import firstbirdimg from "../assets/images/firstbird.png";

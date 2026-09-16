@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
-import heroimg from "../assets/images/pphero2.svg";
+import heroimg from "../assets/images/pphero.png";
 
 // ─── RESUME FILES ────────────────────────────────────────────────────────────
 import fullresume    from "../assets/files/CV ATS - Muhammad Hilmi Adzkia.pdf";
