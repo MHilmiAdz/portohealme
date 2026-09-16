@@ -19,7 +19,9 @@ const SPECIALTIES = [
 
 export function Introduction() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isSupportModalOpen, setIsSupportModalOpen] = useState(false);
   const modalRef = useRef(null);
+  const supportModalRef = useRef(null);
   const containerRef = useRef(null);
 
   const { scrollYProgress } = useScroll({
@@ -63,6 +65,38 @@ export function Introduction() {
     document.addEventListener("keydown", handleKeyDown);
     return () => document.removeEventListener("keydown", handleKeyDown);
   }, [isModalOpen]);
+
+  // ── Accessibility: focus trap inside support modal ──────────────────────────
+  useEffect(() => {
+    if (!isSupportModalOpen || !supportModalRef.current) return;
+
+    const firstFocusable = supportModalRef.current.querySelector(
+      'button, [href], input, [tabindex]:not([tabindex="-1"])'
+    );
+    firstFocusable?.focus();
+
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") { setIsSupportModalOpen(false); return; }
+      if (e.key !== "Tab") return;
+
+      const focusable = Array.from(
+        supportModalRef.current.querySelectorAll(
+          'button, [href], input, [tabindex]:not([tabindex="-1"])'
+        )
+      );
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+
+      if (e.shiftKey) {
+        if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+      } else {
+        if (document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [isSupportModalOpen]);
 
   const skills = [
     { image: skill1, name: "Android Developer", detail: "Kotlin, Java, View Binding, Retrofit, Jetpack" },
@@ -132,26 +166,41 @@ export function Introduction() {
               <span className="text-jade-pale font-semibold"> Technical Education</span>.
             </motion.p>
 
-            <div className="flex flex-wrap justify-center md:justify-start gap-4">
-              <motion.a
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                href={fullresume}
-                download="CV ATS - Muhammad Hilmi Adzkia.pdf"
-                className="btn-jade text-sm px-8 py-4"
-                aria-label="Download Hilmi's general resume PDF"
-              >
-                Get Resume
-              </motion.a>
+            <div className="flex flex-col items-center md:items-start gap-4">
+              <div className="flex flex-wrap justify-center md:justify-start gap-4">
+                <motion.a
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  href={fullresume}
+                  download="CV ATS - Muhammad Hilmi Adzkia.pdf"
+                  className="btn-jade text-sm px-8 py-4"
+                  aria-label="Download Hilmi's general resume PDF"
+                >
+                  Get Resume
+                </motion.a>
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => setIsModalOpen(true)}
+                  aria-haspopup="dialog"
+                  aria-expanded={isModalOpen}
+                  className="px-6 md:px-8 py-4 bg-jade-deep/30 border border-jade-primary/20 text-jade-primary rounded-xl font-black text-[10px] md:text-xs uppercase tracking-widest hover:bg-jade-primary/10 transition-all shadow-lg"
+                >
+                  Specialties
+                </motion.button>
+              </div>
+
+              {/* Support Me Button */}
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                onClick={() => setIsModalOpen(true)}
+                onClick={() => setIsSupportModalOpen(true)}
                 aria-haspopup="dialog"
-                aria-expanded={isModalOpen}
-                className="px-6 md:px-8 py-4 bg-jade-deep/30 border border-jade-primary/20 text-jade-primary rounded-xl font-black text-[10px] md:text-xs uppercase tracking-widest hover:bg-jade-primary/10 transition-all shadow-lg"
+                aria-expanded={isSupportModalOpen}
+                className="px-6 md:px-8 py-3.5 bg-jade-deep/30 border border-jade-primary/20 text-jade-pale hover:text-white rounded-xl font-black text-[10px] md:text-xs uppercase tracking-widest hover:bg-jade-primary/10 hover:border-jade-primary/40 transition-all shadow-lg inline-flex items-center gap-2.5"
               >
-                Specialties
+                <span className="text-sm leading-none">☕</span>
+                <span>Support Me</span>
               </motion.button>
             </div>
           </motion.div>
@@ -251,6 +300,75 @@ export function Introduction() {
               <button
                 onClick={() => setIsModalOpen(false)}
                 aria-label="Close specialties modal"
+                className="mt-8 md:mt-10 text-jade-light/50 hover:text-jade-pale font-black text-[9px] md:text-[10px] uppercase tracking-[0.4em] transition-colors"
+              >
+                [ Back ]
+              </button>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
+      {/* ── Support Me Modal ──────────────────────────────────────────────────── */}
+      <AnimatePresence>
+        {isSupportModalOpen && (
+          <div
+            className="fixed inset-0 z-[110] flex items-center justify-center p-4"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="support-title"
+          >
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="absolute inset-0 bg-jade-dark/95 backdrop-blur-md"
+              onClick={() => setIsSupportModalOpen(false)}
+            />
+
+            {/* Panel */}
+            <motion.div
+              ref={supportModalRef}
+              initial={{ scale: 0.9, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.9, opacity: 0, y: 20 }}
+              className="relative bg-jade-deep/40 p-8 md:p-10 rounded-[2.5rem] md:rounded-[3rem] max-w-sm w-full shadow-2xl border border-jade-primary/20 text-center backdrop-blur-2xl"
+            >
+              <h3
+                id="support-title"
+                className="text-xl md:text-2xl font-black text-jade-pale mb-6 md:mb-8 uppercase tracking-widest"
+              >
+                Support <span className="text-jade-primary">Me</span>
+              </h3>
+
+              <div className="space-y-3 md:space-y-4">
+                <a
+                  href="https://ko-fi.com/frosthealme"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block w-full py-4 md:py-5 px-6 bg-jade-dark/50 hover:bg-[#FF5E5B] text-jade-pale hover:text-white rounded-2xl font-black text-[10px] md:text-xs uppercase tracking-widest transition-all duration-300 border border-jade-primary/10 hover:border-[#FF5E5B] shadow-lg flex items-center justify-center gap-3 group"
+                  aria-label="Support on Ko-fi (opens in new tab)"
+                >
+                  <span className="text-base group-hover:scale-110 transition-transform">☕</span>
+                  <span>Support on Ko-fi</span>
+                </a>
+
+                <a
+                  href="https://trakteer.id/projectshealme/tip?open=true"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block w-full py-4 md:py-5 px-6 bg-jade-dark/50 hover:bg-[#BE1E2D] text-jade-pale hover:text-white rounded-2xl font-black text-[10px] md:text-xs uppercase tracking-widest transition-all duration-300 border border-jade-primary/10 hover:border-[#BE1E2D] shadow-lg flex items-center justify-center gap-3 group"
+                  aria-label="Tip on Trakteer (opens in new tab)"
+                >
+                  <span className="text-base group-hover:scale-110 transition-transform">🇮🇩</span>
+                  <span>Tip on Trakteer</span>
+                </a>
+              </div>
+
+              <button
+                onClick={() => setIsSupportModalOpen(false)}
+                aria-label="Close support modal"
                 className="mt-8 md:mt-10 text-jade-light/50 hover:text-jade-pale font-black text-[9px] md:text-[10px] uppercase tracking-[0.4em] transition-colors"
               >
                 [ Back ]

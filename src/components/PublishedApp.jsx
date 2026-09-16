@@ -102,33 +102,15 @@ export function PublishedApp() {
                     </div>
 
                     {/* Actions Hub */}
-                    <div className="pt-6 border-t border-jade-primary/10 flex flex-wrap items-center gap-3">
+                    <div className="pt-6 border-t border-jade-primary/10">
                       <a
                         href={app.showcaseUrl}
-                        className="btn-jade flex items-center gap-2.5 text-xs px-8 py-4 shadow-lg shadow-jade-primary/20 hover:scale-105 transition-all font-black uppercase tracking-widest"
+                        className="btn-jade inline-flex items-center justify-center gap-2.5 text-xs px-8 py-4 shadow-lg shadow-jade-primary/20 hover:scale-[1.02] transition-all font-black uppercase tracking-widest w-full sm:w-auto text-center"
                       >
                         <span>Explore {app.title} Showcase</span>
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                         </svg>
-                      </a>
-                      <a
-                        href="https://ko-fi.com/frosthealme"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="px-5 py-4 rounded-xl bg-[#FF5E5B]/15 hover:bg-[#FF5E5B]/25 border border-[#FF5E5B]/40 text-[#FF5E5B] hover:text-white transition-all text-xs font-black uppercase tracking-wider flex items-center gap-2 shadow-lg shadow-[#FF5E5B]/10 hover:scale-105"
-                        aria-label="Support on Ko-fi"
-                      >
-                        <span>☕ Ko-fi</span>
-                      </a>
-                      <a
-                        href="https://trakteer.id/projectshealme/tip?open=true"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="px-5 py-4 rounded-xl bg-[#BE1E2D]/15 hover:bg-[#BE1E2D]/25 border border-[#BE1E2D]/40 text-[#BE1E2D] hover:text-white transition-all text-xs font-black uppercase tracking-wider flex items-center gap-2 shadow-lg shadow-[#BE1E2D]/10 hover:scale-105"
-                        aria-label="Tip on Trakteer"
-                      >
-                        <span>Trakteer</span>
                       </a>
                     </div>
                   </div>
