@@ -50,4 +50,4 @@ npm run deploy
 ```
 
 ---
-*Maintained by Muhammad Hilmi Adzkia (Healme). Designed & Refined by F.R.O.S.T.*
+*Maintained by Hilmi. Designed & Refined by F.R.O.S.T.*

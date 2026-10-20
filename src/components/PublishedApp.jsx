@@ -102,12 +102,26 @@ export function PublishedApp() {
                     </div>
 
                     {/* Actions Hub */}
-                    <div className="pt-6 border-t border-jade-primary/10">
+                    <div className="pt-6 border-t border-jade-primary/10 flex flex-wrap items-center gap-4">
+                      {app.playStoreUrl && app.playStoreUrl !== "#" && (
+                        <a
+                          href={app.playStoreUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="btn-jade inline-flex items-center justify-center gap-2.5 text-xs px-8 py-4 shadow-lg shadow-jade-primary/20 hover:scale-[1.02] transition-all font-black uppercase tracking-widest w-full sm:w-auto text-center"
+                        >
+                          <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M3.609 1.814L13.793 12 3.61 22.186c-.198-.204-.31-.48-.31-.786V2.6c0-.306.112-.582.31-.786zm10.89 10.893l2.302 2.302-11.8 6.743 9.498-9.045zm0-1.414L4.999 2.248l11.802 6.743-2.302 2.302zm1.414 1.414l2.793 1.596c.784.448.784 1.18 0 1.628l-2.793 1.596-2.096-2.096 2.096-2.096z"/>
+                          </svg>
+                          <span>Get on Google Play</span>
+                        </a>
+                      )}
+
                       <a
                         href={app.showcaseUrl}
-                        className="btn-jade inline-flex items-center justify-center gap-2.5 text-xs px-8 py-4 shadow-lg shadow-jade-primary/20 hover:scale-[1.02] transition-all font-black uppercase tracking-widest w-full sm:w-auto text-center"
+                        className="px-6 py-4 rounded-xl bg-jade-dark/60 border border-jade-primary/20 text-jade-pale hover:text-jade-primary hover:border-jade-primary/40 text-xs font-black uppercase tracking-widest transition-all inline-flex items-center justify-center gap-2.5 w-full sm:w-auto text-center shadow-lg"
                       >
-                        <span>Explore {app.title} Showcase</span>
+                        <span>Explore Showcase</span>
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                         </svg>

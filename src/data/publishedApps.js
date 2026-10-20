@@ -1,6 +1,8 @@
 import notespackIcon from "../assets/images/notespack-icon.png";
 import notespackShowcase from "../assets/images/notespack-showcase.png";
 
+const baseUrl = import.meta.env.BASE_URL || "/portohealme/";
+
 export const publishedApps = [
   {
     id: "notespack",
@@ -22,9 +24,8 @@ export const publishedApps = [
       { icon: "🎨", title: "Drawing Canvas" },
       { icon: "🔒", title: "Private & Offline" },
     ],
-    // Explicit full path for GitHub Pages routing
-    showcaseUrl: "/portohealme/notespack/",
-    privacyPolicyUrl: "/portohealme/notespack/privacy-policy/",
-    playStoreUrl: "#",
+    showcaseUrl: `${baseUrl}notespack/index.html`,
+    privacyPolicyUrl: `${baseUrl}notespack/privacy-policy/index.html`,
+    playStoreUrl: "https://play.google.com/store/apps/details?id=com.healme.notespack&pcampaignid=web_share",
   },
 ];

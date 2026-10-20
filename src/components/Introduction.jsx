@@ -2,25 +2,12 @@ import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import heroimg from "../assets/images/pphero.png";
 
-// ─── RESUME FILES ────────────────────────────────────────────────────────────
-import fullresume    from "../assets/files/CV ATS - Muhammad Hilmi Adzkia.pdf";
-import resumeAndroid from "../assets/files/Resume - Android Hilmi.pdf";
-import resumeTeacher from "../assets/files/Resume - Teacher Hilmi.pdf";
-
 // Skill images
 import skill1 from "../assets/images/androidskill.png";
 import skill5 from "../assets/images/teachingskill.png";
 
-// Specialty track definitions
-const SPECIALTIES = [
-  { label: "Android Developer",  resume: resumeAndroid,  filename: "Resume - Android Hilmi.pdf"  },
-  { label: "Educator",           resume: resumeTeacher,  filename: "Resume - Teacher Hilmi.pdf" },
-];
-
 export function Introduction() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSupportModalOpen, setIsSupportModalOpen] = useState(false);
-  const modalRef = useRef(null);
   const supportModalRef = useRef(null);
   const containerRef = useRef(null);
 
@@ -32,39 +19,6 @@ export function Introduction() {
   // Kinetic Typography Effects
   const yText = useTransform(scrollYProgress, [0, 1], [0, 150]);
   const opacityText = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-
-  // ── Accessibility: focus trap inside modal ──────────────────────────────────
-  useEffect(() => {
-    if (!isModalOpen || !modalRef.current) return;
-
-    // Move focus into modal on open
-    const firstFocusable = modalRef.current.querySelector(
-      'button, [href], input, [tabindex]:not([tabindex="-1"])'
-    );
-    firstFocusable?.focus();
-
-    const handleKeyDown = (e) => {
-      if (e.key === "Escape") { setIsModalOpen(false); return; }
-      if (e.key !== "Tab") return;
-
-      const focusable = Array.from(
-        modalRef.current.querySelectorAll(
-          'button, [href], input, [tabindex]:not([tabindex="-1"])'
-        )
-      );
-      const first = focusable[0];
-      const last = focusable[focusable.length - 1];
-
-      if (e.shiftKey) {
-        if (document.activeElement === first) { e.preventDefault(); last.focus(); }
-      } else {
-        if (document.activeElement === last) { e.preventDefault(); first.focus(); }
-      }
-    };
-
-    document.addEventListener("keydown", handleKeyDown);
-    return () => document.removeEventListener("keydown", handleKeyDown);
-  }, [isModalOpen]);
 
   // ── Accessibility: focus trap inside support modal ──────────────────────────
   useEffect(() => {
@@ -166,38 +120,27 @@ export function Introduction() {
               <span className="text-jade-pale font-semibold"> Technical Education</span>.
             </motion.p>
 
-            <div className="flex flex-col items-center md:items-start gap-4">
-              <div className="flex flex-wrap justify-center md:justify-start gap-4">
-                <motion.a
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  href={fullresume}
-                  download="CV ATS - Muhammad Hilmi Adzkia.pdf"
-                  className="btn-jade text-sm px-8 py-4"
-                  aria-label="Download Hilmi's general resume PDF"
-                >
-                  Get Resume
-                </motion.a>
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={() => setIsModalOpen(true)}
-                  aria-haspopup="dialog"
-                  aria-expanded={isModalOpen}
-                  className="px-6 md:px-8 py-4 bg-jade-deep/30 border border-jade-primary/20 text-jade-primary rounded-xl font-black text-[10px] md:text-xs uppercase tracking-widest hover:bg-jade-primary/10 transition-all shadow-lg"
-                >
-                  Specialties
-                </motion.button>
-              </div>
+            <div className="flex flex-wrap items-center justify-center md:justify-start gap-4">
+              <motion.a
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                href="mailto:m.hilmi.adz@gmail.com"
+                className="btn-jade text-xs md:text-sm px-6 md:px-8 py-4 inline-flex items-center gap-2.5 shadow-lg shadow-jade-primary/20 font-black uppercase tracking-wider"
+                aria-label="Contact Hilmi via email (m.hilmi.adz@gmail.com)"
+              >
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                <span>Contact Person</span>
+              </motion.a>
 
-              {/* Support Me Button */}
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setIsSupportModalOpen(true)}
                 aria-haspopup="dialog"
                 aria-expanded={isSupportModalOpen}
-                className="px-6 md:px-8 py-3.5 bg-jade-deep/30 border border-jade-primary/20 text-jade-pale hover:text-white rounded-xl font-black text-[10px] md:text-xs uppercase tracking-widest hover:bg-jade-primary/10 hover:border-jade-primary/40 transition-all shadow-lg inline-flex items-center gap-2.5"
+                className="px-6 md:px-8 py-4 bg-jade-deep/30 border border-jade-primary/20 text-jade-pale hover:text-white rounded-xl font-black text-[10px] md:text-xs uppercase tracking-widest hover:bg-jade-primary/10 hover:border-jade-primary/40 transition-all shadow-lg inline-flex items-center gap-2.5"
               >
                 <span className="text-sm leading-none">☕</span>
                 <span>Support Me</span>
@@ -250,64 +193,7 @@ export function Introduction() {
         </motion.div>
       </div>
 
-      {/* ── Specialties Modal ─────────────────────────────────────────────────── */}
-      <AnimatePresence>
-        {isModalOpen && (
-          <div
-            className="fixed inset-0 z-[110] flex items-center justify-center p-4"
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="specialties-title"
-          >
-            {/* Backdrop */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="absolute inset-0 bg-jade-dark/95 backdrop-blur-md"
-              onClick={() => setIsModalOpen(false)}
-            />
 
-            {/* Panel */}
-            <motion.div
-              ref={modalRef}
-              initial={{ scale: 0.9, opacity: 0, y: 20 }}
-              animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.9, opacity: 0, y: 20 }}
-              className="relative bg-jade-deep/40 p-8 md:p-10 rounded-[2.5rem] md:rounded-[3rem] max-w-sm w-full shadow-2xl border border-jade-primary/20 text-center backdrop-blur-2xl"
-            >
-              <h3
-                id="specialties-title"
-                className="text-xl md:text-2xl font-black text-jade-pale mb-6 md:mb-8 uppercase tracking-widest"
-              >
-                Select <span className="text-jade-primary">Track</span>
-              </h3>
-
-              <div className="space-y-3 md:space-y-4">
-                {SPECIALTIES.map(({ label, resume, filename }) => (
-                  <a
-                    key={label}
-                    href={resume}
-                    download={filename}
-                    className="block w-full py-4 md:py-5 px-6 bg-jade-dark/50 hover:bg-jade-primary text-jade-pale hover:text-jade-dark rounded-2xl font-black text-[10px] md:text-xs uppercase tracking-widest transition-all duration-300 border border-jade-primary/10 shadow-lg"
-                    aria-label={`Download ${label} resume`}
-                  >
-                    {label} Resume
-                  </a>
-                ))}
-              </div>
-
-              <button
-                onClick={() => setIsModalOpen(false)}
-                aria-label="Close specialties modal"
-                className="mt-8 md:mt-10 text-jade-light/50 hover:text-jade-pale font-black text-[9px] md:text-[10px] uppercase tracking-[0.4em] transition-colors"
-              >
-                [ Back ]
-              </button>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
 
       {/* ── Support Me Modal ──────────────────────────────────────────────────── */}
       <AnimatePresence>

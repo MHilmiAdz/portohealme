@@ -7,7 +7,6 @@ const CONTACT_INFO = {
   github:    "https://github.com/MHilmiAdz",
   kofi:      "https://ko-fi.com/frosthealme",
   trakteer:  "https://trakteer.id/projectshealme/tip?open=true",
-  figma:     "https://www.figma.com/design/fKpfDjzoZmF8EntTJfc1zX/ALL-PORTOFOLIO?node-id=66-5&t=piNNHkMtuMpRMngo-1",
   instagram: "https://www.instagram.com/m_hilmi_a/",
   status:    "Open for Opportunities",
 };
@@ -61,18 +60,7 @@ const socialChannels = [
       </svg>
     ),
   },
-  {
-    name: "Figma",
-    handle: "Figma Workspace",
-    href: CONTACT_INFO.figma,
-    desc: "UI/UX prototypes & workspace",
-    badge: "Workspace",
-    icon: (
-      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M8 24c2.208 0 4-1.792 4-4v-4H8c-2.208 0-4 1.792-4 4s1.792 4 4 4zM4 12c0-2.208 1.792-4 4-4h4v8H8c-2.208 0-4-1.792-4-4zm0-8c0-2.208 1.792-4 4-4h4v8H8C5.792 8 4 6.208 4 4zm8-4h4c2.208 0 4 1.792 4 4s-1.792 4-4 4h-4V0zm0 8h4c2.208 0 4 1.792 4 4s-1.792 4-4 4h-4V8z"/>
-      </svg>
-    ),
-  },
+
   {
     name: "Instagram",
     handle: "@m_hilmi_a",
