@@ -8,8 +8,14 @@ function servePublicHtml() {
     name: 'serve-public-html',
     configureServer(server) {
       server.middlewares.use((req, res, next) => {
-        if (req.url && req.url.includes('/notespack') && !req.url.includes('.')) {
-          req.url = req.url.endsWith('/') ? `${req.url}index.html` : `${req.url}/index.html`;
+        if (req.url) {
+          const parsed = new URL(req.url, 'http://localhost');
+          if (parsed.pathname.includes('/notespack') && !parsed.pathname.split('/').pop().includes('.')) {
+            const normalized = parsed.pathname.endsWith('/')
+              ? `${parsed.pathname}index.html`
+              : `${parsed.pathname}/index.html`;
+            req.url = `${normalized}${parsed.search}`;
+          }
         }
         next();
       });

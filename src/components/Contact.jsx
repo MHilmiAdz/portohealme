@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
+import { Icon } from "./Icons";
 
 const CONTACT_INFO = {
   email:     "projectshealme@gmail.com",
@@ -60,7 +61,6 @@ const socialChannels = [
       </svg>
     ),
   },
-
   {
     name: "Instagram",
     handle: "@m_hilmi_a",
@@ -77,12 +77,22 @@ const socialChannels = [
 
 export function Contact() {
   const [copied, setCopied] = useState(false);
+  const shouldReduceMotion = useReducedMotion();
 
   const handleCopyEmail = () => {
-    navigator.clipboard.writeText(CONTACT_INFO.email).then(() => {
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2200);
-    });
+    if (!navigator.clipboard?.writeText) {
+      window.prompt("Copy email address:", CONTACT_INFO.email);
+      return;
+    }
+    navigator.clipboard
+      .writeText(CONTACT_INFO.email)
+      .then(() => {
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2200);
+      })
+      .catch(() => {
+        window.prompt("Copy email address:", CONTACT_INFO.email);
+      });
   };
 
   return (
@@ -92,20 +102,20 @@ export function Contact() {
       aria-labelledby="contact-heading"
     >
       {/* Decorative ambient lighting */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-24 bg-gradient-to-b from-transparent via-jade-primary/40 to-transparent" />
-      <div className="absolute top-1/3 left-[-10%] w-[32rem] h-[32rem] bg-jade-primary/5 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-[-10%] right-[-10%] w-[32rem] h-[32rem] bg-jade-secondary/5 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-24 bg-gradient-to-b from-transparent via-jade-primary/40 to-transparent" aria-hidden="true" />
+      <div className="absolute top-1/3 left-[-10%] w-[32rem] h-[32rem] bg-jade-primary/5 rounded-full blur-[140px] pointer-events-none" aria-hidden="true" />
+      <div className="absolute bottom-[-10%] right-[-10%] w-[32rem] h-[32rem] bg-jade-secondary/5 rounded-full blur-[140px] pointer-events-none" aria-hidden="true" />
 
       <div className="container-max relative z-10">
         {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="text-center mb-16 md:mb-20"
         >
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-jade-primary/10 border border-jade-primary/20 text-jade-primary text-[10px] font-black uppercase tracking-[0.25em] mb-4">
-            <span className="w-2 h-2 rounded-full bg-jade-primary animate-pulse" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-jade-primary/10 border border-jade-primary/25 text-jade-primary text-[11px] font-black uppercase tracking-[0.2em] mb-4">
+            <span className="w-2 h-2 rounded-full bg-jade-primary animate-pulse" aria-hidden="true" />
             {CONTACT_INFO.status}
           </div>
           <h2
@@ -128,51 +138,45 @@ export function Contact() {
             viewport={{ once: true }}
             className="lg:col-span-7 rounded-3xl md:rounded-[2.5rem] bg-gradient-to-br from-jade-deep/80 via-jade-deep/40 to-jade-dark/60 border border-jade-primary/20 p-8 md:p-12 flex flex-col justify-between backdrop-blur-2xl shadow-2xl relative overflow-hidden group"
           >
-            {/* Ambient inner glow */}
-            <div className="absolute -top-24 -left-24 w-60 h-60 bg-jade-primary/10 rounded-full blur-3xl group-hover:bg-jade-primary/20 transition-all duration-700 pointer-events-none" />
+            <div className="absolute -top-24 -left-24 w-60 h-60 bg-jade-primary/10 rounded-full blur-3xl group-hover:bg-jade-primary/20 transition-all duration-700 pointer-events-none" aria-hidden="true" />
 
             <div>
               <div className="flex items-center justify-between mb-8">
                 <div className="w-12 h-12 rounded-2xl bg-jade-dark border border-jade-primary/30 flex items-center justify-center text-jade-primary shadow-lg shadow-jade-primary/10">
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                  </svg>
+                  <Icon name="mail" className="w-6 h-6" />
                 </div>
-                <span className="text-[10px] font-black uppercase tracking-[0.25em] text-jade-primary bg-jade-primary/10 px-3 py-1 rounded-full border border-jade-primary/20">
+                <span className="text-[11px] font-black uppercase tracking-[0.2em] text-jade-primary bg-jade-primary/10 px-3 py-1 rounded-full border border-jade-primary/25">
                   Direct Inbox
                 </span>
               </div>
 
-              <h3 className="text-xs font-black uppercase tracking-[0.25em] text-jade-light/60 mb-2">
+              <p className="text-xs font-black uppercase tracking-[0.22em] text-jade-light/85 mb-2">
                 Send an Email
-              </h3>
-              <p className="text-xl md:text-3xl font-black text-jade-pale tracking-tight break-all mb-4">
+              </p>
+              <p className="text-xl md:text-3xl font-black text-jade-pale tracking-tight break-words mb-4" style={{ overflowWrap: "anywhere" }}>
                 {CONTACT_INFO.email}
               </p>
-              <p className="text-xs md:text-sm text-jade-light/80 leading-relaxed mb-8 max-w-md">
+              <p className="text-xs md:text-sm text-jade-light leading-relaxed mb-8 max-w-md">
                 Fastest way to get in touch. Click below to copy or start a conversation directly.
               </p>
             </div>
 
             {/* Email Actions Button Group */}
-            <div className="flex flex-wrap items-center gap-3 pt-6 border-t border-jade-primary/10">
+            <div className="flex flex-wrap items-center gap-3 pt-6 border-t border-jade-primary/15">
               <button
+                type="button"
                 onClick={handleCopyEmail}
-                className="btn-jade flex items-center gap-2.5 text-xs px-6 py-3.5 shadow-lg shadow-jade-primary/20 hover:scale-105 transition-all font-black uppercase tracking-widest cursor-pointer"
+                className="btn-jade flex items-center gap-2.5 text-xs px-6 py-3.5 min-h-[44px] shadow-lg shadow-jade-primary/20 hover:scale-105 transition-all font-black uppercase tracking-widest cursor-pointer"
                 aria-label="Copy email address"
               >
                 {copied ? (
                   <>
-                    <svg className="w-4 h-4 text-jade-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
-                    </svg>
+                    <Icon name="check" className="w-4 h-4 text-jade-dark" strokeWidth={2.5} />
                     <span>Copied!</span>
                   </>
                 ) : (
                   <>
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                    </svg>
+                    <Icon name="copy" className="w-4 h-4" />
                     <span>Copy Address</span>
                   </>
                 )}
@@ -180,47 +184,46 @@ export function Contact() {
 
               <a
                 href={`mailto:${CONTACT_INFO.email}`}
-                className="px-5 py-3.5 rounded-xl bg-jade-dark/60 border border-jade-primary/20 text-jade-light hover:text-jade-primary hover:border-jade-primary/40 text-[11px] font-black uppercase tracking-wider transition-all flex items-center gap-2"
+                className="px-5 py-3.5 min-h-[44px] rounded-xl bg-jade-dark/60 border border-jade-primary/25 text-jade-pale hover:text-jade-primary hover:border-jade-primary/50 text-xs font-black uppercase tracking-wider transition-all flex items-center gap-2"
               >
                 <span>Compose Mail</span>
-                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                </svg>
+                <Icon name="arrowRight" className="w-3.5 h-3.5" strokeWidth={2.5} />
               </a>
+
+              <span className="sr-only" aria-live="polite">
+                {copied ? `Email address ${CONTACT_INFO.email} copied to clipboard.` : ""}
+              </span>
             </div>
 
             {/* Support / Tip Prominent Callout */}
-            <div className="mt-8 pt-6 border-t border-jade-primary/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div className="mt-8 pt-6 border-t border-jade-primary/15 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
               <div>
-                <h4 className="text-xs font-black uppercase tracking-[0.2em] text-jade-primary mb-1">
-                  ☕ Support My Work
-                </h4>
-                <p className="text-[11px] text-jade-light/70">
+                <h3 className="text-xs font-black uppercase tracking-[0.2em] text-jade-primary mb-1 inline-flex items-center gap-2">
+                  <Icon name="coffee" className="w-4 h-4" />
+                  <span>Support My Work</span>
+                </h3>
+                <p className="text-xs text-jade-light/85">
                   Enjoying NotesPack or my open-source apps? Support ongoing development on Ko-fi or Trakteer.
                 </p>
               </div>
-              <div className="flex items-center gap-2 flex-shrink-0">
+              <div className="flex items-center gap-2.5 flex-shrink-0">
                 <a
                   href={CONTACT_INFO.kofi}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-3.5 py-2 rounded-xl bg-[#FF5E5B] hover:bg-[#FF5E5B]/90 text-white text-[10px] font-black uppercase tracking-wider transition-all shadow-md shadow-[#FF5E5B]/25 flex items-center gap-1.5"
+                  className="px-4 py-2.5 min-h-[44px] rounded-xl bg-[#FF5E5B] hover:bg-[#ff7471] text-[#020617] text-xs font-black uppercase tracking-wider transition-all shadow-md shadow-[#FF5E5B]/25 inline-flex items-center gap-1.5"
                 >
                   <span>Ko-fi</span>
-                  <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                  </svg>
+                  <Icon name="arrowRight" className="w-3.5 h-3.5" strokeWidth={2.5} />
                 </a>
                 <a
                   href={CONTACT_INFO.trakteer}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-3.5 py-2 rounded-xl bg-[#BE1E2D] hover:bg-[#BE1E2D]/90 text-white text-[10px] font-black uppercase tracking-wider transition-all shadow-md shadow-[#BE1E2D]/25 flex items-center gap-1.5"
+                  className="px-4 py-2.5 min-h-[44px] rounded-xl bg-[#BE1E2D] hover:bg-[#a61826] text-white text-xs font-black uppercase tracking-wider transition-all shadow-md shadow-[#BE1E2D]/25 inline-flex items-center gap-1.5"
                 >
                   <span>Trakteer</span>
-                  <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                  </svg>
+                  <Icon name="arrowRight" className="w-3.5 h-3.5" strokeWidth={2.5} />
                 </a>
               </div>
             </div>
@@ -238,32 +241,30 @@ export function Contact() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.06 }}
-                whileHover={{ x: 4, scale: 1.01 }}
-                className="p-4 rounded-2xl bg-jade-deep/30 border border-jade-primary/15 hover:border-jade-primary/40 hover:bg-jade-deep/50 transition-all duration-300 backdrop-blur-xl flex items-center justify-between group shadow-lg"
+                whileHover={shouldReduceMotion ? undefined : { x: 4, scale: 1.01 }}
+                className="p-4 min-h-[68px] rounded-2xl bg-jade-deep/35 border border-jade-primary/15 hover:border-jade-primary/45 hover:bg-jade-deep/60 transition-all duration-300 backdrop-blur-xl flex items-center justify-between group shadow-lg"
                 aria-label={`Visit Hilmi's ${channel.name} profile`}
               >
-                <div className="flex items-center gap-3.5">
-                  <div className="w-10 h-10 rounded-xl bg-jade-dark border border-jade-primary/20 flex items-center justify-center text-jade-primary group-hover:bg-jade-primary group-hover:text-jade-dark transition-all duration-300 shadow-md flex-shrink-0">
+                <div className="flex items-center gap-3.5 min-w-0">
+                  <div className="w-10 h-10 rounded-xl bg-jade-dark border border-jade-primary/25 flex items-center justify-center text-jade-primary group-hover:bg-jade-primary group-hover:text-jade-dark transition-all duration-300 shadow-md flex-shrink-0">
                     {channel.icon}
                   </div>
-                  <div>
-                    <h4 className="text-xs font-bold text-jade-pale group-hover:text-jade-primary transition-colors">
+                  <div className="min-w-0">
+                    <h3 className="text-sm font-bold text-jade-pale group-hover:text-jade-primary transition-colors">
                       {channel.name}
-                    </h4>
-                    <p className="text-[10px] font-mono text-jade-light/60">
+                    </h3>
+                    <p className="text-xs font-mono text-jade-light/85 truncate">
                       {channel.handle}
                     </p>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-2">
-                  <span className="text-[9px] font-black uppercase tracking-wider text-jade-light/50 group-hover:text-jade-primary transition-colors hidden sm:inline">
+                <div className="flex items-center gap-2 flex-shrink-0">
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-jade-light/85 group-hover:text-jade-primary transition-colors hidden sm:inline">
                     {channel.badge}
                   </span>
-                  <div className="w-7 h-7 rounded-full bg-jade-dark/80 border border-jade-primary/15 flex items-center justify-center text-jade-light group-hover:text-jade-primary group-hover:border-jade-primary/30 transition-all">
-                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                    </svg>
+                  <div className="w-8 h-8 rounded-full bg-jade-dark/80 border border-jade-primary/20 flex items-center justify-center text-jade-light group-hover:text-jade-primary group-hover:border-jade-primary/40 transition-all">
+                    <Icon name="arrowRight" className="w-3.5 h-3.5" strokeWidth={2.5} />
                   </div>
                 </div>
               </motion.a>

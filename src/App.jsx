@@ -1,8 +1,12 @@
-import './App.css';
+import { MotionConfig } from 'framer-motion';
 import Portfolio from './Portofolio';
 
 function App() {
-  return <Portfolio />;
+  return (
+    <MotionConfig reducedMotion="user">
+      <Portfolio />
+    </MotionConfig>
+  );
 }
 
 export default App;

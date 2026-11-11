@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Terms of Service - NotesPack</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="../images/icon.png">
     <style>
         :root {
@@ -24,13 +27,26 @@
             padding: 0;
         }
 
+        html {
+            color-scheme: dark;
+        }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             background-color: var(--jade-dark);
             color: var(--jade-light);
             line-height: 1.75;
             min-height: 100vh;
             overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Space Grotesk', 'Inter', sans-serif;
+        }
+
+        :where(a, button):focus-visible {
+            outline: 2px solid var(--jade-primary);
+            outline-offset: 3px;
         }
 
         .ambient {
@@ -169,7 +185,7 @@
                 <strong>Developer / Operator:</strong> ProjectsHealme, East Java, Indonesia<br>
                 <strong>Contact Email:</strong> <a href="mailto:projectshealme@gmail.com">projectshealme@gmail.com</a><br>
                 <strong>Effective Date:</strong> November 5, 2026<br>
-                <strong>Last Updated:</strong> November 5, 2026
+                <strong>Last Updated:</strong> November 12, 2026
             </div>
 
             <p>
@@ -181,35 +197,39 @@
                 By downloading, accessing, or using NotesPack, you agree to be bound by these Terms and our <a href="../privacy-policy/">Privacy Policy</a>. If you do not agree to these Terms, please do not use the Application. You must be at least 13 years of age (or at least 16 years of age in the European Economic Area) to use NotesPack.
             </p>
 
-            <h2>2. Account &amp; Authentication</h2>
+            <h2>2. Account, Authentication &amp; Single-Device Sessions</h2>
             <p>
-                NotesPack uses <span class="highlight">Google Sign-In</span> (powered by Firebase Authentication and Android Credential Manager) to establish your session identity. You are responsible for maintaining the security of your Google account and your physical device. You may delete your authentication profile at any time directly inside the app under <em>Profile &rarr; Settings &amp; Backup &rarr; Danger Zone &rarr; Delete Account</em> or by contacting us at <a href="mailto:projectshealme@gmail.com">projectshealme@gmail.com</a>.
+                NotesPack uses <span class="highlight">Google Sign-In</span> (powered by Firebase Authentication and Android Credential Manager) to establish your session identity. You are responsible for maintaining the security of your Google account and your physical device.
             </p>
+            <ul>
+                <li><span class="highlight">Single-Device Session Policy:</span> To protect account entitlements, NotesPack enforces one active signed-in session per Google account using a hashed device installation identifier. Signing in on a new device automatically signs out your previous device. Because your notes are stored locally on each device rather than synced via our cloud servers, please export a <code>.notespack</code> backup before switching devices.</li>
+                <li><span class="highlight">Account Deletion:</span> You may delete your authentication profile at any time directly inside the app under <em>Profile &rarr; Settings &amp; Backup &rarr; Danger Zone &rarr; Delete Account</em> or by contacting us at <a href="mailto:projectshealme@gmail.com">projectshealme@gmail.com</a>.</li>
+            </ul>
 
             <h2>3. Local-First Data Storage, Encrypted Vault &amp; Backups</h2>
             <p>
                 NotesPack is architected as a <span class="highlight">100% local-first</span> application:
             </p>
             <ul>
-                <li><span class="highlight">On-Device Storage:</span> All notes, spending logs, split bills, checklists, drawings, travel itineraries, recipes, due-date items, subscription trackers, and attached photos are stored locally on your device in an internal SQLite database and app storage. We do not store copies of your notes on remote cloud servers.</li>
-                <li><span class="highlight">PIN/Biometric Vault &amp; Password-Protected Backups:</span> Notes locked in the Vault are encrypted on-device using hardware-backed <span class="highlight">AES-256-GCM</span> encryption. Exported <code>.notespack</code> backup archives protected with a password are encrypted using <span class="highlight">PBKDF2WithHmacSHA256</span> and <span class="highlight">AES-256-GCM</span>.</li>
+                <li><span class="highlight">On-Device Storage:</span> All notes, voice dictation transcripts, spending logs, split bills, checklists, drawings, travel itineraries, recipes, link collections, due-date items, subscription trackers, and attached photos are stored locally on your device in an internal SQLite database and app storage. We do not store copies of your notes on remote cloud servers.</li>
+                <li><span class="highlight">PIN/Biometric Vault &amp; Password-Protected Backups:</span> Notes locked in the Vault are encrypted on-device using hardware-backed <span class="highlight">AES-256-GCM</span> encryption. Exported <code>.notespack</code> backup archives are saved to your public <code>Downloads/NotesPack/</code> folder (and imported via Android's Storage Access Framework). Archives protected with a password are encrypted using <span class="highlight">PBKDF2WithHmacSHA256</span> and <span class="highlight">AES-256-GCM</span>; <span class="highlight">exports created without a password are unencrypted</span> in public Downloads storage.</li>
                 <li><span class="highlight">No Remote Recovery:</span> Because we never transmit or store your notes, Vault PINs, or backup passwords on our servers, <span class="highlight">we cannot recover your data or reset your backup password</span> if your device is lost, damaged, factory-reset, uninstalled without creating a <code>.notespack</code> backup, or if you forget your custom backup password. Maintaining regular local backups is solely your responsibility.</li>
             </ul>
 
             <h2>4. NotesPack Pro, Subscriptions &amp; Google Play Billing</h2>
             <p>
-                NotesPack offers optional paid upgrades (<span class="highlight">NotesPack Pro</span>) available as recurring subscriptions or one-time in-app purchases, processed exclusively through <span class="highlight">Google Play Billing</span>.
+                NotesPack offers an optional paid upgrade (<span class="highlight">NotesPack Pro</span>) available as an auto-renewing monthly subscription (with eligible introductory welcome discount offers or promotional <code>Redeem Code</code> vouchers), processed exclusively through <span class="highlight">Google Play Billing</span>.
             </p>
             <ul>
-                <li><span class="highlight">Billing &amp; Automatic Renewal:</span> Subscription plans automatically renew at the end of each billing cycle unless canceled at least 24 hours prior to the end of the current period. Your Google Play account will be charged at the price displayed at checkout.</li>
-                <li><span class="highlight">Easy Cancellation:</span> You may manage or cancel your subscription at any time directly through the Google Play Store app (<em>Profile &rarr; Payments &amp; subscriptions &rarr; Subscriptions</em>) or online at <a href="https://play.google.com/store/account/subscriptions" target="_blank" rel="noopener noreferrer">play.google.com/store/account/subscriptions</a>. Uninstalling the app does not automatically cancel an active subscription.</li>
+                <li><span class="highlight">Billing &amp; Automatic Renewal:</span> Subscription plans automatically renew at the end of each billing cycle unless canceled at least 24 hours prior to the end of the current period. Your Google Play account will be charged at the recurring rate displayed at checkout (or after any applicable introductory first-month offer). Active Play subscriptions are tied to the Google account used for purchase.</li>
+                <li><span class="highlight">Easy Cancellation:</span> You may manage or cancel your subscription at any time directly through the Google Play Store app (<em>Profile &rarr; Payments &amp; subscriptions &rarr; Subscriptions</em>) or online at <a href="https://play.google.com/store/account/subscriptions" target="_blank" rel="noopener noreferrer">play.google.com/store/account/subscriptions</a>. Uninstalling the app or deleting your NotesPack login does not automatically cancel an active Google Play subscription.</li>
                 <li><span class="highlight">Refunds &amp; Withdrawal Rights:</span> All billing disputes and refund requests are governed by the <a href="https://play.google.com/intl/en_us/about/play-terms/" target="_blank" rel="noopener noreferrer">Google Play Terms of Service</a> and Google Play's refund policies. If you reside in the European Economic Area (EEA) or United Kingdom, by purchasing digital content that is made available immediately, you consent to immediate performance and acknowledge that you waive your statutory 14-day right of withdrawal once digital access begins, except as otherwise provided by Google Play policy.</li>
             </ul>
 
-            <h2>5. Disclaimers for OCR, Financial Tools &amp; Reminders</h2>
-            <h3>A. On-Device Receipt OCR &amp; Currency Conversion ("Not 100% Accurate")</h3>
+            <h2>5. Disclaimers for OCR, Voice Dictation, Travel Tools &amp; Reminders</h2>
+            <h3>A. Receipt OCR, Voice Dictation, Travel Maps &amp; Currency Estimates ("Not 100% Accurate")</h3>
             <p>
-                NotesPack includes optical character recognition (OCR) powered by on-device machine learning (Google ML Kit), automated itemized bill splitting, tax/service distribution, and offline currency estimation. <span class="highlight">Disclaimer: OCR scanning and automated calculations are not 100% accurate.</span> Recognition accuracy depends on receipt print quality, lighting, crumpled paper, and formatting. Always review and verify extracted prices, taxes, and totals before settling payments or making financial decisions. NotesPack is a personal organization tool and does not provide accounting, tax, or financial advice.
+                NotesPack includes optical character recognition (OCR) powered by on-device machine learning (Google ML Kit), speech-to-text voice dictation, automated itemized bill splitting, tax/service distribution, offline currency estimation, and external map deep-links. <span class="highlight">Disclaimer: OCR scanning, speech transcription, currency estimates, and automated calculations are not 100% accurate.</span> Accuracy depends on receipt print quality, lighting, ambient noise, pronunciation, offline speech packs, and external map data. Always verify extracted figures, dictations, and travel details before settling payments or making decisions. NotesPack is a personal organization tool and does not provide accounting, tax, or financial advice.
             </p>
 
             <h3>B. Due-Date Alarms &amp; Subscription Reminders</h3>

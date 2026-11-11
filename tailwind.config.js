@@ -6,11 +6,11 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
+        display: ['Space Grotesk', 'Inter', 'system-ui', 'sans-serif'],
+      },
       colors: {
-        maincolor: '#111827',
-        secondarycolor: '#ffffff',
-        tertiarycolor: '#1f2937',
-        backgroundcolor: '#030712',
         // 'Emerald Night' Balanced Palette
         'jade-dark': '#020617',    // Midnight Navy Base
         'jade-deep': '#0f172a',    // Deep Slate/Navy Surface

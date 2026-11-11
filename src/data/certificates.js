@@ -1,6 +1,6 @@
-import sertjavabasic from "../assets/images/javabasic.png";
-import sertprobsolvbasic from "../assets/images/problemsolving.png";
-import sertbecomeagooglecloudengineer from "../assets/images/becomeagce.jpg";
+import sertjavabasic from "../assets/images/javabasic.webp";
+import sertprobsolvbasic from "../assets/images/problemsolving.webp";
+import sertbecomeagooglecloudengineer from "../assets/images/becomeagce.webp";
 
 export const certificates = [
     {

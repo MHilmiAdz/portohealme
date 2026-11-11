@@ -1,7 +1,7 @@
-import leafcheckimg from '../assets/images/leafcheck.png';
+import leafcheckimg from '../assets/images/leafcheck.webp';
 import kanagamesimg from "../assets/images/kanagames.webp";
-import perpushubimg from "../assets/images/perpushub.png";
-import firstknightimg from "../assets/images/firstknight.png";
+import perpushubimg from "../assets/images/perpushub.webp";
+import firstknightimg from "../assets/images/firstknight.webp";
 import firstbirdimg from "../assets/images/firstbird.png";
 
 export const projects = [

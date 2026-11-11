@@ -10,16 +10,20 @@ import { Contact }      from "./components/Contact";
 export default function Portfolio() {
   return (
     <div className="min-h-screen bg-[#020617] text-jade-pale selection:bg-jade-primary selection:text-jade-dark overflow-x-hidden relative">
+      {/* Skip to Main Content for Keyboard Navigation */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[120] focus:px-5 focus:py-3 focus:rounded-xl focus:bg-jade-primary focus:text-jade-dark focus:font-bold focus:text-sm focus:shadow-2xl"
+      >
+        Skip to main content
+      </a>
 
       {/* Global Ambient Background Atmosphere */}
       <div className="fixed inset-0 z-0 pointer-events-none" aria-hidden="true">
         {/* Jade glow orbs */}
         <div className="absolute top-[-10%] left-[-10%] w-[60vw] h-[60vw] rounded-full bg-jade-primary/5 blur-[120px]" />
         <div className="absolute bottom-[-10%] right-[-10%] w-[60vw] h-[60vw] rounded-full bg-jade-primary/5 blur-[120px]" />
-        {/*
-          Subtle noise overlay — pure CSS, no external network request.
-          Uses a repeating radial gradient to approximate a grain/texture effect.
-        */}
+        {/* Subtle CSS noise grain */}
         <div
           className="absolute inset-0 opacity-[0.025] mix-blend-overlay"
           style={{
@@ -33,7 +37,7 @@ export default function Portfolio() {
 
       <Navbar />
 
-      <main className="relative z-10">
+      <main id="main-content" tabIndex={-1} className="relative z-10 focus:outline-none">
         <Introduction />
 
         <div id="published-app">

@@ -20,9 +20,7 @@ export function CardSkeleton() {
       className="rounded-2xl border border-jade-primary/10 bg-jade-deep/20 flex flex-col h-full overflow-hidden"
       aria-hidden="true"
     >
-      {/* Thumbnail placeholder */}
       <Skeleton className="w-full h-48" />
-      {/* Body placeholder */}
       <div className="p-6 flex flex-col gap-3 flex-grow">
         <Skeleton className="h-5 w-3/4" />
         <Skeleton className="h-4 w-full" />
@@ -33,18 +31,6 @@ export function CardSkeleton() {
           <Skeleton className="h-6 w-14 rounded-full" />
         </div>
       </div>
-    </div>
-  );
-}
-
-/** Matches the ImageCard component layout */
-export function ImageCardSkeleton() {
-  return (
-    <div
-      className="rounded-2xl border border-jade-primary/10 bg-jade-deep/20 overflow-hidden"
-      aria-hidden="true"
-    >
-      <Skeleton className="aspect-video w-full" />
     </div>
   );
 }

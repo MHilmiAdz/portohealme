@@ -2,11 +2,11 @@ import practicumAssistantfilkom from "../assets/images/practicumassist.webp";
 import bangkitAcademycohort from "../assets/images/bangkitcert.webp";
 import plpsmkn2malang from "../assets/images/plp2smk2malang.webp";
 import svvrsmkn3batu from "../assets/images/svvrsmk3batu.webp";
-import coddmtahfidzgrad from "../assets/images/coddm.png";
-import itdevdc from "../assets/images/dc2024itdev.jpg";
-import sekrependptq from "../assets/images/sekrependptq.png";
-import kbmptiddmcert from "../assets/images/ddmcert.png";
-import tahfidzcampwaco from "../assets/images/wacomultmed.png";
+import coddmtahfidzgrad from "../assets/images/coddm.webp";
+import itdevdc from "../assets/images/dc2024itdev.webp";
+import sekrependptq from "../assets/images/sekrependptq.webp";
+import kbmptiddmcert from "../assets/images/ddmcert.webp";
+import tahfidzcampwaco from "../assets/images/wacomultmed.webp";
 
 export const experience = [
     {
