@@ -2,316 +2,292 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy Policy - NotesPack</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
+    <meta name="color-scheme" content="dark">
+    <meta name="theme-color" content="#07090d">
+    <title>Privacy Policy — NotesPack</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="../images/icon.png">
-    <style>
-        :root {
-            --jade-dark:      #020617;
-            --jade-deep:      #0f172a;
-            --jade-primary:   #10b981;
-            --jade-secondary: #f59e0b;
-            --jade-light:     #94a3b8;
-            --jade-pale:      #f8fafc;
-            --jade-border:    rgba(16,185,129,0.15);
-            --jade-border-lg: rgba(16,185,129,0.25);
-            --jade-surface:   rgba(15,23,42,0.6);
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html {
-            color-scheme: dark;
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--jade-dark);
-            color: var(--jade-light);
-            line-height: 1.75;
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
-
-        h1, h2, h3 {
-            font-family: 'Space Grotesk', 'Inter', sans-serif;
-        }
-
-        :where(a, button):focus-visible {
-            outline: 2px solid var(--jade-primary);
-            outline-offset: 3px;
-        }
-
-        .ambient {
-            position: fixed;
-            inset: 0;
-            z-index: 0;
-            pointer-events: none;
-        }
-        .ambient-orb-1 {
-            position: absolute;
-            top: -15%;
-            left: -10%;
-            width: 55vw;
-            height: 55vw;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(16,185,129,0.07) 0%, transparent 70%);
-        }
-        .ambient-orb-2 {
-            position: absolute;
-            bottom: -15%;
-            right: -10%;
-            width: 50vw;
-            height: 50vw;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(16,185,129,0.05) 0%, transparent 70%);
-        }
-
-        .policy-container {
-            max-width: 820px;
-            margin: 0 auto;
-            padding: 48px 24px 80px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .policy-card {
-            background: var(--jade-surface);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid var(--jade-border);
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-        }
-
-        .nav-back {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--jade-light);
-            text-decoration: none;
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-bottom: 24px;
-            transition: color 0.2s;
-        }
-        .nav-back:hover {
-            color: var(--jade-primary);
-        }
-
-        h1 {
-            font-size: 2.25rem;
-            color: var(--jade-pale);
-            margin-bottom: 8px;
-            font-weight: 700;
-        }
-        h1 span {
-            color: var(--jade-primary);
-        }
-
-        h2 {
-            font-size: 1.35rem;
-            color: var(--jade-pale);
-            margin-top: 36px;
-            margin-bottom: 14px;
-            border-bottom: 1px solid var(--jade-border);
-            padding-bottom: 8px;
-        }
-
-        h3 {
-            font-size: 1.05rem;
-            color: var(--jade-primary);
-            margin-top: 20px;
-            margin-bottom: 8px;
-        }
-
-        p, ul, ol {
-            margin-bottom: 16px;
-        }
-
-        ul, ol {
-            padding-left: 24px;
-        }
-
-        li {
-            margin-bottom: 8px;
-        }
-
-        .meta-info {
-            background: rgba(16, 185, 129, 0.08);
-            border-left: 3px solid var(--jade-primary);
-            padding: 12px 16px;
-            border-radius: 0 8px 8px 0;
-            margin-bottom: 24px;
-            font-size: 0.9rem;
-        }
-
-        a {
-            color: var(--jade-primary);
-            text-decoration: underline;
-        }
-
-        .highlight {
-            color: var(--jade-pale);
-            font-weight: 600;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="ambient">
-        <div class="ambient-orb-1"></div>
-        <div class="ambient-orb-2"></div>
-    </div>
+    <a href="#legal-main" class="skip-link">Skip to document</a>
 
-    <div class="policy-container">
-        <a href="../" class="nav-back">
-            <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 12H5M12 5l-7 7 7 7"/></svg>
-            Back to NotesPack
-        </a>
+    <header class="legal-header">
+        <div class="container legal-nav">
+            <a href="../" class="back-link">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 12H5M12 5l-7 7 7 7" />
+                </svg>
+                <span>Back to NotesPack</span>
+            </a>
 
-        <div class="policy-card">
-            <h1>Privacy <span>Policy</span></h1>
+            <nav class="doc-switcher" aria-label="Legal documents">
+                <a href="./" aria-current="page">Privacy Policy</a>
+                <a href="../terms-of-service/">Terms of Service</a>
+            </nav>
 
-            <div class="meta-info">
-                <strong>Application:</strong> NotesPack: Notes &amp; Multitool (<code>com.healme.notespack</code>)<br>
-                <strong>Data Controller:</strong> ProjectsHealme, East Java, Indonesia<br>
-                <strong>Contact Email:</strong> <a href="mailto:projectshealme@gmail.com">projectshealme@gmail.com</a><br>
-                <strong>Effective Date:</strong> October 20, 2026<br>
-                <strong>Last Updated:</strong> November 12, 2026
+            <button type="button" class="header-copy-btn" onclick="copyContactEmail(this)">
+                <span data-copy-label>Copy Email</span>
+            </button>
+        </div>
+    </header>
+
+    <div class="container legal-shell">
+        <!-- Sticky Table of Contents -->
+        <aside class="toc-sidebar" aria-label="Table of contents">
+            <div class="toc-card">
+                <p class="toc-title">On This Page</p>
+                <ol class="toc-list">
+                    <li><a href="#sec-1" class="active"><span class="toc-num">01</span><span>Data Controller</span></a></li>
+                    <li><a href="#sec-2"><span class="toc-num">02</span><span>Information Collected</span></a></li>
+                    <li><a href="#sec-3"><span class="toc-num">03</span><span>Network &amp; Services</span></a></li>
+                    <li><a href="#sec-4"><span class="toc-num">04</span><span>Legal Basis</span></a></li>
+                    <li><a href="#sec-5"><span class="toc-num">05</span><span>Data Transfers</span></a></li>
+                    <li><a href="#sec-6"><span class="toc-num">06</span><span>Retention &amp; Deletion</span></a></li>
+                    <li><a href="#sec-7"><span class="toc-num">07</span><span>Backup Files (.notespack)</span></a></li>
+                    <li><a href="#sec-8"><span class="toc-num">08</span><span>Statutory Rights</span></a></li>
+                    <li><a href="#sec-9"><span class="toc-num">09</span><span>CalOPPA &amp; No Sale</span></a></li>
+                    <li><a href="#sec-10"><span class="toc-num">10</span><span>Children&apos;s Privacy</span></a></li>
+                    <li><a href="#sec-11"><span class="toc-num">11</span><span>Policy Updates</span></a></li>
+                </ol>
             </div>
 
-            <p>
-                Welcome to <span class="highlight">NotesPack</span> ("we", "our", or "us"). We respect your privacy and are committed to protecting your personal data. This Privacy Policy details what information NotesPack collects, how that data is processed and secured, the legal grounds for processing, your statutory rights under applicable privacy legislation, and how you may contact us or delete your account.
-            </p>
+            <div class="toc-support">
+                <strong>Privacy &amp; Deletion Inquiries</strong>
+                Contact Data Controller (ProjectsHealme):
+                <div style="margin-top:6px;">
+                    <a href="mailto:projectshealme@gmail.com">projectshealme@gmail.com</a>
+                </div>
+            </div>
+        </aside>
 
-            <h2>1. Data Controller Information</h2>
-            <p>
-                The data controller responsible for the personal data processed in connection with NotesPack is:
-            </p>
-            <ul>
-                <li><span class="highlight">Controller Name:</span> ProjectsHealme</li>
-                <li><span class="highlight">Mailing Address:</span> East Java, Indonesia</li>
-                <li><span class="highlight">Inquiry & DPO Contact:</span> <a href="mailto:projectshealme@gmail.com">projectshealme@gmail.com</a></li>
-            </ul>
+        <!-- Legal Document -->
+        <main id="legal-main" tabindex="-1">
+            <article class="legal-doc">
+                <span class="doc-eyebrow">Legal Compliance · Google Play &amp; GDPR / UU PDP</span>
+                <h1>Privacy <span>Policy</span></h1>
 
-            <h2>2. Information We Collect</h2>
+                <div class="meta-grid">
+                    <div class="meta-item">
+                        <span class="meta-label">Application</span>
+                        <span class="meta-value">NotesPack: Notes &amp; Multitool (<code>com.healme.notespack</code>)</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Data Controller</span>
+                        <span class="meta-value">ProjectsHealme, East Java, Indonesia</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Contact Email</span>
+                        <span class="meta-value"><a href="mailto:projectshealme@gmail.com">projectshealme@gmail.com</a></span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Effective · Last Updated</span>
+                        <span class="meta-value">October 20, 2026 · <strong>November 12, 2026</strong></span>
+                    </div>
+                </div>
 
-            <h3>A. Account, Authentication &amp; Entitlement Data</h3>
-            <p>
-                Google Sign-In is required to initialize the application. When you sign in using <span class="highlight">Google Sign-In</span> (powered by Firebase Authentication and Android Credential Manager), we receive and store:
-            </p>
-            <ul>
-                <li>Your full name (as provided by your Google profile)</li>
-                <li>Your email address</li>
-                <li>Your profile picture URL</li>
-                <li>A unique Firebase User Identifier (UID)</li>
-                <li><span class="highlight">Session &amp; Pro Entitlement Identifiers:</span> To enforce one active signed-in session per account and sync NotesPack Pro / introductory offer status across reinstalls, NotesPack generates a random app-scoped UUID (<code>installation_id</code>) stored locally and transmits a one-way SHA-256 hash alongside entitlement metadata flags (Pro status, VIP voucher flag, expiry timestamp, and welcome-offer usage state) within your Firebase Authentication profile metadata.</li>
-                <li><span class="highlight">Google Play Billing Identifiers:</span> When you purchase an optional <span class="highlight">NotesPack Pro</span> subscription through Google Play Billing, we receive purchase tokens, subscription entitlement state, and send one-way obfuscated identifiers (<code>obfuscatedAccountId</code> and <code>obfuscatedProfileId</code> derived from hashed account/installation IDs) to Google Play for billing attribution and fraud prevention. We never receive or store your credit card or banking details.</li>
-            </ul>
-            <p>
-                This authentication and entitlement information is used strictly to verify your session identity, enforce single-device session limits, and manage NotesPack Pro access. All note content, drawings, receipts, voice transcripts, and user entries remain stored locally on your device.
-            </p>
+                <p class="doc-intro">
+                    Welcome to <span class="highlight">NotesPack</span> ("we", "our", or "us"). We respect your privacy and are committed to protecting your personal data. This Privacy Policy details what information NotesPack collects, how that data is processed and secured, the legal grounds for processing, your statutory rights under applicable privacy legislation, and how you may contact us or delete your account.
+                </p>
 
-            <h3>B. User Notes & Financial Content (Stored Locally)</h3>
-            <p>
-                Any notes, checklists, voice dictation transcripts, travel itineraries, recipes, link collections, spending entries, split bills, canvas drawings, item/due-date reminders, and subscription schedules you create within NotesPack are stored <span class="highlight">locally on your device</span> in an on-device SQLite database (Room).
-            </p>
-            <p>
-                Locally captured or attached media—including paper receipt scans (<code>receipts/</code>), freehand/vector sketches and image annotations (<code>drawings/</code>, <code>drawing_images/</code>), and recipe dish photos (<code>dish_photos/</code>)—remain strictly on your device in local app storage. They are never uploaded to our servers or sold to third parties. When you initiate a backup export, selected local data and media are packaged directly into a <code>.notespack</code> archive on your device (with optional password encryption).
-            </p>
-            <p>
-                NotesPack features a secure <span class="highlight">Vault</span>. Notes stored inside the Vault, as well as sensitive due-date verification PINs, are encrypted at the field level on-device using hardware-backed <span class="highlight">AES-256-GCM encryption</span> via the Android KeyStore. We do not have access to your private encryption keys or unencrypted vault content.
-            </p>
+                <section id="sec-1" class="doc-section">
+                    <h2><span class="sec-badge">01</span> Data Controller Information</h2>
+                    <p>
+                        The data controller responsible for the personal data processed in connection with NotesPack is:
+                    </p>
+                    <ul>
+                        <li><span class="highlight">Controller Name:</span> ProjectsHealme</li>
+                        <li><span class="highlight">Mailing Address:</span> East Java, Indonesia</li>
+                        <li><span class="highlight">Inquiry &amp; DPO Contact:</span> <a href="mailto:projectshealme@gmail.com">projectshealme@gmail.com</a></li>
+                    </ul>
+                </section>
 
-            <h3>C. Device Permissions</h3>
-            <ul>
-                <li><span class="highlight">Camera:</span> Used exclusively when you choose to capture physical receipts for optical character recognition (OCR), capture recipe or dish photos, or scan offline QR codes for due date reminders. Images are processed and stored locally on your device.</li>
-                <li><span class="highlight">Microphone (RECORD_AUDIO):</span> Used only when you actively initiate Voice Dictation in supported note editors to transcribe speech into text. On Android 12+ devices with on-device speech recognition available, audio is processed locally on your device. On older Android versions or devices lacking installed offline speech packs, Android's <code>SpeechRecognizer</code> service may process audio through your device's default system speech provider (such as Google Speech Services) under that provider's terms and privacy policy. NotesPack never transmits or retains audio recordings on our own servers.</li>
-                <li><span class="highlight">Notifications:</span> Used to dispatch timely reminder alerts for item/due-date reminders and recurring subscription renewals scheduled by you. Reminder notifications strictly adhere to system ringer modes, silent and vibrate settings, and alarm audio stream volume controls.</li>
-                <li><span class="highlight">Exact Alarms (SCHEDULE_EXACT_ALARM):</span> Used via Android's AlarmManager to guarantee that due date alerts and subscription billing reminders fire precisely at the user-scheduled minute.</li>
-                <li><span class="highlight">Biometrics:</span> Used to unlock the on-device Vault. Biometric authentication is handled entirely by the Android operating system's BiometricPrompt framework; NotesPack never receives, processes, or stores raw biometric or fingerprint data.</li>
-            </ul>
+                <section id="sec-2" class="doc-section">
+                    <h2><span class="sec-badge">02</span> Information We Collect</h2>
 
-            <h2>3. Network Connections & Third-Party Services</h2>
-            <p>
-                While NotesPack operates primarily on-device, internet access is utilized for specific explicit functionalities:
-            </p>
-            <ul>
-                <li><span class="highlight">Google Sign-In & Firebase Authentication:</span> Communicates with Google identity and Firebase servers to authenticate your Google profile and store session/entitlement state metadata.</li>
-                <li><span class="highlight">Google Play Billing:</span> Handles optional NotesPack Pro subscriptions (<code>notespacksubscription</code>) and introductory offers via Google Play's payment infrastructure in accordance with Google's Privacy Policy.</li>
-                <li><span class="highlight">Link Previews &amp; Remote Thumbnails:</span> When you save a web link in a Link Collection note, NotesPack connects directly via HTTPS to the destination website to retrieve Open Graph preview metadata (title, description, and image URL) and loads remote preview images/favicons (via Coil). Connecting directly to that website reveals your device's IP address and standard HTTP request headers to the third-party host.</li>
-                <li><span class="highlight">System Speech Recognition Fallback:</span> Where hardware or OS version requires Android's standard <code>SpeechRecognizer</code> fallback, voice audio during active dictation may be routed to the system speech recognition provider.</li>
-                <li><span class="highlight">Google Play In-App Review:</span> Utilizes the official Google Play In-App Review API to let users rate the app.</li>
-                <li><span class="highlight">Google Play Services & ML Kit:</span> On-device text recognition, Document Scanning, and Barcode Scanning utilize ML Kit models provided by Google Play services. Google Play services may transmit operational telemetry and diagnostic metrics to Google in accordance with Google's Privacy Policy.</li>
-                <li><span class="highlight">External App Intents:</span> Tapping "Open in Maps" on a travel itinerary or exporting split-bill/itinerary cards hands off user-initiated location queries or share text to external apps chosen by you (such as Google Maps, WhatsApp, or Telegram).</li>
-            </ul>
+                    <h3>A. Account, Authentication &amp; Entitlement Data</h3>
+                    <p>
+                        Google Sign-In is required to initialize the application. When you sign in using <span class="highlight">Google Sign-In</span> (powered by Firebase Authentication and Android Credential Manager), we receive and store:
+                    </p>
+                    <ul>
+                        <li>Your full name (as provided by your Google profile)</li>
+                        <li>Your email address</li>
+                        <li>Your profile picture URL</li>
+                        <li>A unique Firebase User Identifier (UID)</li>
+                        <li><span class="highlight">Session &amp; Pro Entitlement Identifiers:</span> To enforce one active signed-in session per account and sync NotesPack Pro / introductory offer status across reinstalls, NotesPack generates a random app-scoped UUID (<code>installation_id</code>) stored locally and transmits a one-way SHA-256 hash alongside entitlement metadata flags (Pro status, VIP voucher flag, expiry timestamp, and welcome-offer usage state) within your Firebase Authentication profile metadata.</li>
+                        <li><span class="highlight">Google Play Billing Identifiers:</span> When you purchase an optional <span class="highlight">NotesPack Pro</span> subscription through Google Play Billing, we receive purchase tokens, subscription entitlement state, and send one-way obfuscated identifiers (<code>obfuscatedAccountId</code> and <code>obfuscatedProfileId</code> derived from hashed account/installation IDs) to Google Play for billing attribution and fraud prevention. We never receive or store your credit card or banking details.</li>
+                    </ul>
+                    <p>
+                        This authentication and entitlement information is used strictly to verify your session identity, enforce single-device session limits, and manage NotesPack Pro access. All note content, drawings, receipts, voice transcripts, and user entries remain stored locally on your device.
+                    </p>
 
-            <h2>4. Legal Basis for Processing</h2>
-            <p>Under the EU General Data Protection Regulation (GDPR), UK GDPR, and Indonesian Law No. 27 of 2022 on Personal Data Protection (UU PDP), our processing of personal data rests on:</p>
-            <ul>
-                <li><span class="highlight">Performance of a Contract (Art. 6(1)(b) GDPR / UU PDP Art. 20(2)(b)):</span> Processing Google authentication data and Google Play Billing entitlements to maintain your account, deliver Pro features, and operate requested services.</li>
-                <li><span class="highlight">Legitimate Interests (Art. 6(1)(f) GDPR):</span> Enforcing single-device active sessions, preventing welcome-offer/billing abuse, generating user-initiated link previews, and debugging crashes.</li>
-                <li><span class="highlight">Consent (Art. 6(1)(a) GDPR / UU PDP Art. 20(2)(a)):</span> Where requested by your device operating system for optional runtime permissions (Camera, Microphone, Notifications). You may revoke consent at any time via Android System Settings.</li>
-            </ul>
+                    <h3>B. User Notes &amp; Financial Content (Stored Locally)</h3>
+                    <p>
+                        Any notes, checklists, voice dictation transcripts, travel itineraries, recipes, link collections, spending entries, split bills, canvas drawings, item/due-date reminders, and subscription schedules you create within NotesPack are stored <span class="highlight">locally on your device</span> in an on-device SQLite database (Room).
+                    </p>
+                    <p>
+                        Locally captured or attached media—including paper receipt scans (<code>receipts/</code>), freehand/vector sketches and image annotations (<code>drawings/</code>, <code>drawing_images/</code>), and recipe dish photos (<code>dish_photos/</code>)—remain strictly on your device in local app storage. They are never uploaded to our servers or sold to third parties. When you initiate a backup export, selected local data and media are packaged directly into a <code>.notespack</code> archive on your device (with optional password encryption).
+                    </p>
+                    <p>
+                        NotesPack features a secure <span class="highlight">Vault</span>. Notes stored inside the Vault, as well as sensitive due-date verification PINs, are encrypted at the field level on-device using hardware-backed <span class="highlight">AES-256-GCM encryption</span> via the Android KeyStore. We do not have access to your private encryption keys or unencrypted vault content.
+                    </p>
 
-            <h2>5. International Data Transfers</h2>
-            <p>
-                Firebase Authentication and Google Play services are hosted by Google LLC on servers located in the United States and globally. Data transfers are governed by European Commission Standard Contractual Clauses (SCCs) and Google's Data Processing and Security Terms to ensure adequate protection.
-            </p>
+                    <h3>C. Device Permissions</h3>
+                    <ul>
+                        <li><span class="highlight">Camera:</span> Used exclusively when you choose to capture physical receipts for optical character recognition (OCR), capture recipe or dish photos, or scan offline QR codes for due date reminders. Images are processed and stored locally on your device.</li>
+                        <li><span class="highlight">Microphone (RECORD_AUDIO):</span> Used only when you actively initiate Voice Dictation in supported note editors to transcribe speech into text. On Android 12+ devices with on-device speech recognition available, audio is processed locally on your device. On older Android versions or devices lacking installed offline speech packs, Android&apos;s <code>SpeechRecognizer</code> service may process audio through your device&apos;s default system speech provider (such as Google Speech Services) under that provider&apos;s terms and privacy policy. NotesPack never transmits or retains audio recordings on our own servers.</li>
+                        <li><span class="highlight">Notifications:</span> Used to dispatch timely reminder alerts for item/due-date reminders and recurring subscription renewals scheduled by you. Reminder notifications strictly adhere to system ringer modes, silent and vibrate settings, and alarm audio stream volume controls.</li>
+                        <li><span class="highlight">Exact Alarms (SCHEDULE_EXACT_ALARM):</span> Used via Android&apos;s AlarmManager to guarantee that due date alerts and subscription billing reminders fire precisely at the user-scheduled minute.</li>
+                        <li><span class="highlight">Biometrics:</span> Used to unlock the on-device Vault. Biometric authentication is handled entirely by the Android operating system&apos;s BiometricPrompt framework; NotesPack never receives, processes, or stores raw biometric or fingerprint data.</li>
+                    </ul>
+                </section>
 
-            <h2>6. Data Retention & Account Deletion</h2>
-            <p>
-                Authentication credentials and associated profile metadata remain stored with Firebase Authentication for as long as your account remains active. Google Play retains billing records under Google's statutory tax and accounting schedules. Local note databases and media files remain on your device until deleted by you or until the app is uninstalled.
-            </p>
-            <p>You can delete your account at any time through either of the following methods:</p>
-            <ol>
-                <li><span class="highlight">In-App Deletion:</span> Open NotesPack, navigate to <em>Profile &rarr; Settings & Backup &rarr; Danger Zone &rarr; Delete Account</em>. This permanently deletes your Firebase Authentication profile and signs you out. Note: deleting your account does not cancel an active Google Play subscription; cancel separately in Google Play Store Subscriptions.</li>
-                <li><span class="highlight">Email Request:</span> Email <a href="mailto:projectshealme@gmail.com">projectshealme@gmail.com</a> from the email address associated with your NotesPack account requesting account deletion. Requests are processed within thirty (30) days.</li>
-            </ol>
+                <section id="sec-3" class="doc-section">
+                    <h2><span class="sec-badge">03</span> Network Connections &amp; Third-Party Services</h2>
+                    <p>
+                        While NotesPack operates primarily on-device, internet access is utilized for specific explicit functionalities:
+                    </p>
+                    <ul>
+                        <li><span class="highlight">Google Sign-In &amp; Firebase Authentication:</span> Communicates with Google identity and Firebase servers to authenticate your Google profile and store session/entitlement state metadata.</li>
+                        <li><span class="highlight">Google Play Billing:</span> Handles optional NotesPack Pro subscriptions (<code>notespacksubscription</code>) and introductory offers via Google Play&apos;s payment infrastructure in accordance with Google&apos;s Privacy Policy.</li>
+                        <li><span class="highlight">Link Previews &amp; Remote Thumbnails:</span> When you save a web link in a Link Collection note, NotesPack connects directly via HTTPS to the destination website to retrieve Open Graph preview metadata (title, description, and image URL) and loads remote preview images/favicons (via Coil). Connecting directly to that website reveals your device&apos;s IP address and standard HTTP request headers to the third-party host.</li>
+                        <li><span class="highlight">System Speech Recognition Fallback:</span> Where hardware or OS version requires Android&apos;s standard <code>SpeechRecognizer</code> fallback, voice audio during active dictation may be routed to the system speech recognition provider.</li>
+                        <li><span class="highlight">Google Play In-App Review:</span> Utilizes the official Google Play In-App Review API to let users rate the app.</li>
+                        <li><span class="highlight">Google Play Services &amp; ML Kit:</span> On-device text recognition, Document Scanning, and Barcode Scanning utilize ML Kit models provided by Google Play services. Google Play services may transmit operational telemetry and diagnostic metrics to Google in accordance with Google&apos;s Privacy Policy.</li>
+                        <li><span class="highlight">External App Intents:</span> Tapping "Open in Maps" on a travel itinerary or exporting split-bill/itinerary cards hands off user-initiated location queries or share text to external apps chosen by you (such as Google Maps, WhatsApp, or Telegram).</li>
+                    </ul>
+                </section>
 
-            <h2>7. Backup Files (.notespack)</h2>
-            <p>
-                NotesPack allows you to export your data and local media (including receipt scans, drawings, and recipe dish photos) into a portable archive file (<code>.notespack</code>). Exports are written on-device to your <span class="highlight">public <code>Downloads/NotesPack/</code> directory</span>, and archives can be imported back via the Android Storage Access Framework (SAF) file picker. You may optionally protect exported archives with a custom password, which encrypts the archive contents using <span class="highlight">PBKDF2WithHmacSHA256</span> (210,000 iterations) and <span class="highlight">AES-256-GCM</span>. <span class="highlight">If you choose to export without setting a password, the resulting <code>.notespack</code> archive is unencrypted</span> and accessible inside public Downloads storage; managing, backing up, and securing exported files is solely the user's responsibility.
-            </p>
+                <section id="sec-4" class="doc-section">
+                    <h2><span class="sec-badge">04</span> Legal Basis for Processing</h2>
+                    <p>Under the EU General Data Protection Regulation (GDPR), UK GDPR, and Indonesian Law No. 27 of 2022 on Personal Data Protection (UU PDP), our processing of personal data rests on:</p>
+                    <ul>
+                        <li><span class="highlight">Performance of a Contract (Art. 6(1)(b) GDPR / UU PDP Art. 20(2)(b)):</span> Processing Google authentication data and Google Play Billing entitlements to maintain your account, deliver Pro features, and operate requested services.</li>
+                        <li><span class="highlight">Legitimate Interests (Art. 6(1)(f) GDPR):</span> Enforcing single-device active sessions, preventing welcome-offer/billing abuse, generating user-initiated link previews, and debugging crashes.</li>
+                        <li><span class="highlight">Consent (Art. 6(1)(a) GDPR / UU PDP Art. 20(2)(a)):</span> Where requested by your device operating system for optional runtime permissions (Camera, Microphone, Notifications). You may revoke consent at any time via Android System Settings.</li>
+                    </ul>
+                </section>
 
-            <h2>8. Your Statutory Privacy Rights</h2>
-            <p>
-                Depending on your location (including the European Economic Area under GDPR, the United Kingdom under UK GDPR, Indonesia under UU PDP No. 27/2022, California under CalOPPA/CPRA, and Brazil under LGPD), you possess statutory rights regarding your personal data:
-            </p>
-            <ul>
-                <li><span class="highlight">Right to Access:</span> Request confirmation and copies of your personal data.</li>
-                <li><span class="highlight">Right to Rectification:</span> Request correction of inaccurate or incomplete data.</li>
-                <li><span class="highlight">Right to Erasure ("Right to be Forgotten"):</span> Request deletion of your account and personal data.</li>
-                <li><span class="highlight">Right to Data Portability:</span> Obtain and export your notes and account data via our backup utility.</li>
-                <li><span class="highlight">Right to Restrict or Object to Processing:</span> Object to specific data processing activities.</li>
-                <li><span class="highlight">Right to Withdraw Consent:</span> Withdraw permission for notifications, microphone, or camera at any time.</li>
-                <li><span class="highlight">Right to Lodge a Complaint:</span> Lodge a complaint with your local data protection supervisory authority.</li>
-            </ul>
-            <p>To exercise any of these rights, contact us at <a href="mailto:projectshealme@gmail.com">projectshealme@gmail.com</a>.</p>
+                <section id="sec-5" class="doc-section">
+                    <h2><span class="sec-badge">05</span> International Data Transfers</h2>
+                    <p>
+                        Firebase Authentication and Google Play services are hosted by Google LLC on servers located in the United States and globally. Data transfers are governed by European Commission Standard Contractual Clauses (SCCs) and Google&apos;s Data Processing and Security Terms to ensure adequate protection.
+                    </p>
+                </section>
 
-            <h2>9. CalOPPA Do Not Track &amp; No Sale Notice</h2>
-            <p>
-                NotesPack does not sell or share personal information for cross-context behavioral advertising, does not display third-party ads, and does not track users over time across third-party websites; accordingly, it does not alter behavior in response to web browser Do Not Track (DNT) signals.
-            </p>
+                <section id="sec-6" class="doc-section">
+                    <h2><span class="sec-badge">06</span> Data Retention &amp; Account Deletion</h2>
+                    <p>
+                        Authentication credentials and associated profile metadata remain stored with Firebase Authentication for as long as your account remains active. Google Play retains billing records under Google&apos;s statutory tax and accounting schedules. Local note databases and media files remain on your device until deleted by you or until the app is uninstalled.
+                    </p>
+                    <div class="callout-note">
+                        <span class="highlight">Subscription Note:</span> Deleting your NotesPack account removes your Firebase profile immediately, but does <em>not</em> cancel an active Google Play subscription. Cancel separately in Google Play Store Subscriptions.
+                    </div>
+                    <p>You can delete your account at any time through either of the following methods:</p>
+                    <ol>
+                        <li><span class="highlight">In-App Deletion:</span> Open NotesPack, navigate to <em>Profile &rarr; Settings &amp; Backup &rarr; Danger Zone &rarr; Delete Account</em>. This permanently deletes your Firebase Authentication profile and signs you out. Note: deleting your account does not cancel an active Google Play subscription; cancel separately in Google Play Store Subscriptions.</li>
+                        <li><span class="highlight">Email Request:</span> Email <a href="mailto:projectshealme@gmail.com">projectshealme@gmail.com</a> from the email address associated with your NotesPack account requesting account deletion. Requests are processed within thirty (30) days.</li>
+                    </ol>
+                </section>
 
-            <h2>10. Children's Privacy</h2>
-            <p>
-                NotesPack is not directed to children under 13 years of age (or under 16 in the European Economic Area). We do not knowingly collect personal identifiable information from children. If you become aware that a child has provided us with personal information, please contact us immediately so we can promptly delete it.
-            </p>
+                <section id="sec-7" class="doc-section">
+                    <h2><span class="sec-badge">07</span> Backup Files (.notespack)</h2>
+                    <p>
+                        NotesPack allows you to export your data and local media (including receipt scans, drawings, and recipe dish photos) into a portable archive file (<code>.notespack</code>). Exports are written on-device to your <span class="highlight">public <code>Downloads/NotesPack/</code> directory</span>, and archives can be imported back via the Android Storage Access Framework (SAF) file picker. You may optionally protect exported archives with a custom password, which encrypts the archive contents using <span class="highlight">PBKDF2WithHmacSHA256</span> (210,000 iterations) and <span class="highlight">AES-256-GCM</span>. <span class="highlight">If you choose to export without setting a password, the resulting <code>.notespack</code> archive is unencrypted</span> and accessible inside public Downloads storage; managing, backing up, and securing exported files is solely the user&apos;s responsibility.
+                    </p>
+                </section>
 
-            <h2>11. Changes to this Privacy Policy</h2>
-            <p>
-                We may update this Privacy Policy from time to time to reflect changes in our legal obligations or application features. We will notify you of any material changes by updating the "Last Updated" date at the top of this policy and publishing the revised document.
-            </p>
-        </div>
+                <section id="sec-8" class="doc-section">
+                    <h2><span class="sec-badge">08</span> Your Statutory Privacy Rights</h2>
+                    <p>
+                        Depending on your location (including the European Economic Area under GDPR, the United Kingdom under UK GDPR, Indonesia under UU PDP No. 27/2022, California under CalOPPA/CPRA, and Brazil under LGPD), you possess statutory rights regarding your personal data:
+                    </p>
+                    <ul>
+                        <li><span class="highlight">Right to Access:</span> Request confirmation and copies of your personal data.</li>
+                        <li><span class="highlight">Right to Rectification:</span> Request correction of inaccurate or incomplete data.</li>
+                        <li><span class="highlight">Right to Erasure ("Right to be Forgotten"):</span> Request deletion of your account and personal data.</li>
+                        <li><span class="highlight">Right to Data Portability:</span> Obtain and export your notes and account data via our backup utility.</li>
+                        <li><span class="highlight">Right to Restrict or Object to Processing:</span> Object to specific data processing activities.</li>
+                        <li><span class="highlight">Right to Withdraw Consent:</span> Withdraw permission for notifications, microphone, or camera at any time.</li>
+                        <li><span class="highlight">Right to Lodge a Complaint:</span> Lodge a complaint with your local data protection supervisory authority.</li>
+                    </ul>
+                    <p>To exercise any of these rights, contact us at <a href="mailto:projectshealme@gmail.com">projectshealme@gmail.com</a>.</p>
+                </section>
+
+                <section id="sec-9" class="doc-section">
+                    <h2><span class="sec-badge">09</span> CalOPPA Do Not Track &amp; No Sale Notice</h2>
+                    <p>
+                        NotesPack does not sell or share personal information for cross-context behavioral advertising, does not display third-party ads, and does not track users over time across third-party websites; accordingly, it does not alter behavior in response to web browser Do Not Track (DNT) signals.
+                    </p>
+                </section>
+
+                <section id="sec-10" class="doc-section">
+                    <h2><span class="sec-badge">10</span> Children&apos;s Privacy</h2>
+                    <p>
+                        NotesPack is not directed to children under 13 years of age (or under 16 in the European Economic Area). We do not knowingly collect personal identifiable information from children. If you become aware that a child has provided us with personal information, please contact us immediately so we can promptly delete it.
+                    </p>
+                </section>
+
+                <section id="sec-11" class="doc-section">
+                    <h2><span class="sec-badge">11</span> Changes to this Privacy Policy</h2>
+                    <p>
+                        We may update this Privacy Policy from time to time to reflect changes in our legal obligations or application features. We will notify you of any material changes by updating the "Last Updated" date at the top of this policy and publishing the revised document.
+                    </p>
+                </section>
+
+                <div class="doc-footer-bar">
+                    <a href="../" class="footer-link-btn">← Back to NotesPack</a>
+                    <a href="../terms-of-service/" class="footer-link-btn">Read Terms of Service →</a>
+                </div>
+            </article>
+        </main>
     </div>
+
+    <span id="copy-live-status" class="sr-only" aria-live="polite"></span>
+
+    <footer class="site-footer">
+        <p>© 2026 ProjectsHealme · East Java, Indonesia · NotesPack Legal Documentation</p>
+    </footer>
+
+    <script>
+        function copyContactEmail(el) {
+            const email = 'projectshealme@gmail.com';
+            const label = el.querySelector('[data-copy-label]') || el;
+            const live = document.getElementById('copy-live-status');
+            const announce = () => {
+                const prev = label.textContent;
+                label.textContent = 'Copied!';
+                if (live) live.textContent = 'Email projectshealme@gmail.com copied to clipboard.';
+                setTimeout(() => {
+                    label.textContent = prev;
+                    if (live) live.textContent = '';
+                }, 2000);
+            };
+            if (!navigator.clipboard?.writeText) {
+                window.prompt('Copy contact email:', email);
+                return;
+            }
+            navigator.clipboard.writeText(email).then(announce).catch(() => {
+                window.prompt('Copy contact email:', email);
+            });
+        }
+
+        const tocLinks = Array.from(document.querySelectorAll('.toc-list a'));
+        const sections = tocLinks.map((a) => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+        if ('IntersectionObserver' in window && sections.length > 0) {
+            const observer = new IntersectionObserver((entries) => {
+                for (const entry of entries) {
+                    if (entry.isIntersecting) {
+                        const target = `#${entry.target.id}`;
+                        tocLinks.forEach((a) => a.classList.toggle('active', a.getAttribute('href') === target));
+                    }
+                }
+            }, { rootMargin: '-20% 0px -65% 0px' });
+            sections.forEach((s) => observer.observe(s));
+        }
+    </script>
 </body>
 </html>
