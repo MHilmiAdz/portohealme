@@ -2,14 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+}
+
 @layer base {
   html {
     color-scheme: dark;
-    @apply scroll-smooth;
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-text-size-adjust: 100%;
+    overscroll-behavior-y: none;
   }
 
   body {
-    @apply bg-jade-dark text-jade-pale font-sans leading-relaxed selection:bg-jade-primary selection:text-jade-dark;
+    @apply bg-jade-dark text-jade-pale font-sans leading-relaxed antialiased selection:bg-jade-primary selection:text-jade-dark;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -20,7 +29,19 @@
     text-wrap: balance;
   }
 
-  :where(a, button, [role="button"], [tabindex]):focus-visible {
+  button,
+  a,
+  [role="button"] {
+    touch-action: manipulation;
+  }
+
+  button,
+  [role="button"] {
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  :where(a, button, [role="button"], summary, [tabindex]):focus-visible {
     outline: 2px solid #10b981;
     outline-offset: 3px;
   }
@@ -28,29 +49,129 @@
 
 @layer components {
   .section-padding {
-    @apply px-6 py-20;
+    @apply px-5 sm:px-6 py-20 md:py-28;
   }
 
   .container-max {
-    @apply max-w-5xl mx-auto;
+    @apply max-w-6xl mx-auto;
+  }
+
+  .surface-card {
+    background-color: #0d1117;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05), 0 12px 32px -12px rgba(0, 0, 0, 0.65);
   }
 
   .btn-jade {
-    @apply px-6 py-3 bg-jade-primary text-jade-dark rounded-lg font-bold hover:bg-jade-light transition-all duration-300 shadow-lg hover:shadow-jade-primary/20 active:scale-95;
+    @apply inline-flex items-center justify-center gap-2.5 px-6 py-3 min-h-[44px] rounded-xl bg-jade-primary text-jade-dark font-display font-bold text-sm tracking-tight;
+    transition:
+      transform 160ms var(--ease-out),
+      background-color 160ms ease,
+      box-shadow 200ms var(--ease-out);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .btn-jade:hover {
+      background-color: #34d399;
+      box-shadow: 0 10px 28px -8px rgba(16, 185, 129, 0.45);
+    }
+  }
+
+  .btn-jade:active {
+    transform: scale(0.97);
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2.5 px-5 py-3 min-h-[44px] rounded-xl bg-jade-surface text-jade-pale font-display font-semibold text-sm border border-white/10;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    transition:
+      transform 160ms var(--ease-out),
+      background-color 160ms ease,
+      border-color 160ms ease,
+      color 160ms ease;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .btn-ghost:hover {
+      background-color: #18222d;
+      border-color: rgba(16, 185, 129, 0.35);
+      color: #ffffff;
+    }
+  }
+
+  .btn-ghost:active {
+    transform: scale(0.97);
+  }
+  /* Top-layer native <dialog> presentation and discrete transitions */
+  dialog.editorial-dialog {
+    margin: auto;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background-color: #0d1117;
+    color: #f1f5f9;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 32px 80px -16px rgba(0, 0, 0, 0.85);
+    overscroll-behavior: contain;
+    opacity: 0;
+    transform: scale(0.96) translateY(8px);
+    transition:
+      opacity 200ms var(--ease-out),
+      transform 220ms var(--ease-out),
+      display 220ms allow-discrete,
+      overlay 220ms allow-discrete;
+  }
+
+  dialog.editorial-dialog[open] {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+
+  @starting-style {
+    dialog.editorial-dialog[open] {
+      opacity: 0;
+      transform: scale(0.96) translateY(8px);
+    }
+  }
+
+  dialog.editorial-dialog::backdrop {
+    background-color: rgba(7, 9, 13, 0.82);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    overflow: hidden;
+    overscroll-behavior: contain;
+    opacity: 0;
+    transition:
+      opacity 200ms var(--ease-out),
+      display 220ms allow-discrete,
+      overlay 220ms allow-discrete;
+  }
+
+  dialog.editorial-dialog[open]::backdrop {
+    opacity: 1;
+  }
+
+  @starting-style {
+    dialog.editorial-dialog[open]::backdrop {
+      opacity: 0;
+    }
   }
 }
 
-/* Custom scrollbar for better Jade aesthetic */
+/* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-jade-dark;
+  background: #07090d;
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-jade-deep rounded-full border-2 border-jade-dark hover:bg-jade-primary/50 transition-colors;
+  background: #1e293b;
+  border-radius: 9999px;
+  border: 2px solid #07090d;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(16, 185, 129, 0.45);
 }
 
 /* Shimmer animation for skeleton loaders */
@@ -65,12 +186,22 @@
     scroll-behavior: auto;
   }
 
-  .animate-blob,
-  .animate-pulse,
-  .animate-ping {
-    animation: none !important;
+  dialog.editorial-dialog,
+  dialog.editorial-dialog::backdrop {
+    transform: none;
+    transition:
+      opacity 140ms ease,
+      display 140ms allow-discrete,
+      overlay 140ms allow-discrete;
   }
 
+  @starting-style {
+    dialog.editorial-dialog[open] {
+      transform: none;
+    }
+  }
+
+  .animate-pulse,
   .before\:animate-\[shimmer_1\.5s_infinite\]::before {
     animation: none !important;
   }

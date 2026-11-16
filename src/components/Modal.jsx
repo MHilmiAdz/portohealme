@@ -1,120 +1,82 @@
 import { useEffect, useRef } from "react";
-import { createPortal } from "react-dom";
-import { motion, AnimatePresence } from "framer-motion";
-
-const FOCUSABLE_SELECTOR =
-  'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
 
 /**
- * Shared accessible modal behavior:
- * - Marks #root inert while open
- * - Moves focus into the panel on open & traps Tab
- * - Closes on Escape and restores focus to the opener element
- */
-export function useAccessibleOverlay(isOpen, onClose, panelRef) {
-  useEffect(() => {
-    if (!isOpen || !panelRef.current) return;
-
-    const previousFocus = document.activeElement;
-    const rootEl = document.getElementById("root");
-    const prevInert = rootEl ? rootEl.inert : false;
-
-    if (rootEl && "inert" in rootEl) {
-      rootEl.inert = true;
-    }
-
-    const firstFocusable = panelRef.current.querySelector(FOCUSABLE_SELECTOR);
-    if (firstFocusable instanceof HTMLElement) {
-      firstFocusable.focus();
-    } else {
-      panelRef.current.focus();
-    }
-
-    const handleKeyDown = (e) => {
-      if (e.key === "Escape") {
-        e.preventDefault();
-        onClose();
-        return;
-      }
-      if (e.key !== "Tab" || !panelRef.current) return;
-
-      const focusable = Array.from(panelRef.current.querySelectorAll(FOCUSABLE_SELECTOR));
-      if (focusable.length === 0) return;
-
-      const first = focusable[0];
-      const last = focusable[focusable.length - 1];
-
-      if (e.shiftKey) {
-        if (document.activeElement === first || document.activeElement === panelRef.current) {
-          e.preventDefault();
-          last.focus();
-        }
-      } else if (document.activeElement === last) {
-        e.preventDefault();
-        first.focus();
-      }
-    };
-
-    document.addEventListener("keydown", handleKeyDown);
-    return () => {
-      document.removeEventListener("keydown", handleKeyDown);
-      if (rootEl && "inert" in rootEl) {
-        rootEl.inert = prevInert;
-      }
-      if (previousFocus instanceof HTMLElement) {
-        previousFocus.focus();
-      }
-    };
-  }, [isOpen, onClose, panelRef]);
-}
-
-/**
- * Portal-rendered accessible modal dialog with Framer Motion transitions.
+ * Native <dialog> modal rendered via showModal() on the browser top layer.
+ * Browser manages inert outside content, Esc/back-gesture dismissal, and focus return.
+ * Includes bounding-rect pointerdown/pointerup fallback when `closedby` is unsupported.
  */
 export function Modal({
   isOpen,
   onClose,
   labelledBy,
-  panelClassName = "max-w-md",
+  panelClassName = "max-w-md rounded-2xl p-6 md:p-8",
   children,
 }) {
-  const panelRef = useRef(null);
-  useAccessibleOverlay(isOpen, onClose, panelRef);
+  const dialogRef = useRef(null);
 
-  if (typeof document === "undefined") return null;
+  useEffect(() => {
+    const dialog = dialogRef.current;
+    if (!dialog) return;
 
-  return createPortal(
-    <AnimatePresence>
-      {isOpen && (
-        <div
-          className="fixed inset-0 z-[110] flex items-center justify-center p-4"
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby={labelledBy}
-        >
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="absolute inset-0 bg-jade-dark/95 backdrop-blur-md"
-            onClick={onClose}
-            aria-hidden="true"
-          />
+    if (isOpen) {
+      if (!dialog.open) {
+        dialog.showModal();
+      }
+    } else if (dialog.open) {
+      dialog.close();
+    }
+  }, [isOpen]);
 
-          <motion.div
-            ref={panelRef}
-            tabIndex={-1}
-            initial={{ scale: 0.95, opacity: 0, y: 16 }}
-            animate={{ scale: 1, opacity: 1, y: 0 }}
-            exit={{ scale: 0.95, opacity: 0, y: 16 }}
-            transition={{ type: "spring", damping: 25, stiffness: 300 }}
-            className={`relative w-full shadow-2xl border border-jade-primary/20 overscroll-contain focus:outline-none ${panelClassName}`}
-          >
-            {children}
-          </motion.div>
-        </div>
-      )}
-    </AnimatePresence>,
-    document.body
+  useEffect(() => {
+    const dialog = dialogRef.current;
+    if (!dialog) return;
+
+    const handleClose = () => {
+      dialog.returnValue = "";
+      onClose();
+    };
+
+    dialog.addEventListener("close", handleClose);
+
+    // Progressive enhancement fallback for browsers lacking <dialog closedby="any">
+    let removeBackdropFallback = () => {};
+    if (!("closedBy" in HTMLDialogElement.prototype)) {
+      let pressedOutside = false;
+      const isOutside = (e) => {
+        const r = dialog.getBoundingClientRect();
+        return e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom;
+      };
+      const onPointerDown = (e) => {
+        pressedOutside = isOutside(e);
+      };
+      const onPointerUp = (e) => {
+        if (pressedOutside && isOutside(e) && dialog.open) {
+          dialog.close();
+        }
+        pressedOutside = false;
+      };
+      dialog.addEventListener("pointerdown", onPointerDown);
+      dialog.addEventListener("pointerup", onPointerUp);
+      removeBackdropFallback = () => {
+        dialog.removeEventListener("pointerdown", onPointerDown);
+        dialog.removeEventListener("pointerup", onPointerUp);
+      };
+    }
+
+    return () => {
+      dialog.removeEventListener("close", handleClose);
+      removeBackdropFallback();
+    };
+  }, [onClose]);
+
+  return (
+    <dialog
+      ref={dialogRef}
+      closedby="any"
+      aria-labelledby={labelledBy}
+      className={`editorial-dialog w-[calc(100vw-2rem)] max-h-[90dvh] overflow-y-auto ${panelClassName}`}
+    >
+      {children}
+    </dialog>
   );
 }

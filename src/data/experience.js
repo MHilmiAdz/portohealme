@@ -1,3 +1,8 @@
+import dicodingExpert from "../assets/images/dicoding-android-expert.webp";
+import dicodingIntermediate from "../assets/images/dicoding-android-intermediate.webp";
+import dicodingFundamental from "../assets/images/dicoding-android-fundamental.webp";
+import dicodingBeginner from "../assets/images/dicoding-android-beginner.webp";
+import gradRector from "../assets/images/grad-rector.webp";
 import practicumAssistantfilkom from "../assets/images/practicumassist.webp";
 import bangkitAcademycohort from "../assets/images/bangkitcert.webp";
 import plpsmkn2malang from "../assets/images/plp2smk2malang.webp";
@@ -9,6 +14,52 @@ import kbmptiddmcert from "../assets/images/ddmcert.webp";
 import tahfidzcampwaco from "../assets/images/wacomultmed.webp";
 
 export const experience = [
+    {
+      title: "Android Developer Certification Path",
+      company: "Dicoding Indonesia · Google Developers ATP",
+      period: "2025 - 2026",
+      details: "Completed Dicoding's four-stage Android Developer curriculum (440 study hours across Beginner, Fundamental, Intermediate, and Expert specializations), covering Room DB, WorkManager, Motion Layout, Firebase, TDD, Clean Architecture, Dependency Injection (Dagger & Koin), Coroutine Flow, and Modularization.",
+      image: dicodingExpert,
+      gallery: [
+        {
+          src: dicodingExpert,
+          label: "Expert",
+          alt: "Menjadi Android Developer Expert certificate issued to Hilmi (RVZK0D4NNZD5)",
+          caption: "Menjadi Android Developer Expert · ID RVZK0D4NNZD5 · Jul 2026 (90 hrs)",
+          verifyUrl: "https://dicoding.com/certificates/RVZK0D4NNZD5",
+        },
+        {
+          src: dicodingIntermediate,
+          label: "Intermediate",
+          alt: "Belajar Pengembangan Aplikasi Android Intermediate certificate issued to Hilmi (0LZ0YW1L3X65)",
+          caption: "Belajar Pengembangan Aplikasi Android Intermediate · ID 0LZ0YW1L3X65 · Jul 2026 (150 hrs)",
+          verifyUrl: "https://dicoding.com/certificates/0LZ0YW1L3X65",
+        },
+        {
+          src: dicodingFundamental,
+          label: "Fundamental",
+          alt: "Belajar Fundamental Aplikasi Android certificate issued to Hilmi (4EXG1W5LDPRL)",
+          caption: "Belajar Fundamental Aplikasi Android · ID 4EXG1W5LDPRL · May 2026 (140 hrs)",
+          verifyUrl: "https://dicoding.com/certificates/4EXG1W5LDPRL",
+        },
+        {
+          src: dicodingBeginner,
+          label: "Beginner",
+          alt: "Belajar Membuat Aplikasi Android untuk Pemula certificate issued to Hilmi (EYX4KW565PDL)",
+          caption: "Belajar Membuat Aplikasi Android untuk Pemula · ID EYX4KW565PDL · Jan 2026 (60 hrs)",
+          verifyUrl: "https://dicoding.com/certificates/EYX4KW565PDL",
+        },
+      ],
+      tags: ["Android", "Clean Architecture", "Dagger & Koin", "Coroutine Flow", "TDD"]
+    },
+    {
+      title: "University Graduation",
+      company: "Brawijaya University",
+      period: "2025",
+      details: "Completed undergraduate studies and graduated from Brawijaya University, receiving the graduation folder on stage alongside the Campus President during the 2025 commencement ceremony.",
+      image: gradRector,
+      tags: ["Graduation", "Brawijaya University", "Milestone"]
+    },
     {
       title: "Cloud Computing Cohort",
       company: "Bangkit Academy",

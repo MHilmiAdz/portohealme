@@ -1,147 +1,206 @@
-import { useState, useEffect, useRef, useCallback } from "react";
-import { createPortal } from "react-dom";
-import { motion, AnimatePresence, useScroll, useSpring } from "framer-motion";
-import { useAccessibleOverlay } from "./Modal";
+import { useState, useEffect, useCallback, useId } from "react";
+import { motion } from "framer-motion";
 import { Icon } from "./Icons";
+import { Modal } from "./Modal";
+
+const NAV_LINKS = [
+  { id: "home",          name: "Home",        num: "01", href: "#home"          },
+  { id: "published-app", name: "NotesPack",   num: "02", href: "#published-app" },
+  { id: "projects",      name: "Projects",    num: "03", href: "#projects"      },
+  { id: "certificates",  name: "Credentials", num: "04", href: "#certificates"  },
+  { id: "experience",    name: "Journey",     num: "05", href: "#experience"    },
+  { id: "contact",       name: "Contact",     num: "06", href: "#contact"       },
+];
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [activeId, setActiveId] = useState("home");
+  const [scrollProgress, setScrollProgress] = useState(0);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const drawerRef = useRef(null);
-  const { scrollYProgress } = useScroll();
+  const mobileHeadingId = useId();
 
   const closeMenu = useCallback(() => setIsMenuOpen(false), []);
-  useAccessibleOverlay(isMenuOpen, closeMenu, drawerRef);
 
-  const scaleX = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001,
-  });
-
+  // Track scroll depth, hairline progress, and active section deterministically
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 100);
+    let rafId = 0;
+    const update = () => {
+      rafId = 0;
+      const y = window.scrollY;
+      setIsScrolled(y > 32);
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+      setScrollProgress(maxScroll > 0 ? Math.min(1, Math.max(0, y / maxScroll)) : 0);
+
+      if (y < 40) {
+        setActiveId("home");
+        return;
+      }
+      if (maxScroll > 0 && y >= maxScroll - 24) {
+        setActiveId(NAV_LINKS[NAV_LINKS.length - 1].id);
+        return;
+      }
+
+      const probeY = window.innerHeight * 0.35;
+      let current = "home";
+      for (const link of NAV_LINKS) {
+        const el = document.getElementById(link.id);
+        if (el && el.getBoundingClientRect().top <= probeY) {
+          current = link.id;
+        }
+      }
+      setActiveId(current);
     };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    const onScroll = () => {
+      if (!rafId) rafId = window.requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (rafId) window.cancelAnimationFrame(rafId);
+    };
   }, []);
-
-  const navLinks = [
-    { name: "Home",         href: "#home"          },
-    { name: "Published",    href: "#published-app" },
-    { name: "Projects",     href: "#projects"      },
-    { name: "Certificates", href: "#certificates"  },
-    { name: "Journey",      href: "#experience"    },
-    { name: "Contact",      href: "#contact"       },
-  ];
 
   return (
     <>
-      <nav
-        aria-label="Primary"
-        className={`fixed top-6 md:top-8 left-1/2 -translate-x-1/2 z-50 transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] ${
+      <header
+        className={`fixed top-0 inset-x-0 z-50 pt-[env(safe-area-inset-top)] transition-[background-color,border-color,backdrop-filter] duration-200 ease-[var(--ease-out)] border-b ${
           isScrolled
-            ? "w-[90%] md:w-auto px-6 md:px-10 py-3 bg-jade-dark/75 backdrop-blur-2xl rounded-[2.5rem] border border-jade-primary/25 shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
-            : "w-full md:w-auto px-8 md:px-12 py-4 md:py-5 bg-transparent border-transparent"
+            ? "bg-[#07090d]/85 backdrop-blur-xl border-white/[0.08]"
+            : "bg-[#07090d]/40 backdrop-blur-md border-transparent"
         }`}
       >
-        {/* Scroll Progress Bar */}
-        <div className="absolute bottom-0 left-0 w-full h-[2px] px-10 overflow-hidden pointer-events-none">
-          <motion.div
-            className="h-full bg-jade-primary/50 rounded-full"
-            style={{ scaleX, originX: 0 }}
+        <div className="container-max px-5 sm:px-6 h-16 md:h-[4.25rem] flex items-center justify-between gap-4">
+          {/* Brand Wordmark */}
+          <a
+            href="#home"
+            className="inline-flex items-center gap-2.5 min-h-[44px] pr-2 rounded-lg text-jade-pale hover:text-white transition-colors duration-150"
+          >
+            <span className="w-2.5 h-2.5 rounded-full bg-jade-primary ring-4 ring-jade-primary/15" aria-hidden="true" />
+            <span className="font-display font-bold tracking-tight text-base">
+              Hilmi
+            </span>
+            <span className="hidden sm:inline font-mono text-xs text-jade-light">
+              / portohealme
+            </span>
+          </a>
+
+          {/* Desktop Navigation Pill */}
+          <nav aria-label="Primary" className="hidden md:flex items-center">
+            <ul className="flex items-center gap-1 p-1 rounded-full bg-jade-deep/90 border border-white/[0.08]">
+              {NAV_LINKS.map((link) => {
+                const isActive = activeId === link.id;
+                return (
+                  <li key={link.id}>
+                    <a
+                      href={link.href}
+                      aria-current={isActive ? "location" : undefined}
+                      className={`relative px-3.5 py-2 min-h-[36px] rounded-full text-xs font-medium inline-flex items-center transition-colors duration-150 ${
+                        isActive ? "text-jade-dark font-semibold" : "text-jade-light hover:text-jade-pale"
+                      }`}
+                    >
+                      {isActive && (
+                        <motion.span
+                          layoutId="navbar-active-pill"
+                          transition={{ type: "spring", stiffness: 420, damping: 34 }}
+                          className="absolute inset-0 rounded-full bg-jade-primary"
+                          aria-hidden="true"
+                        />
+                      )}
+                      <span className="relative z-10">{link.name}</span>
+                    </a>
+                  </li>
+                );
+              })}
+            </ul>
+          </nav>
+
+          {/* Right Action + Mobile Trigger */}
+          <div className="flex items-center gap-2">
+            <a
+              href="#contact"
+              className="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 min-h-[40px] rounded-xl bg-jade-surface border border-white/10 text-xs font-display font-semibold text-jade-pale hover:border-jade-primary/40 hover:text-jade-mint active:scale-[0.97] transition-[transform,border-color,color] duration-150 ease-[var(--ease-out)]"
+            >
+              <span>Let&apos;s Talk</span>
+              <Icon name="arrowUpRight" className="w-3.5 h-3.5 text-jade-primary" strokeWidth={2.2} />
+            </a>
+
+            <button
+              type="button"
+              onClick={() => setIsMenuOpen(true)}
+              aria-label="Open navigation menu"
+              aria-expanded={isMenuOpen}
+              className="md:hidden min-w-[44px] min-h-[44px] inline-flex items-center justify-center rounded-xl bg-jade-surface border border-white/10 text-jade-pale active:scale-[0.97] transition-[transform,border-color] duration-150 ease-[var(--ease-out)] cursor-pointer"
+            >
+              <Icon name="menu" className="w-5 h-5" strokeWidth={2} />
+            </button>
+          </div>
+        </div>
+
+        {/* Hairline Scroll Progress */}
+        <div
+          className="h-[1.5px] w-full bg-transparent overflow-hidden pointer-events-none"
+          aria-hidden="true"
+        >
+          <div
+            className="h-full bg-gradient-to-r from-jade-primary/70 to-jade-mint origin-left"
+            style={{ transform: `scaleX(${scrollProgress})` }}
           />
         </div>
+      </header>
 
-        <div className="flex justify-center items-center gap-12 relative">
-          {/* Desktop Links */}
-          <ul className="hidden md:flex items-center space-x-8">
-            {navLinks.map((link) => (
-              <motion.li
-                key={link.name}
-                whileHover={{ y: -2 }}
-                whileTap={{ y: 0 }}
-              >
-                <a
-                  href={link.href}
-                  className="min-h-[44px] px-2 inline-flex flex-col items-center justify-center text-[11px] font-extrabold uppercase tracking-[0.22em] text-jade-light hover:text-jade-primary transition-colors duration-300 relative group rounded-lg"
-                >
-                  <span className="mb-1">{link.name}</span>
-                  <span className="w-1 h-1 rounded-full bg-jade-primary opacity-0 group-hover:opacity-100 transition-all duration-300 scale-0 group-hover:scale-100" />
-                </a>
-              </motion.li>
-            ))}
-          </ul>
-
-          {/* Mobile Menu Toggle */}
+      {/* Native <dialog> Mobile Sheet via shared Modal */}
+      <Modal
+        isOpen={isMenuOpen}
+        onClose={closeMenu}
+        labelledBy={mobileHeadingId}
+        panelClassName="max-w-sm rounded-2xl p-6"
+      >
+        <div className="flex items-center justify-between pb-4 mb-4 border-b border-white/[0.08]">
+          <div>
+            <p className="font-mono text-[11px] uppercase tracking-widest text-jade-primary">Navigation</p>
+            <h2 id={mobileHeadingId} className="text-lg font-display font-bold text-jade-pale">
+              Explore Portfolio
+            </h2>
+          </div>
           <button
             type="button"
-            className="md:hidden text-jade-pale min-w-[44px] min-h-[44px] p-3 rounded-2xl bg-jade-deep/60 border border-jade-primary/20 relative overflow-hidden group cursor-pointer"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
-            aria-expanded={isMenuOpen}
-            aria-controls="mobile-nav"
+            onClick={closeMenu}
+            aria-label="Close navigation menu"
+            className="min-w-[44px] min-h-[44px] inline-flex items-center justify-center rounded-xl bg-jade-surface border border-white/10 text-jade-light hover:text-jade-pale active:scale-[0.96] transition-[transform,color] duration-150 ease-[var(--ease-out)] cursor-pointer"
           >
-            <div className="absolute inset-0 bg-jade-primary/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
-            <svg className="w-5 h-5 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d={isMenuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16m-7 6h7"} />
-            </svg>
+            <Icon name="close" className="w-5 h-5" />
           </button>
         </div>
-      </nav>
 
-      {/* Mobile Menu Overlay — Portal keeps #root cleanly inert while open */}
-      {typeof document !== "undefined" &&
-        createPortal(
-          <AnimatePresence>
-            {isMenuOpen && (
-              <motion.div
-                ref={drawerRef}
-                id="mobile-nav"
-                role="dialog"
-                aria-label="Navigation menu"
-                aria-modal="true"
-                tabIndex={-1}
-                initial={{ opacity: 0, scale: 1.05 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 1.05 }}
-                transition={{ type: "spring", damping: 30, stiffness: 240 }}
-                className="fixed inset-0 bg-jade-dark/95 backdrop-blur-3xl z-[110] flex flex-col items-center justify-center p-12 md:hidden focus:outline-none"
-              >
-                <button
-                  type="button"
-                  className="absolute top-8 right-8 text-jade-pale min-w-[44px] min-h-[44px] p-3 rounded-full bg-jade-deep/60 border border-jade-primary/20 hover:text-jade-primary transition-colors cursor-pointer"
-                  onClick={closeMenu}
-                  aria-label="Close navigation menu"
-                >
-                  <Icon name="close" className="w-7 h-7" strokeWidth={2.5} />
-                </button>
-
-                <div className="flex flex-col items-center space-y-6">
-                  <p className="text-xs font-extrabold text-jade-primary uppercase tracking-[0.4em] mb-2">
-                    Navigation
-                  </p>
-                  {navLinks.map((link, i) => (
-                    <motion.a
-                      key={link.name}
-                      initial={{ opacity: 0, y: 16 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: i * 0.06 }}
-                      href={link.href}
-                      className="text-4xl font-black text-jade-pale hover:text-jade-primary transition-colors active:scale-95 tracking-tighter py-1"
-                      onClick={closeMenu}
-                    >
-                      {link.name}
-                    </motion.a>
-                  ))}
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>,
-          document.body
-        )}
+        <nav aria-label="Mobile sections">
+          <ul className="space-y-1">
+            {NAV_LINKS.map((link) => {
+              const isActive = activeId === link.id;
+              return (
+                <li key={link.id}>
+                  <a
+                    href={link.href}
+                    onClick={closeMenu}
+                    aria-current={isActive ? "location" : undefined}
+                    className={`flex items-center justify-between px-4 min-h-[48px] rounded-xl font-display font-semibold text-base active:scale-[0.98] transition-[transform,background-color,color] duration-150 ease-[var(--ease-out)] ${
+                      isActive
+                        ? "bg-jade-primary/15 text-jade-mint border border-jade-primary/30"
+                        : "text-jade-pale hover:bg-jade-surface"
+                    }`}
+                  >
+                    <span className="flex items-center gap-3">
+                      <span className="font-mono text-xs text-jade-light">{link.num}</span>
+                      <span>{link.name}</span>
+                    </span>
+                    <Icon name="arrowRight" className="w-4 h-4 text-jade-primary" />
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
+      </Modal>
     </>
   );
 }

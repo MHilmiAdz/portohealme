@@ -12,7 +12,7 @@ export const projects = [
     details: "LeafCheck is an AI-based app that allows you to scan leaves using a camera or upload images to get an instant health analysis. Developed during Bangkit Academy 2024.",
     image: leafcheckimg,
     author: "Team: Hilmi, Dhivara, Ninda, Adesta",
-    tags: ["Android", "Kotlin", "Machine Learning", "Retofit"],
+    tags: ["Android", "Kotlin", "Machine Learning", "Retrofit"],
     downloadLink: "#",
     // TODO: Replace with your real project/GitHub link
     projectLink: "",

@@ -1,198 +1,320 @@
-import { useState, useRef, useId, useCallback } from "react";
-import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
+import { useState, useId, useCallback } from "react";
+import { motion, useMotionValue, useSpring, useTransform, useReducedMotion } from "framer-motion";
 import heroimg from "../assets/images/pphero.webp";
+import skill1 from "../assets/images/androidskill.png";
+import skill5 from "../assets/images/teachingskill.png";
 import { Modal } from "./Modal";
 import { Icon } from "./Icons";
 
-// Skill images
-import skill1 from "../assets/images/androidskill.png";
-import skill5 from "../assets/images/teachingskill.png";
+const EASE_OUT = [0.23, 1, 0.32, 1];
+
+const DISCIPLINES = [
+  {
+    index: "01",
+    title: "Android Engineering",
+    summary: "Local-first utility apps shipped cleanly with Kotlin, Jetpack Compose, Room DB, OCR Camera, and Material 3.",
+    stack: ["Kotlin", "Compose", "Room", "Play Billing"],
+    image: skill1,
+  },
+  {
+    index: "02",
+    title: "Technical Education",
+    summary: "University practicum mentoring and vocational IT teaching bridging fundamentals with real software.",
+    stack: ["Algorithms", "Android Lab", "VR Research"],
+    image: skill5,
+  },
+  {
+    index: "03",
+    title: "Games & Cloud Backends",
+    summary: "Interactive 2D educational games alongside Python Flask inference APIs deployed on Google Cloud.",
+    stack: ["Unity C#", "Construct 3", "GCP", "Flask"],
+    iconName: "cloud",
+  },
+];
 
 export function Introduction() {
   const [isSupportModalOpen, setIsSupportModalOpen] = useState(false);
   const supportTitleId = useId();
-  const containerRef = useRef(null);
   const shouldReduceMotion = useReducedMotion();
 
   const closeSupportModal = useCallback(() => setIsSupportModalOpen(false), []);
 
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end start"],
-  });
+  // Subtle decorative pointer tilt for portrait card on desktop fine pointers
+  const pointerX = useMotionValue(0);
+  const pointerY = useMotionValue(0);
+  const rotateY = useSpring(useTransform(pointerX, [-0.5, 0.5], [-4, 4]), { stiffness: 180, damping: 22 });
+  const rotateX = useSpring(useTransform(pointerY, [-0.5, 0.5], [4, -4]), { stiffness: 180, damping: 22 });
 
-  // Kinetic Typography Effects (disabled under prefers-reduced-motion)
-  const yTextTransform = useTransform(scrollYProgress, [0, 1], [0, 150]);
-  const opacityTextTransform = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-  const yText = shouldReduceMotion ? 0 : yTextTransform;
-  const opacityText = shouldReduceMotion ? 1 : opacityTextTransform;
+  const handleStageMove = (e) => {
+    if (shouldReduceMotion || e.pointerType !== "mouse") return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    pointerX.set((e.clientX - rect.left) / rect.width - 0.5);
+    pointerY.set((e.clientY - rect.top) / rect.height - 0.5);
+  };
 
-  const skills = [
-    { image: skill1, name: "Android Developer", detail: "Kotlin, Java, View Binding, Retrofit, Jetpack" },
-    { image: skill5, name: "Educator",          detail: "Information Technology Teacher & Tutor" },
-  ];
+  const handleStageLeave = () => {
+    pointerX.set(0);
+    pointerY.set(0);
+  };
 
   return (
     <section
       id="home"
-      ref={containerRef}
-      className="relative min-h-screen flex flex-col items-center justify-center pt-24 md:pt-32 pb-20 overflow-hidden"
+      className="relative min-h-[100svh] flex flex-col justify-center pt-28 pb-16 md:pt-36 md:pb-24 overflow-x-clip border-b border-white/[0.06]"
     >
-      {/* Organic Floating Shapes */}
-      <div className="absolute top-1/4 left-1/4 w-48 h-48 md:w-72 md:h-72 bg-jade-primary/10 rounded-full mix-blend-screen filter blur-3xl animate-blob" aria-hidden="true" />
-      <div className="absolute top-1/3 right-1/4 w-48 h-48 md:w-72 md:h-72 bg-jade-secondary/10 rounded-full mix-blend-screen filter blur-3xl animate-blob animation-delay-2000" aria-hidden="true" />
+      {/* Static masked architectural grid — zero runtime paint overhead */}
+      <div
+        className="absolute inset-0 pointer-events-none opacity-45"
+        aria-hidden="true"
+        style={{
+          backgroundImage:
+            "linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px)",
+          backgroundSize: "56px 56px",
+          maskImage: "radial-gradient(ellipse 75% 65% at 50% 35%, #000 30%, transparent 100%)",
+          WebkitMaskImage: "radial-gradient(ellipse 75% 65% at 50% 35%, #000 30%, transparent 100%)",
+        }}
+      />
 
-      <div className="container-max px-6 relative z-10">
-        <div className="flex flex-col md:flex-row items-center gap-10 md:gap-20 mb-20 md:mb-32">
-          {/* Hero LCP Image */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.7, type: "spring" }}
-            className="flex-shrink-0 relative group"
-          >
-            <div className="absolute inset-0 bg-jade-primary/10 rounded-full blur-2xl group-hover:bg-jade-primary/20 transition-all duration-500" aria-hidden="true" />
-            <motion.img
-              src={heroimg}
-              alt="Hilmi's profile illustration"
-              width={320}
-              height={344}
-              fetchPriority="high"
-              className="w-48 h-auto md:w-80 relative z-10 drop-shadow-2xl"
-              whileHover={shouldReduceMotion ? undefined : { rotate: 5, scale: 1.05 }}
-            />
-          </motion.div>
+      {/* Focused radial emerald illumination behind stage */}
+      <div
+        className="absolute top-20 right-[8%] w-[36rem] h-[36rem] rounded-full pointer-events-none"
+        aria-hidden="true"
+        style={{
+          background: "radial-gradient(circle, rgba(16,185,129,0.09) 0%, rgba(16,185,129,0) 68%)",
+        }}
+      />
 
-          {/* Text Section with Kinetic Motion */}
-          <motion.div
-            style={{ y: yText, opacity: opacityText }}
-            className="text-center md:text-left flex-1"
-          >
-            <motion.p
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.08 }}
-              className="text-xl md:text-3xl font-medium text-jade-light mb-2"
+      <div className="container-max px-5 sm:px-6 relative z-10 w-full">
+        {/* Hero Grid: Lead Narrative + Crafted Visual Stage */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center mb-16 md:mb-20">
+          {/* Left Narrative Column */}
+          <div className="lg:col-span-7 text-center lg:text-left">
+            {/* Decoration: fade only */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.35, ease: EASE_OUT }}
+              className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-jade-deep border border-white/10 mb-6"
             >
-              Hi, I'm <span className="text-jade-primary font-bold">Hilmi</span>
-            </motion.p>
+              <span className="w-2 h-2 rounded-full bg-jade-primary" aria-hidden="true" />
+              <span className="font-mono text-xs text-jade-light tracking-tight">
+                East Java, Indonesia <span className="text-white/25 mx-1">/</span> Open for Projects
+              </span>
+            </motion.div>
+
+            {/* Lead Element */}
             <motion.h1
-              initial={{ opacity: 0, y: 16 }}
+              initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.15 }}
-              className="text-4xl md:text-7xl lg:text-8xl font-black mb-6 md:mb-8 leading-[1.1] md:leading-[0.9] tracking-tighter text-jade-pale"
+              transition={{ duration: 0.48, ease: EASE_OUT }}
+              className="text-4xl sm:text-5xl lg:text-[4rem] font-display font-bold tracking-[-0.03em] leading-[1.06] text-jade-pale mb-6"
             >
-              Architecting <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-jade-primary to-jade-light">Digital</span> <br />
+              Architecting{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-jade-primary via-jade-mint to-jade-pale">
+                Digital
+              </span>{" "}
               Experiences.
             </motion.h1>
+
+            {/* Support Copy */}
             <motion.p
-              initial={{ opacity: 0, y: 16 }}
+              initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.22 }}
-              className="text-base md:text-xl text-jade-light mb-8 md:mb-10 max-w-xl leading-relaxed"
+              transition={{ duration: 0.42, delay: 0.06, ease: EASE_OUT }}
+              className="text-base sm:text-lg text-jade-light max-w-xl mx-auto lg:mx-0 leading-relaxed mb-8"
             >
-              Specializing in{" "}
-              <span className="text-jade-pale font-semibold">Android Development</span>,{" "}
-              <span className="text-jade-pale font-semibold"> Multimedia</span>, and{" "}
-              <span className="text-jade-pale font-semibold"> Technical Education</span>.
+              Hi, I&apos;m <strong className="text-jade-pale font-semibold">Hilmi</strong> — an Android developer, game builder, and IT educator focused on crisp mobile tools, practical cloud backends, and clear interactive craft.
             </motion.p>
 
-            <div className="flex flex-wrap items-center justify-center md:justify-start gap-4">
-              <motion.a
-                whileHover={shouldReduceMotion ? undefined : { scale: 1.04 }}
-                whileTap={shouldReduceMotion ? undefined : { scale: 0.96 }}
-                href="mailto:m.hilmi.adz@gmail.com"
-                className="btn-jade text-xs md:text-sm px-6 md:px-8 py-3.5 min-h-[44px] inline-flex items-center gap-2.5 shadow-lg shadow-jade-primary/20 font-black uppercase tracking-wider"
-                aria-label="Contact Hilmi via email (m.hilmi.adz@gmail.com)"
-              >
-                <Icon name="mail" className="w-4 h-4" />
-                <span>Contact Person</span>
-              </motion.a>
+            {/* Support CTAs */}
+            <motion.div
+              initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 6 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.11, ease: EASE_OUT }}
+              className="flex flex-wrap items-center justify-center lg:justify-start gap-3"
+            >
+              <a href="#published-app" className="btn-jade">
+                <span>Explore NotesPack</span>
+                <Icon name="arrowRight" className="w-4 h-4" strokeWidth={2.2} />
+              </a>
 
-              <motion.button
+              <button
                 type="button"
-                whileHover={shouldReduceMotion ? undefined : { scale: 1.04 }}
-                whileTap={shouldReduceMotion ? undefined : { scale: 0.96 }}
                 onClick={() => setIsSupportModalOpen(true)}
                 aria-haspopup="dialog"
                 aria-expanded={isSupportModalOpen}
-                className="px-6 md:px-8 py-3.5 min-h-[44px] bg-jade-deep/40 border border-jade-primary/25 text-jade-pale hover:text-white rounded-xl font-black text-xs uppercase tracking-widest hover:bg-jade-primary/10 hover:border-jade-primary/45 transition-all shadow-lg inline-flex items-center gap-2.5 cursor-pointer"
+                className="btn-ghost cursor-pointer"
               >
                 <Icon name="coffee" className="w-4 h-4 text-jade-primary" />
-                <span>Support Me</span>
-              </motion.button>
-            </div>
-          </motion.div>
+                <span>Support Work</span>
+              </button>
+
+              <a
+                href="mailto:projectshealme@gmail.com"
+                className="btn-ghost"
+                aria-label="Email Hilmi directly (projectshealme@gmail.com)"
+              >
+                <Icon name="mail" className="w-4 h-4 text-jade-light" />
+                <span>Email</span>
+              </a>
+            </motion.div>
+          </div>
+
+          {/* Right Portrait Stage Column */}
+          <div className="lg:col-span-5 flex justify-center lg:justify-end">
+            <motion.div
+              initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.96 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.04, ease: EASE_OUT }}
+              onPointerMove={handleStageMove}
+              onPointerLeave={handleStageLeave}
+              style={shouldReduceMotion ? undefined : { rotateX, rotateY, transformPerspective: 900 }}
+              className="surface-card relative w-full max-w-[360px] rounded-2xl p-6 sm:p-7 overflow-hidden"
+            >
+              {/* Top Coordinate Header */}
+              <div className="flex items-center justify-between pb-4 mb-4 border-b border-white/[0.06]">
+                <span className="font-mono text-[11px] text-jade-light uppercase tracking-wider">
+                  Profile.Studio
+                </span>
+                <span className="inline-flex items-center gap-1.5 font-mono text-[11px] text-jade-mint bg-jade-primary/10 border border-jade-primary/25 px-2.5 py-0.5 rounded-full">
+                  v2026
+                </span>
+              </div>
+
+              {/* Portrait Canvas */}
+              <div className="relative flex items-center justify-center rounded-xl bg-jade-dark/70 border border-white/[0.05] py-5 px-4 mb-5 overflow-hidden">
+                <div
+                  className="absolute inset-0 pointer-events-none"
+                  aria-hidden="true"
+                  style={{
+                    background: "radial-gradient(circle at 50% 45%, rgba(16,185,129,0.16), transparent 68%)",
+                  }}
+                />
+                <img
+                  src={heroimg}
+                  alt="Hilmi's illustrated developer portrait"
+                  width={320}
+                  height={344}
+                  fetchPriority="high"
+                  loading="eager"
+                  className="w-44 sm:w-52 h-auto relative z-10 drop-shadow-[0_20px_30px_rgba(0,0,0,0.65)]"
+                />
+              </div>
+
+              {/* Compact Role Signature Strip */}
+              <div className="flex items-center justify-between gap-2 text-xs">
+                <div>
+                  <p className="font-display font-bold text-jade-pale">Hilmi</p>
+                  <p className="text-jade-light text-xs">Android &amp; Cloud Engineer</p>
+                </div>
+                <span className="font-mono text-[11px] text-jade-light px-2.5 py-1 rounded-lg bg-jade-surface border border-white/[0.07]">
+                  Kotlin · C# · GCP
+                </span>
+              </div>
+            </motion.div>
+          </div>
         </div>
 
-        {/* Bento Grid for Skills */}
-        <motion.div
-          initial={{ opacity: 0, y: 36 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mt-10 md:mt-20"
-        >
-          <div className="flex flex-col md:flex-row items-center md:items-end justify-between mb-10 md:mb-12 gap-4 text-center md:text-left">
-            <div>
-              <p className="text-xs md:text-sm font-black text-jade-primary uppercase tracking-[0.35em] mb-2 md:mb-4">Specialization</p>
-              <h2 className="text-3xl md:text-5xl font-black text-jade-pale tracking-tighter">Core <span className="text-jade-primary">Expertise</span></h2>
-            </div>
-            <p className="text-jade-light text-xs md:text-sm max-w-xs md:text-right">
-              Multi-disciplinary approach combining mobile engineering with technical education.
-            </p>
+        {/* Disciplines Strip — Structured 3-column Bento */}
+        <div>
+          <div className="flex items-baseline justify-between mb-5">
+            <h2 className="font-mono text-xs uppercase tracking-[0.2em] text-jade-primary">
+              Core Disciplines
+            </h2>
+            <span className="font-mono text-xs text-jade-light hidden sm:inline">
+              Engineering · Teaching · Media
+            </span>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl">
-            {skills.map((skill, index) => (
-              <motion.div
-                key={index}
-                whileHover={shouldReduceMotion ? undefined : { y: -5, scale: 1.01 }}
-                className="bg-jade-deep/20 border border-jade-primary/15 p-6 md:p-8 rounded-3xl md:rounded-[2.5rem] backdrop-blur-xl relative group overflow-hidden flex flex-col justify-between min-h-[190px] transition-all duration-500"
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {DISCIPLINES.map((item) => (
+              <div
+                key={item.index}
+                className="surface-card rounded-2xl p-5 sm:p-6 flex flex-col justify-between gap-5 transition-colors duration-150 hover:border-jade-primary/30"
               >
-                <div className="absolute top-0 right-0 p-4 md:p-6 opacity-5 group-hover:opacity-20 transition-opacity duration-500 pointer-events-none">
-                  <img src={skill.image} alt="" aria-hidden="true" width={96} height={96} loading="lazy" className="w-20 h-20 md:w-24 md:h-24 object-contain grayscale" />
+                <div>
+                  <div className="flex items-center justify-between gap-3 mb-4">
+                    <div className="w-10 h-10 rounded-xl bg-jade-surface border border-white/[0.08] flex items-center justify-center">
+                      {item.image ? (
+                        <img
+                          src={item.image}
+                          alt=""
+                          aria-hidden="true"
+                          width={22}
+                          height={22}
+                          loading="eager"
+                          className="w-5 h-5 object-contain"
+                        />
+                      ) : (
+                        <Icon name={item.iconName} className="w-5 h-5 text-jade-primary" />
+                      )}
+                    </div>
+                    <span className="font-mono text-xs text-jade-light">{item.index}</span>
+                  </div>
+
+                  <h3 className="text-lg font-display font-bold text-jade-pale mb-1.5">
+                    {item.title}
+                  </h3>
+                  <p className="text-sm text-jade-light leading-relaxed">
+                    {item.summary}
+                  </p>
                 </div>
 
-                <div className="w-11 h-11 md:w-12 md:h-12 bg-jade-dark rounded-xl md:rounded-2xl flex items-center justify-center mb-3 md:mb-4 border border-jade-primary/25 group-hover:bg-jade-primary group-hover:text-jade-dark transition-colors duration-500">
-                  <img src={skill.image} alt="" aria-hidden="true" width={24} height={24} loading="lazy" className="w-5 h-5 md:w-6 md:h-6 object-contain" />
+                <div className="flex flex-wrap gap-1.5 pt-3 border-t border-white/[0.06]">
+                  {item.stack.map((chip) => (
+                    <span
+                      key={chip}
+                      className="font-mono text-[11px] text-jade-light px-2.5 py-1 rounded-md bg-jade-surface border border-white/[0.06]"
+                    >
+                      {chip}
+                    </span>
+                  ))}
                 </div>
-
-                <div className="relative z-10">
-                  <h3 className="text-lg md:text-xl font-black text-jade-pale mb-1">{skill.name}</h3>
-                  <p className="text-jade-light text-xs md:text-sm font-medium leading-relaxed">{skill.detail}</p>
-                </div>
-
-                <div className="absolute inset-0 bg-gradient-to-tr from-jade-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              </motion.div>
+              </div>
             ))}
           </div>
-        </motion.div>
+        </div>
       </div>
 
-      {/* ── Support Me Modal ──────────────────────────────────────────────────── */}
+      {/* Support Modal */}
       <Modal
         isOpen={isSupportModalOpen}
         onClose={closeSupportModal}
         labelledBy={supportTitleId}
-        panelClassName="bg-jade-deep/90 p-8 md:p-10 rounded-[2.5rem] md:rounded-[3rem] max-w-sm text-center backdrop-blur-2xl"
+        panelClassName="max-w-sm rounded-2xl p-6 sm:p-7"
       >
-        <h2
-          id={supportTitleId}
-          className="text-xl md:text-2xl font-black text-jade-pale mb-6 md:mb-8 uppercase tracking-widest"
-        >
-          Support <span className="text-jade-primary">Me</span>
-        </h2>
+        <div className="flex items-start justify-between gap-4 mb-5">
+          <div>
+            <p className="font-mono text-[11px] uppercase tracking-widest text-jade-primary mb-1">
+              Creator Support
+            </p>
+            <h2 id={supportTitleId} className="text-xl font-display font-bold text-jade-pale">
+              Support My Work
+            </h2>
+          </div>
+          <button
+            type="button"
+            onClick={closeSupportModal}
+            aria-label="Close support dialog"
+            className="min-w-[44px] min-h-[44px] -mt-1 -mr-1 inline-flex items-center justify-center rounded-xl bg-jade-surface border border-white/10 text-jade-light hover:text-jade-pale active:scale-[0.96] transition-[transform,color] duration-150 ease-[var(--ease-out)] cursor-pointer"
+          >
+            <Icon name="close" className="w-5 h-5" />
+          </button>
+        </div>
 
-        <div className="space-y-3 md:space-y-4">
+        <p className="text-sm text-jade-light leading-relaxed mb-6">
+          Your support keeps independent tools like NotesPack local-first and completely ad-free.
+        </p>
+
+        <div className="space-y-3">
           <a
             href="https://ko-fi.com/frosthealme"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full py-4 px-6 min-h-[48px] bg-jade-dark/70 hover:bg-[#FF5E5B] text-jade-pale hover:text-[#020617] rounded-2xl font-black text-xs uppercase tracking-widest transition-all duration-300 border border-jade-primary/15 hover:border-[#FF5E5B] shadow-lg flex items-center justify-center gap-3 group"
+            className="w-full min-h-[48px] px-5 rounded-xl bg-[#FF5E5B] text-[#07090d] font-display font-bold text-sm inline-flex items-center justify-center gap-2.5 active:scale-[0.98] transition-[transform,filter] duration-150 ease-[var(--ease-out)] hover:brightness-105"
             aria-label="Support on Ko-fi (opens in new tab)"
           >
-            <Icon name="coffee" className="w-4 h-4 group-hover:scale-110 transition-transform" />
+            <Icon name="coffee" className="w-4 h-4" />
             <span>Support on Ko-fi</span>
           </a>
 
@@ -200,22 +322,13 @@ export function Introduction() {
             href="https://trakteer.id/projectshealme/tip?open=true"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full py-4 px-6 min-h-[48px] bg-jade-dark/70 hover:bg-[#BE1E2D] text-jade-pale hover:text-white rounded-2xl font-black text-xs uppercase tracking-widest transition-all duration-300 border border-jade-primary/15 hover:border-[#BE1E2D] shadow-lg flex items-center justify-center gap-3 group"
+            className="w-full min-h-[48px] px-5 rounded-xl bg-[#BE1E2D] text-white font-display font-bold text-sm inline-flex items-center justify-center gap-2.5 active:scale-[0.98] transition-[transform,filter] duration-150 ease-[var(--ease-out)] hover:brightness-110"
             aria-label="Tip on Trakteer (opens in new tab)"
           >
-            <Icon name="heart" className="w-4 h-4 group-hover:scale-110 transition-transform" />
+            <Icon name="heart" className="w-4 h-4" />
             <span>Tip on Trakteer</span>
           </a>
         </div>
-
-        <button
-          type="button"
-          onClick={closeSupportModal}
-          aria-label="Close support modal"
-          className="mt-8 md:mt-10 min-h-[44px] px-6 text-jade-light hover:text-jade-pale font-black text-xs uppercase tracking-[0.3em] transition-colors cursor-pointer"
-        >
-          [ Back ]
-        </button>
       </Modal>
     </section>
   );
