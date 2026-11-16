@@ -1,3 +1,4 @@
+import notespackShowcase from "../assets/images/notespack-showcase.webp";
 import dicodingExpert from "../assets/images/dicoding-android-expert.webp";
 import dicodingIntermediate from "../assets/images/dicoding-android-intermediate.webp";
 import dicodingFundamental from "../assets/images/dicoding-android-fundamental.webp";
@@ -14,6 +15,24 @@ import kbmptiddmcert from "../assets/images/ddmcert.webp";
 import tahfidzcampwaco from "../assets/images/wacomultmed.webp";
 
 export const experience = [
+    {
+      title: "Creator & Android Developer — NotesPack",
+      company: "ProjectsHealme · Google Play (v3.0.0)",
+      period: "2026",
+      details: "Designed, built, and published NotesPack (com.healme.notespack) on Google Play through v3.0.0. Engineered 9 local-first productivity and personal finance modules in Kotlin and Jetpack Compose—including rich notes, voice dictation, multi-day travel itineraries, scalable recipes, built-in OCR camera for receipts and QR reminders, group split bills, subscription alarms, vector drawing canvas, and a private PIN & fingerprint Vault.",
+      image: notespackShowcase,
+      gallery: [
+        {
+          src: notespackShowcase,
+          label: "NotesPack Logo",
+          alt: "NotesPack Logo",
+          caption: "NotesPack Logo · v3.0.0",
+          verifyUrl: "https://play.google.com/store/apps/details?id=com.healme.notespack&pcampaignid=web_share",
+          linkLabel: "Google Play",
+        },
+      ],
+      tags: ["Kotlin", "Jetpack Compose", "OCR Camera", "Room DB", "Play Billing"]
+    },
     {
       title: "Android Developer Certification Path",
       company: "Dicoding Indonesia · Google Developers ATP",

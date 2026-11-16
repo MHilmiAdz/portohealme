@@ -71,7 +71,7 @@ function MilestoneGallery({ item, photoIndex, onSelectPhoto, heightClass = "h-64
               rel="noopener noreferrer"
               className="font-mono text-[11px] text-jade-mint hover:underline inline-flex items-center gap-1"
             >
-              <span>Verify</span>
+              <span>{activePhoto.linkLabel || "Verify"}</span>
               <Icon name="arrowUpRight" className="w-3 h-3" strokeWidth={2.2} />
             </a>
           )}
